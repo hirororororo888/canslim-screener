@@ -1,0 +1,6 @@
+results_full.json
+sp500_tickers.json
+qr_*.png
+__pycache__/
+*.pyc
+*.bat~

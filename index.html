@@ -1,0 +1,1929 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CANSLIM / SMART Screener</title>
+<style>
+:root {
+  --bg:#0a0a0f; --bg2:#12121a; --bg3:#1a1a26; --border:#2a2a3d;
+  --text:#e0e0f0; --text2:#8888aa; --text3:#555577;
+  --accent:#4a9eff; --green:#00c896; --red:#ff4a6b;
+  --yellow:#ffc94a; --purple:#9b6dff; --orange:#ff8c42;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;font-size:14px;min-height:100vh;}
+
+/* ── Header ── */
+.header{background:linear-gradient(135deg,#0d0d1a,#12122a);border-bottom:1px solid var(--border);padding:18px 28px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;}
+.header-left{display:flex;align-items:center;gap:12px;}
+.logo{width:36px;height:36px;background:linear-gradient(135deg,var(--accent),var(--purple));border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:15px;flex-shrink:0;}
+h1{font-size:18px;font-weight:700;}
+.subtitle{color:var(--text2);font-size:11px;margin-top:2px;}
+.header-right{display:flex;align-items:center;gap:16px;flex-wrap:wrap;}
+.last-update{color:var(--accent);font-size:11px;}
+.sources-badge{display:flex;gap:6px;}
+.src{padding:2px 8px;border-radius:10px;font-size:10px;font-weight:600;border:1px solid var(--border);color:var(--text2);}
+.src.active{background:rgba(74,158,255,.12);color:var(--accent);border-color:rgba(74,158,255,.3);}
+
+/* ── Mode Tabs ── */
+.mode-bar{margin:20px 28px 0;display:flex;align-items:center;gap:0;}
+.mode-tab{padding:9px 22px;font-size:13px;font-weight:600;cursor:pointer;border:1px solid var(--border);background:var(--bg2);color:var(--text2);transition:all .15s;user-select:none;}
+.mode-tab:first-child{border-radius:8px 0 0 8px;}
+.mode-tab:last-child{border-radius:0 8px 8px 0;}
+.mode-tab.active-canslim{background:rgba(74,158,255,.15);color:var(--accent);border-color:rgba(74,158,255,.4);}
+.mode-tab.active-smart{background:rgba(155,109,255,.15);color:var(--purple);border-color:rgba(155,109,255,.4);}
+.mode-tab.active-both{background:linear-gradient(135deg,rgba(74,158,255,.15),rgba(155,109,255,.15));color:var(--green);border-color:rgba(0,200,150,.4);}
+.mode-desc{margin-left:16px;font-size:12px;color:var(--text2);}
+/* dual score badges in 両方 mode */
+.dual-score{display:flex;gap:4px;align-items:center;}
+.ds-c{background:rgba(74,158,255,.15);color:var(--accent);border-radius:6px;padding:3px 7px;font-weight:700;font-size:12px;}
+.ds-s{background:rgba(155,109,255,.15);color:var(--purple);border-radius:6px;padding:3px 7px;font-weight:700;font-size:12px;}
+.ds-sum{background:rgba(0,200,150,.15);color:var(--green);border-radius:6px;padding:3px 7px;font-weight:800;font-size:12px;}
+.both-card:hover{border-color:var(--green)!important;}
+/* combined score badge */
+.cs12{background:rgba(0,200,150,.22);color:var(--green);}
+.cs10{background:rgba(74,158,255,.18);color:var(--accent);}
+.cs8{background:rgba(255,201,74,.15);color:var(--yellow);}
+.cs-low{background:rgba(255,74,107,.1);color:var(--red);}
+
+/* ── Market Panel ── */
+.market-panel{margin:16px 28px 0;background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:18px 22px;}
+.mp-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;}
+.mp-title{font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--text2);}
+.status-badge{padding:5px 14px;border-radius:16px;font-weight:700;font-size:12px;letter-spacing:.5px;}
+.bullish{background:rgba(0,200,150,.15);color:var(--green);border:1px solid rgba(0,200,150,.3);}
+.caution{background:rgba(255,201,74,.15);color:var(--yellow);border:1px solid rgba(255,201,74,.3);}
+.bearish{background:rgba(255,74,107,.15);color:var(--red);border:1px solid rgba(255,74,107,.3);}
+.confirmed{background:rgba(0,200,150,.2);color:var(--green);border:1px solid rgba(0,200,150,.5);}
+.mp-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:12px 20px;}
+.mp-metric{display:flex;flex-direction:column;gap:3px;}
+.mp-name{font-size:10px;color:var(--text2);letter-spacing:.5px;text-transform:uppercase;}
+.mp-val{font-size:15px;font-weight:600;}
+.mp-sub{font-size:10px;color:var(--text2);}
+.pos{color:var(--green);} .neg{color:var(--red);} .neu{color:var(--yellow);}
+
+/* ── Controls ── */
+.controls{margin:12px 28px 0;background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:14px 20px;display:flex;gap:24px;align-items:center;flex-wrap:wrap;}
+.ctrl-group{display:flex;flex-direction:column;gap:5px;flex-shrink:0;}
+.ctrl-label{font-size:10px;color:var(--text2);letter-spacing:.5px;text-transform:uppercase;}
+.ctrl-row{display:flex;align-items:center;gap:8px;}
+input[type=range]{-webkit-appearance:none;width:110px;height:3px;background:var(--border);border-radius:2px;outline:none;}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:13px;height:13px;border-radius:50%;background:var(--accent);cursor:pointer;}
+.rval{font-weight:600;color:var(--accent);min-width:36px;font-size:13px;}
+.ctrl-right{margin-left:auto;display:flex;gap:10px;align-items:center;}
+.btn{padding:7px 18px;border-radius:7px;border:none;font-size:13px;font-weight:600;cursor:pointer;transition:opacity .15s;}
+.btn:hover{opacity:.82;}
+.btn-primary{background:linear-gradient(135deg,var(--accent),var(--purple));color:#fff;}
+.btn-sec{background:var(--bg3);color:var(--text);border:1px solid var(--border);}
+
+/* ── Top picks ── */
+.section-hdr{font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--text2);margin:20px 28px 10px;display:flex;align-items:center;gap:8px;}
+.section-hdr::after{content:'';flex:1;height:1px;background:var(--border);}
+.picks-grid{margin:0 28px 4px;display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:10px;}
+.pick-card{background:var(--bg2);border:1px solid var(--border);border-radius:11px;padding:14px 16px;transition:border-color .15s;cursor:default;}
+.pick-card:hover{border-color:var(--accent);}
+.pick-card.smart-card:hover{border-color:var(--purple);}
+.pick-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px;}
+.pick-ticker{font-size:17px;font-weight:800;}
+.pick-ticker a{color:var(--accent);text-decoration:none;}
+.pick-ticker a:hover{text-decoration:underline;}
+.pick-name{color:var(--text2);font-size:11px;margin-top:2px;max-width:180px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.score-badge{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:8px;font-weight:800;font-size:16px;flex-shrink:0;}
+.s7,.s6{background:rgba(0,200,150,.2);color:var(--green);}
+.s5{background:rgba(74,158,255,.15);color:var(--accent);}
+.s4{background:rgba(255,201,74,.15);color:var(--yellow);}
+.slow{background:rgba(255,74,107,.1);color:var(--red);}
+.smart-score-5{background:rgba(155,109,255,.2);color:var(--purple);}
+.smart-score-4{background:rgba(74,158,255,.15);color:var(--accent);}
+.smart-score-3{background:rgba(255,201,74,.12);color:var(--yellow);}
+.smart-score-low{background:rgba(255,74,107,.08);color:var(--red);}
+.pick-badges{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:9px;}
+.pb{padding:2px 7px;border-radius:4px;font-size:11px;font-weight:600;display:flex;align-items:center;gap:2px;}
+.pb.pass{background:rgba(0,200,150,.12);color:var(--green);}
+.pb.fail{background:rgba(42,42,61,.8);color:var(--text3);}
+.pb.warn{background:rgba(255,140,66,.12);color:var(--orange);}
+.pick-comment{font-size:11px;color:var(--text2);line-height:1.55;}
+
+/* ── Table ── */
+.results-section{margin:8px 28px 32px;}
+.results-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;}
+.results-title{font-size:12px;font-weight:600;color:var(--text2);letter-spacing:.5px;text-transform:uppercase;}
+.results-count{font-size:12px;color:var(--text2);}
+.table-wrap{overflow-x:auto;border-radius:11px;border:1px solid var(--border);}
+table{width:100%;border-collapse:collapse;}
+thead th{background:var(--bg3);padding:9px 12px;text-align:left;font-size:10px;font-weight:600;letter-spacing:.8px;text-transform:uppercase;color:var(--text2);white-space:nowrap;border-bottom:1px solid var(--border);position:sticky;top:0;cursor:pointer;user-select:none;}
+thead th:hover{color:var(--text);}
+thead th.sort-asc::after{content:' ▲';}
+thead th.sort-desc::after{content:' ▼';}
+tbody tr{border-bottom:1px solid rgba(42,42,61,.45);transition:background .1s;}
+tbody tr:last-child{border-bottom:none;}
+tbody tr:hover{background:rgba(74,158,255,.04);}
+td{padding:9px 12px;vertical-align:middle;white-space:nowrap;}
+
+/* ticker cell */
+.tc{display:flex;flex-direction:column;gap:2px;}
+.tic{font-weight:700;font-size:13px;}
+.tic a{color:var(--accent);text-decoration:none;}
+.tic a:hover{text-decoration:underline;}
+.cname{color:var(--text2);font-size:10px;max-width:130px;overflow:hidden;text-overflow:ellipsis;}
+
+/* condition badge */
+.cb{display:inline-flex;align-items:center;justify-content:center;width:21px;height:21px;border-radius:4px;font-size:11px;font-weight:600;}
+.cp{background:rgba(0,200,150,.14);color:var(--green);}
+.cf{background:rgba(42,42,61,.6);color:var(--text3);}
+.cw{background:rgba(255,140,66,.14);color:var(--orange);}
+
+/* I/Accum badge */
+.accum{background:rgba(0,200,150,.14);color:var(--green);border-radius:4px;padding:2px 6px;font-size:10px;font-weight:600;}
+.dist{background:rgba(255,74,107,.14);color:var(--red);border-radius:4px;padding:2px 6px;font-size:10px;font-weight:600;}
+.neut{background:rgba(255,201,74,.1);color:var(--yellow);border-radius:4px;padding:2px 6px;font-size:10px;font-weight:600;}
+
+/* growth */
+.gp{color:var(--green);font-weight:600;} .gn{color:var(--red);font-weight:600;} .gno{color:var(--text2);}
+
+/* excl pill */
+.excl-pill{display:inline-block;padding:1px 6px;border-radius:3px;font-size:10px;background:rgba(255,74,107,.12);color:var(--red);margin:1px;}
+
+/* empty / loading */
+.empty{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:60px;gap:10px;color:var(--text2);}
+.empty-icon{font-size:36px;opacity:.3;}
+
+/* scrollbar */
+::-webkit-scrollbar{width:5px;height:5px;}
+::-webkit-scrollbar-track{background:var(--bg);}
+::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px;}
+
+@media(max-width:800px){
+  .header,.mode-bar,.market-panel,.controls,.results-section,.picks-grid,.section-hdr{margin-left:10px;margin-right:10px;}
+  .controls{flex-direction:column;align-items:flex-start;gap:12px;}
+  .ctrl-right{margin-left:0;width:100%;justify-content:flex-end;}
+  h1{font-size:16px;}
+  .subtitle{font-size:10px;}
+  .mode-tab{padding:8px 14px;font-size:12px;}
+  .mp-grid{grid-template-columns:repeat(2,1fr);gap:10px;}
+  .picks-grid{grid-template-columns:1fr;}
+  .pick-card{padding:12px;}
+  input[type=range]{width:90px;}
+}
+@media(max-width:480px){
+  .header{padding:12px 10px;flex-wrap:wrap;gap:8px;}
+  .header-right{width:100%;justify-content:space-between;}
+  .mode-bar{flex-wrap:nowrap;overflow-x:auto;margin:10px 6px 0;gap:0;}
+  .mode-tab{padding:7px 10px;font-size:11px;white-space:nowrap;flex-shrink:0;}
+  .mode-desc{display:none;}
+  .market-panel,.controls,.results-section,.picks-grid,.section-hdr{margin-left:6px;margin-right:6px;}
+  .mp-grid{grid-template-columns:repeat(2,1fr);gap:8px;}
+  .mp-val{font-size:14px;}
+  .score-badge{width:28px;height:28px;font-size:13px;}
+  td,thead th{padding:7px 8px;font-size:11px;}
+  .cname{display:none;}
+  .btn{padding:8px 14px;font-size:12px;}
+  .picks-grid{grid-template-columns:1fr;}
+  .pick-ticker{font-size:15px;}
+  .pick-name{max-width:200px;}
+}
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<div class="header">
+  <div class="header-left">
+    <div class="logo">CS</div>
+    <div>
+      <h1>CANSLIM / SMART Screener</h1>
+      <div class="subtitle">NYSE · NASDAQ &nbsp;|&nbsp; Yahoo Finance · Alpha Vantage · FMP</div>
+    </div>
+  </div>
+  <div class="header-right">
+    <div class="sources-badge">
+      <span class="src active">YF</span>
+      <span class="src active">AV</span>
+      <span class="src active">FMP</span>
+    </div>
+    <div>
+      <div id="lastUpdate" class="last-update">—</div>
+      <div style="font-size:11px;color:var(--text2)" id="screenedCount">—</div>
+    </div>
+  </div>
+</div>
+
+<!-- Mode Tabs -->
+<div class="mode-bar">
+  <div class="mode-tab active-canslim" id="tab-canslim" onclick="setMode('canslim')">📊 CANSLIM</div>
+  <div class="mode-tab" id="tab-smart"   onclick="setMode('smart')">⭐ SMART</div>
+  <div class="mode-tab" id="tab-both"    onclick="setMode('both')">🔗 両方適用</div>
+  <span class="mode-desc" id="modeDesc">C/A/N/S/L/I/M の7条件</span>
+</div>
+
+<!-- Market Panel -->
+<div class="market-panel">
+  <div class="mp-header">
+    <div class="mp-title" id="mpTitle">M — Market Direction (SPY)</div>
+    <div class="status-badge" id="mStatus">—</div>
+  </div>
+  <div class="mp-grid" id="mpGrid">
+    <div class="mp-metric"><div class="mp-name">SPY</div><div class="mp-val" id="spyPrice">—</div><div class="mp-sub" id="spyChg">—</div></div>
+    <div class="mp-metric"><div class="mp-name">60日MA</div><div class="mp-val" id="spy60">—</div><div class="mp-sub" id="spy60s">—</div></div>
+    <div class="mp-metric"><div class="mp-name">売抜日</div><div class="mp-val" id="distD">—</div><div class="mp-sub">直近25日</div></div>
+    <div class="mp-metric"><div class="mp-name">5d/20d High</div><div class="mp-val" id="hiLo">—</div><div class="mp-sub" id="hiLoS">—</div></div>
+    <div class="mp-metric"><div class="mp-name">Follow-Through</div><div class="mp-val" id="ftDay">—</div><div class="mp-sub" id="ftDate">—</div></div>
+    <!-- SMART extra -->
+    <div class="mp-metric" id="mp-smart-extra" style="display:none">
+      <div class="mp-name">SMART T判定</div>
+      <div class="mp-val" id="smartTStatus">—</div>
+      <div class="mp-sub" id="smartTSub">—</div>
+    </div>
+  </div>
+</div>
+
+<!-- Threshold Controls -->
+<div class="controls" id="controlsBar">
+  <!-- CANSLIM controls: 各グループを個別に show/hide -->
+  <div class="ctrl-group ctrl-c" id="cg-minsc" style="border-right:1px solid var(--border);padding-right:20px;margin-right:4px">
+    <div class="ctrl-label" style="color:var(--green)">最低スコア表示</div>
+    <div class="ctrl-row"><input type="range" id="cMinSc" min="0" max="7" value="0" step="1" oninput="onRange(this,'cMinScV',false)"><span class="rval" id="cMinScV" style="color:var(--green)">0</span></div>
+  </div>
+  <div class="ctrl-group ctrl-c" id="cg-c">
+    <div class="ctrl-label">C — EPS成長下限</div>
+    <div class="ctrl-row"><input type="range" id="cTh" min="10" max="100" value="25" step="5" oninput="onRange(this,'cV')"><span class="rval" id="cV">25%</span></div>
+  </div>
+  <div class="ctrl-group ctrl-c" id="cg-a">
+    <div class="ctrl-label">A — 年次EPS下限</div>
+    <div class="ctrl-row"><input type="range" id="aTh" min="10" max="100" value="25" step="5" oninput="onRange(this,'aV')"><span class="rval" id="aV">25%</span></div>
+  </div>
+  <div class="ctrl-group ctrl-c" id="cg-s">
+    <div class="ctrl-label">S — 売上成長下限</div>
+    <div class="ctrl-row"><input type="range" id="sTh" min="10" max="100" value="25" step="5" oninput="onRange(this,'sV')"><span class="rval" id="sV">25%</span></div>
+  </div>
+  <div class="ctrl-group ctrl-c" id="cg-l">
+    <div class="ctrl-label">L — IBD RS下限</div>
+    <div class="ctrl-row"><input type="range" id="lTh" min="50" max="95" value="70" step="5" oninput="onRange(this,'lV',false)"><span class="rval" id="lV">70</span></div>
+  </div>
+  <!-- SMART controls -->
+  <div class="ctrl-group ctrl-sm" id="cg-sm-minsc" style="display:none;border-right:1px solid var(--border);padding-right:20px;margin-right:4px">
+    <div class="ctrl-label" style="color:var(--purple)">最低スコア表示</div>
+    <div class="ctrl-row"><input type="range" id="smMinSc" min="0" max="5" value="0" step="1" oninput="onRange(this,'smMinScV',false)"><span class="rval" id="smMinScV" style="color:var(--purple)">0</span></div>
+  </div>
+  <div class="ctrl-group ctrl-sm" id="cg-sm-s" style="display:none">
+    <div class="ctrl-label">S — 売上成長下限</div>
+    <div class="ctrl-row"><input type="range" id="smSTh" min="10" max="60" value="25" step="5" oninput="onRange(this,'smSV')"><span class="rval" id="smSV">25%</span></div>
+  </div>
+  <div class="ctrl-group ctrl-sm" id="cg-sm-m" style="display:none">
+    <div class="ctrl-label">M — 営業利益率下限</div>
+    <div class="ctrl-row"><input type="range" id="smMLoTh" min="10" max="40" value="25" step="5" oninput="onRange(this,'smMLoV')"><span class="rval" id="smMLoV">25%</span></div>
+  </div>
+  <div class="ctrl-group ctrl-sm" id="cg-sm-a" style="display:none">
+    <div class="ctrl-label">A — EPS加速下限</div>
+    <div class="ctrl-row"><input type="range" id="smATh" min="15" max="80" value="30" step="5" oninput="onRange(this,'smAV')"><span class="rval" id="smAV">30%</span></div>
+  </div>
+  <div class="ctrl-group ctrl-sm" id="cg-sm-r" style="display:none">
+    <div class="ctrl-label">R — ROE下限</div>
+    <div class="ctrl-row"><input type="range" id="smRTh" min="10" max="50" value="20" step="5" oninput="onRange(this,'smRV')"><span class="rval" id="smRV">20%</span></div>
+  </div>
+  <!-- BOTH controls -->
+  <div class="ctrl-group ctrl-bo" id="cg-bo-c" style="display:none">
+    <div class="ctrl-label" style="color:var(--accent)">CANSLIM 最低スコア</div>
+    <div class="ctrl-row"><input type="range" id="bothCTh" min="0" max="7" value="3" step="1" oninput="onRange(this,'bothCV',false)"><span class="rval" id="bothCV" style="color:var(--accent)">3</span></div>
+  </div>
+  <div class="ctrl-group ctrl-bo" id="cg-bo-s" style="display:none">
+    <div class="ctrl-label" style="color:var(--purple)">SMART 最低スコア</div>
+    <div class="ctrl-row"><input type="range" id="bothSTh" min="0" max="5" value="3" step="1" oninput="onRange(this,'bothSV',false)"><span class="rval" id="bothSV" style="color:var(--purple)">3</span></div>
+  </div>
+  <div class="ctrl-group ctrl-bo" id="cg-bo-rs" style="display:none">
+    <div class="ctrl-label">IBD RS 下限</div>
+    <div class="ctrl-row"><input type="range" id="bothRSTh" min="50" max="95" value="70" step="5" oninput="onRange(this,'bothRSV',false)"><span class="rval" id="bothRSV">70</span></div>
+  </div>
+  <div class="ctrl-right">
+    <button class="btn btn-sec" onclick="exportCSV()">CSV</button>
+    <button class="btn btn-primary" onclick="refilter()">再フィルター</button>
+  </div>
+</div>
+
+<!-- Top Picks -->
+<div id="topSection" style="display:none">
+  <div class="section-hdr" id="topSectionTitle">上位候補</div>
+  <div class="picks-grid" id="picksGrid"></div>
+</div>
+
+<!-- Results -->
+<div class="section-hdr" id="tableTitle">スクリーニング結果</div>
+<div class="results-section">
+  <div class="results-hdr">
+    <div class="results-title" id="tableMode">CANSLIM スコア一覧</div>
+    <div class="results-count" id="resCount">—</div>
+  </div>
+  <div class="table-wrap">
+    <table id="mainTable">
+      <thead id="tableHead"></thead>
+      <tbody id="tableBody">
+        <tr><td colspan="20"><div class="empty"><div class="empty-icon">📊</div><div>データを待機中</div><div style="font-size:12px;opacity:.6">スクリーニングを実行するとここに結果が表示されます</div></div></td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<script>
+// ═══════════════════════════════════════════════════════════════
+// STATE
+// ═══════════════════════════════════════════════════════════════
+let RAW = null;        // full loadData payload
+let MODE = 'canslim';  // 'canslim' | 'smart' | 'both'
+let SORT = {col:'score', asc:false};
+
+// ═══════════════════════════════════════════════════════════════
+// HELPERS
+// ═══════════════════════════════════════════════════════════════
+const pct  = (v, dec=1) => v == null ? '—' : (v>=0?'+':'')+v.toFixed(dec)+'%';
+const $    = id => document.getElementById(id);
+const cb   = pass => `<span class="cb ${pass?'cp':'cf'}">${pass?'✓':'—'}</span>`;
+const cbW  = (pass,warn) => `<span class="cb ${warn?'cw':pass?'cp':'cf'}">${pass?'✓':warn?'!':'—'}</span>`;
+const gCell = v => v==null?'<span class="gno">—</span>':`<span class="${v>=25?'gp':v<0?'gn':'gno'}">${pct(v)}</span>`;
+const gCellSm = (v,th=25) => v==null?'<span class="gno">—</span>':`<span class="${v>=th?'gp':v<0?'gn':'gno'}">${pct(v)}</span>`;
+const finviz = t => `https://finviz.com/quote.ashx?t=${t}`;
+
+function scoreClass(s, max=7) {
+  const r = s/max;
+  if (r>=6/7) return 's7';
+  if (r>=5/7) return 's6';
+  if (r>=4/7) return 's5';
+  if (r>=3/7) return 's4';
+  return 'slow';
+}
+function combinedScoreClass(s) {
+  if (s>=10) return 'cs12';
+  if (s>=8)  return 'cs10';
+  if (s>=6)  return 'cs8';
+  return 'cs-low';
+}
+function smartScoreClass(s) {
+  if(s>=5) return 'smart-score-5';
+  if(s>=4) return 'smart-score-4';
+  if(s>=3) return 'smart-score-3';
+  return 'smart-score-low';
+}
+function iLabel(v) {
+  if(v==='Accumulation') return '<span class="accum">Accum</span>';
+  if(v==='Distribution') return '<span class="dist">Dist</span>';
+  return '<span class="neut">Neut</span>';
+}
+function onRange(el, valId, isPercent=true) {
+  $(valId).textContent = el.value + (isPercent?'%':'');
+  refilter();
+}
+
+// ═══════════════════════════════════════════════════════════════
+// MODE SWITCH
+// ═══════════════════════════════════════════════════════════════
+function setMode(m) {
+  MODE = m;
+
+  // タブのスタイル
+  $('tab-canslim').className = 'mode-tab' + (m==='canslim' ? ' active-canslim' : '');
+  $('tab-smart').className   = 'mode-tab' + (m==='smart'   ? ' active-smart'   : '');
+  $('tab-both').className    = 'mode-tab' + (m==='both'    ? ' active-both'    : '');
+
+  // 説明文
+  const descs = {canslim:'C/A/N/S/L/I/M の7条件', smart:'S/M/A/R/T の5条件', both:'CANSLIM + SMART 両方適用（合計12点満点）'};
+  $('modeDesc').textContent = descs[m] || '';
+
+  // コントロールの表示切り替え（display:flex / display:none）
+  const showC  = m === 'canslim';
+  const showSm = m === 'smart';
+  const showBo = m === 'both';
+  document.querySelectorAll('.ctrl-c' ).forEach(el => el.style.display = showC  ? 'flex' : 'none');
+  document.querySelectorAll('.ctrl-sm').forEach(el => el.style.display = showSm ? 'flex' : 'none');
+  document.querySelectorAll('.ctrl-bo').forEach(el => el.style.display = showBo ? 'flex' : 'none');
+  // 最低スコアスライダーも切り替え
+  const minScC = $('cg-minsc');  if (minScC)  minScC.style.display  = showC  ? 'flex' : 'none';
+  const minScSm= $('cg-sm-minsc');if(minScSm) minScSm.style.display = showSm ? 'flex' : 'none';
+
+  // マーケットパネル
+  const mpTitles = {canslim:'M — Market Direction (SPY)', smart:'T — Timing: 市場チェック', both:'Market Direction & Timing'};
+  $('mpTitle').textContent = mpTitles[m];
+  $('mp-smart-extra').style.display = (m === 'smart' || m === 'both') ? '' : 'none';
+
+  // テーブルラベル
+  const tableModes = {canslim:'CANSLIM スコア一覧', smart:'SMART スコア一覧', both:'両方適用 — 合計スコア一覧'};
+  $('tableMode').textContent = tableModes[m];
+
+  // ソートキーをリセット
+  SORT = {col: m==='both' ? 'combined_score' : (m==='smart' ? 'smart_score' : 'score'), asc: false};
+
+  if (RAW) render();
+}
+
+// ═══════════════════════════════════════════════════════════════
+// MARKET PANEL
+// ═══════════════════════════════════════════════════════════════
+function renderMarket(mkt) {
+  if (!mkt) return;
+  const st = mkt.status;
+  const stEl = $('mStatus');
+
+  if (MODE === 'smart') {
+    const distOk = (mkt.distributionDays||0) <= 5;
+    const ftOk   = mkt.followThrough;
+    const tOk    = st === 'bullish';
+    stEl.textContent = tOk ? 'CONFIRMED UPTREND' : st==='caution'?'UPTREND UNDER PRESSURE':'MARKET IN CORRECTION';
+    stEl.className   = 'status-badge ' + (tOk ? 'confirmed' : st==='caution'?'caution':'bearish');
+    $('smartTStatus').textContent = tOk ? '✓ エントリー可' : '⛔ エントリー禁止';
+    $('smartTStatus').className   = 'mp-val ' + (tOk?'pos':'neg');
+    $('smartTSub').textContent    = `売抜日:${mkt.distributionDays||'—'} FT:${mkt.followThrough?'あり':'なし'}`;
+  } else {
+    stEl.textContent = st.toUpperCase();
+    stEl.className   = 'status-badge ' + st;
+  }
+
+  $('spyPrice').textContent = mkt.spyPrice ? '$'+mkt.spyPrice.toFixed(2) : '—';
+  const chg = mkt.spyChange;
+  $('spyChg').innerHTML = chg!=null ? `<span class="${chg>=0?'pos':'neg'}">${pct(chg,2)} 前日比</span>` : '—';
+  if (mkt.ma60) {
+    $('spy60').textContent  = '$'+mkt.ma60.toFixed(2);
+    $('spy60').className    = 'mp-val '+(mkt.aboveMa60?'pos':'neg');
+    $('spy60s').textContent = mkt.aboveMa60 ? '▲ 上回る' : '▼ 下回る';
+  }
+  const dd = mkt.distributionDays;
+  $('distD').textContent  = dd != null ? dd+'日' : '—';
+  $('distD').className    = 'mp-val '+(dd<=3?'pos':dd<=5?'neu':'neg');
+  $('hiLo').textContent   = mkt.hiLoRatio != null ? mkt.hiLoRatio.toFixed(3) : '—';
+  $('hiLoS').textContent  = mkt.hiLoDesc || '—';
+  $('ftDay').textContent  = mkt.followThrough ? '確認済み' : '未確認';
+  $('ftDay').className    = 'mp-val '+(mkt.followThrough?'pos':'neu');
+  $('ftDate').textContent = mkt.followThroughDate || '';
+}
+
+// ═══════════════════════════════════════════════════════════════
+// FILTER
+// ═══════════════════════════════════════════════════════════════
+function getThresholds() {
+  const v = (id, def) => { const el = $(id); return el ? +el.value : def; };
+  return {
+    C:      v('cTh',    25), A:     v('aTh',    25),
+    S:      v('sTh',    25), L:     v('lTh',    70),
+    cMinSc: v('cMinSc',  0),          // CANSLIM 最低スコア
+    smS:    v('smSTh',  25), smMLo: v('smMLoTh',25),
+    smA:    v('smATh',  30), smR:   v('smRTh',  20),
+    smMinSc:v('smMinSc', 0),          // SMART 最低スコア
+    bothC:  v('bothCTh', 3), bothS: v('bothSTh', 3),
+    bothRS: v('bothRSTh',70),
+  };
+}
+
+function calcCanslim(s, th) {
+  const c = s.epsGrowth  != null && s.epsGrowth  >= th.C;
+  const a = s.A;
+  const sv= s.salesGrowth!= null && s.salesGrowth>= th.S;
+  const n = s.N;
+  const l = s.rsScore    != null && s.rsScore    >= th.L;
+  const sc= [c,a,sv,n,l,s.Ipass,s.M].filter(Boolean).length;
+  return {...s, C:c, S:sv, L:l, score:sc};
+}
+
+function calcSmart(s, th) {
+  const smS = s.salesGrowth != null && s.salesGrowth >= th.smS;
+  const smM = s.opMargin    != null && s.opMargin    >= th.smMLo && s.opMargin <= 65;
+  const smA = s.epsGrowth   != null && s.epsGrowth   >= th.smA;
+  const smR = s.roe         != null && s.roe         >= th.smR;
+  const smT = s.smart_T;
+  const sc  = [smS,smM,smA,smR,smT].filter(Boolean).length;
+  return {...s, smart_S:smS, smart_M:smM, smart_A:smA, smart_R:smR, smart_score:sc};
+}
+
+function applyFilter(stocks) {
+  const th = getThresholds();
+  if (MODE === 'canslim') {
+    return stocks
+      .map(s => calcCanslim(s, th))
+      .filter(s => s.score >= th.cMinSc);
+  }
+  if (MODE === 'smart') {
+    return stocks
+      .map(s => calcSmart(s, th))
+      .filter(s => s.smart_score >= th.smMinSc);
+  }
+  // BOTH — apply both, filter by minimums, sort by combined
+  return stocks
+    .map(s => {
+      const sc = calcCanslim(s, th);
+      const ss = calcSmart(sc, th);
+      const combined = (ss.score||0) + (ss.smart_score||0);
+      // IBD RS filter
+      const rsOk = (ss.rsScore||0) >= th.bothRS;
+      return {...ss, combined_score: combined, rsOk};
+    })
+    .filter(s => s.score >= th.bothC && s.smart_score >= th.bothS && s.rsOk);
+}
+
+function sortStocks(stocks) {
+  const col = SORT.col;
+  return [...stocks].sort((a,b) => {
+    let va = a[col], vb = b[col];
+    if (va == null) va = -9999;
+    if (vb == null) vb = -9999;
+    return SORT.asc ? va-vb : vb-va;
+  });
+}
+
+function refilter() {
+  if (!RAW) return;
+  render();
+}
+
+// ═══════════════════════════════════════════════════════════════
+// TOP PICKS
+// ═══════════════════════════════════════════════════════════════
+function renderPicks(stocks) {
+  $('topSection').style.display = '';
+
+  const titles = {canslim:'CANSLIM 上位候補', smart:'SMART 上位候補', both:'両方適用 — 上位候補'};
+  $('topSectionTitle').textContent = titles[MODE];
+
+  const sortKey = MODE==='both' ? 'combined_score' : MODE==='smart' ? 'smart_score' : 'score';
+  const top3 = [...stocks].sort((a,b)=>(b[sortKey]||0)-(a[sortKey]||0)).slice(0,3);
+
+  const cKeys = {
+    canslim: [{k:'C',l:'EPS成長'},{k:'A',l:'年次EPS'},{k:'S',l:'売上'},{k:'N',l:'高値圏'},{k:'L',l:'RS'},{k:'Ipass',l:'Accum'},{k:'M',l:'市場'}],
+    smart:   [{k:'smart_S',l:'Sales'},{k:'smart_M',l:'Margin'},{k:'smart_A',l:'EPS加速'},{k:'smart_R',l:'ROE'},{k:'smart_T',l:'Timing'}],
+    both:    [{k:'C',l:'C-EPS'},{k:'S',l:'C-Rev'},{k:'N',l:'C-High'},{k:'L',l:'C-RS'},{k:'smart_M',l:'S-OM'},{k:'smart_R',l:'S-ROE'},{k:'smart_T',l:'S-T'}],
+  };
+
+  $('picksGrid').innerHTML = top3.map(s => {
+    let scoreHTML, cardClass = 'pick-card';
+    if (MODE==='both') {
+      const comb = s.combined_score||0;
+      cardClass += ' both-card';
+      scoreHTML = `<div class="dual-score">
+        <span class="ds-c">${s.score||0}</span>
+        <span style="color:var(--text3);font-size:10px">+</span>
+        <span class="ds-s">${s.smart_score||0}</span>
+        <span class="ds-sum">${comb}</span>
+      </div>`;
+    } else if (MODE==='smart') {
+      cardClass += ' smart-card';
+      scoreHTML = `<div class="score-badge ${smartScoreClass(s.smart_score||0)}">${s.smart_score||0}</div>`;
+    } else {
+      scoreHTML = `<div class="score-badge ${scoreClass(s.score||0,7)}">${s.score||0}</div>`;
+    }
+    const badges = (cKeys[MODE]||[]).map(({k,l}) =>
+      `<span class="pb ${s[k]?'pass':'fail'}">${s[k]?'✓':'—'} ${l}</span>`
+    ).join('');
+    const excls = (s.smart_excl||[]).map(e=>`<span class="excl-pill">${e}</span>`).join('');
+    const comment = MODE==='both'
+      ? `CANSLIM ${s.score}/7・SMART ${s.smart_score}/5・合計 ${s.combined_score}/12。${s.comment||''}`
+      : (s.comment||s.smart_comment||'');
+    return `<div class="${cardClass}">
+      <div class="pick-top">
+        <div>
+          <div class="pick-ticker"><a href="${finviz(s.ticker)}" target="_blank">${s.ticker}</a></div>
+          <div class="pick-name" title="${s.name}">${s.name||''}</div>
+        </div>
+        ${scoreHTML}
+      </div>
+      <div class="pick-badges">${badges}</div>
+      ${excls?`<div style="margin-bottom:8px">${excls}</div>`:''}
+      <div class="pick-comment">${comment}</div>
+    </div>`;
+  }).join('');
+}
+
+// ═══════════════════════════════════════════════════════════════
+// TABLE HEADER
+// ═══════════════════════════════════════════════════════════════
+function buildHeader() {
+  const sc = col => SORT.col!==col ? '' : SORT.asc ? ' class="sort-asc"' : ' class="sort-desc"';
+  const th = (col,label,title='') =>
+    `<th onclick="sortBy('${col}')"${sc(col)}${title?` title="${title}"`:''}>${label}</th>`;
+
+  if (MODE === 'canslim') {
+    return `<tr>
+      ${th('ticker','銘柄')}${th('score','スコア')}
+      ${th('C','C','Current EPS')}${th('A','A','Annual EPS 3yr')}${th('S','S','Sales Growth')}
+      ${th('N','N','Near 52w High')}${th('L','L','IBD RS Leader')}<th title="Institutional">I</th>${th('M','M','Market')}
+      ${th('epsGrowth','EPS成長')}${th('salesGrowth','売上成長')}
+      ${th('rsScore','IBD RS')}${th('fromHigh','52wH%')}${th('instPct','機関%')}<th></th>
+    </tr>`;
+  }
+  if (MODE === 'smart') {
+    return `<tr>
+      ${th('ticker','銘柄')}${th('smart_score','スコア')}
+      ${th('smart_S','S','Sales>=25%')}${th('smart_M','M','OM 25-65%')}
+      ${th('smart_A','A','EPS加速>=30%')}${th('smart_R','R','ROE>=20%')}${th('smart_T','T','Timing')}
+      ${th('opMargin','OM%')}${th('roe','ROE%')}
+      ${th('epsGrowth','EPS%')}${th('salesGrowth','Rev%')}
+      ${th('stage2','Stage')}${th('fromHigh','52wH%')}
+      <th>除外シグナル</th><th></th>
+    </tr>`;
+  }
+  // BOTH
+  return `<tr>
+    ${th('ticker','銘柄')}
+    ${th('combined_score','合計','CANSLIM+SMART合計スコア')}
+    ${th('score','CS','CANSLIMスコア/7')}
+    ${th('smart_score','SM','SMARTスコア/5')}
+    ${th('C','C')}${th('A','A')}${th('S','S')}${th('N','N')}${th('L','L')}<th>I</th>
+    ${th('smart_M','M%','OM 25-65%')}${th('smart_R','R','ROE>=20%')}${th('smart_T','T','Timing')}
+    ${th('epsGrowth','EPS%')}${th('salesGrowth','Rev%')}
+    ${th('rsScore','RS')}${th('opMargin','OM%')}${th('roe','ROE%')}${th('fromHigh','52wH%')}
+    <th>除外</th><th></th>
+  </tr>`;
+}
+
+// ═══════════════════════════════════════════════════════════════
+// TABLE ROWS
+// ═══════════════════════════════════════════════════════════════
+function buildRows(stocks) {
+  if (!stocks.length) return `<tr><td colspan="22"><div class="empty"><div class="empty-icon">🔍</div><div>条件を満たす銘柄がありません</div></div></td></tr>`;
+
+  const fvLink = t => `<a href="${finviz(t)}" target="_blank" style="color:var(--text2);font-size:11px;text-decoration:none">Finviz↗</a>`;
+  const tickerCell = s => `<td><div class="tc"><div class="tic"><a href="${finviz(s.ticker)}" target="_blank">${s.ticker}</a></div><div class="cname" title="${s.name}">${s.name||''}</div></div></td>`;
+  const omSpan = v => v==null?'<span class="gno">—</span>':`<span class="${v>=25&&v<=65?'gp':v<0?'gn':'gno'}">${v.toFixed(1)}%</span>`;
+  const roeSpan= v => v==null?'<span class="gno">—</span>':`<span class="${v>=20?'gp':v<0?'gn':'gno'}">${v.toFixed(1)}%</span>`;
+  const fh = s => s.fromHigh!=null?'-'+s.fromHigh+'%':'—';
+
+  return stocks.map(s => {
+    if (MODE === 'canslim') {
+      const sc = s.score||0;
+      return `<tr>
+        ${tickerCell(s)}
+        <td><div class="score-badge ${scoreClass(sc,7)}">${sc}</div></td>
+        <td>${cb(s.C)}</td><td>${cb(s.A)}</td><td>${cb(s.S)}</td>
+        <td>${cb(s.N)}</td><td>${cb(s.L)}</td>
+        <td>${iLabel(s.I)}</td><td>${cb(s.M)}</td>
+        <td>${gCell(s.epsGrowth)}</td><td>${gCell(s.salesGrowth)}</td>
+        <td><span class="${(s.rsScore||0)>=70?'gp':'gno'}">${s.rsScore??'—'}</span></td>
+        <td>${fh(s)}</td>
+        <td>${s.instPct!=null?s.instPct.toFixed(1)+'%':'—'}</td>
+        <td>${fvLink(s.ticker)}</td>
+      </tr>`;
+    }
+    if (MODE === 'smart') {
+      const sc = s.smart_score||0;
+      const tWarn = (s.smart_excl||[]).length > 0;
+      const excls = (s.smart_excl||[]).map(e=>`<span class="excl-pill">${e}</span>`).join(' ');
+      const st2 = s.stage2
+        ? '<span class="cp" style="border-radius:4px;padding:1px 6px;font-size:11px">St2✓</span>'
+        : '<span class="cf" style="border-radius:4px;padding:1px 6px;font-size:11px">St1</span>';
+      return `<tr>
+        ${tickerCell(s)}
+        <td><div class="score-badge ${smartScoreClass(sc)}">${sc}</div></td>
+        <td>${cb(s.smart_S)}</td>
+        <td>${cbW(s.smart_M, s.opMargin!=null&&(s.opMargin<25||s.opMargin>65))}</td>
+        <td>${cb(s.smart_A)}</td><td>${cb(s.smart_R)}</td>
+        <td>${cbW(s.smart_T, tWarn)}</td>
+        <td>${omSpan(s.opMargin)}</td><td>${roeSpan(s.roe)}</td>
+        <td>${gCellSm(s.epsGrowth,30)}</td><td>${gCellSm(s.salesGrowth,25)}</td>
+        <td>${st2}</td><td>${fh(s)}</td>
+        <td style="max-width:180px;white-space:normal">${excls||'<span style="color:var(--text3);font-size:11px">なし</span>'}</td>
+        <td>${fvLink(s.ticker)}</td>
+      </tr>`;
+    }
+    // BOTH
+    const comb = s.combined_score||0;
+    const excls = (s.smart_excl||[]).map(e=>`<span class="excl-pill">${e}</span>`).join(' ');
+    const tWarn = (s.smart_excl||[]).length > 0;
+    return `<tr>
+      ${tickerCell(s)}
+      <td>
+        <div class="dual-score">
+          <span class="ds-sum ${combinedScoreClass(comb)}" style="width:28px;height:28px;border-radius:7px;display:inline-flex;align-items:center;justify-content:center;font-weight:800">${comb}</span>
+        </div>
+      </td>
+      <td><span class="ds-c">${s.score||0}/7</span></td>
+      <td><span class="ds-s">${s.smart_score||0}/5</span></td>
+      <td>${cb(s.C)}</td><td>${cb(s.A)}</td><td>${cb(s.S)}</td>
+      <td>${cb(s.N)}</td><td>${cb(s.L)}</td>
+      <td>${iLabel(s.I)}</td>
+      <td>${cbW(s.smart_M, s.opMargin!=null&&(s.opMargin<25||s.opMargin>65))}</td>
+      <td>${cb(s.smart_R)}</td>
+      <td>${cbW(s.smart_T, tWarn)}</td>
+      <td>${gCellSm(s.epsGrowth,25)}</td><td>${gCellSm(s.salesGrowth,25)}</td>
+      <td><span class="${(s.rsScore||0)>=70?'gp':'gno'}">${s.rsScore??'—'}</span></td>
+      <td>${omSpan(s.opMargin)}</td><td>${roeSpan(s.roe)}</td>
+      <td>${fh(s)}</td>
+      <td style="max-width:150px;white-space:normal">${excls||'<span style="color:var(--text3);font-size:11px">—</span>'}</td>
+      <td>${fvLink(s.ticker)}</td>
+    </tr>`;
+  }).join('');
+}
+
+// ═══════════════════════════════════════════════════════════════
+// SORT
+// ═══════════════════════════════════════════════════════════════
+function sortBy(col) {
+  if (SORT.col === col) SORT.asc = !SORT.asc;
+  else { SORT.col = col; SORT.asc = false; }
+  render();
+}
+
+// ═══════════════════════════════════════════════════════════════
+// RENDER
+// ═══════════════════════════════════════════════════════════════
+function render() {
+  if (!RAW) return;
+  try {
+    renderMarket(RAW.market);
+    let stocks = applyFilter(RAW.stocks);
+    stocks = sortStocks(stocks);
+    $('tableHead').innerHTML = buildHeader();
+    $('tableBody').innerHTML = buildRows(stocks);
+    $('resCount').textContent = stocks.length + '銘柄';
+    if (stocks.length) renderPicks(stocks);
+  } catch(e) {
+    console.error('[CANSLIM Screener] render error:', e);
+    $('tableBody').innerHTML = `<tr><td colspan="22"><div class="empty">
+      <div class="empty-icon">⚠️</div>
+      <div>表示エラーが発生しました</div>
+      <div style="font-size:11px;color:var(--red)">${e.message}</div>
+    </div></td></tr>`;
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════
+// LOAD DATA (called by Python-generated script tag)
+// ═══════════════════════════════════════════════════════════════
+function loadData(data) {
+  RAW = data;
+  const meta = data.meta || {};
+  if (meta.updatedAt)
+    $('lastUpdate').textContent = '更新: ' + new Date(meta.updatedAt).toLocaleString('ja-JP');
+  if (meta.screened)
+    $('screenedCount').textContent = `${meta.screened}銘柄スクリーニング済み`;
+  render();
+}
+
+// ═══════════════════════════════════════════════════════════════
+// CSV EXPORT
+// ═══════════════════════════════════════════════════════════════
+function exportCSV() {
+  if (!RAW) return alert('データがありません');
+  let stocks = applyFilter(RAW.stocks);
+  stocks = sortStocks(stocks);
+  let rows, hdr;
+  if (MODE==='canslim') {
+    hdr = ['Ticker','Name','Score','C','A','S','N','L','I','M','EPS%','Rev%','RS','From52H','InstPct'];
+    rows = stocks.map(s=>[s.ticker,`"${s.name}"`,s.score,+s.C,+s.A,+s.S,+s.N,+s.L,s.I,+s.M,s.epsGrowth,s.salesGrowth,s.rsScore,s.fromHigh,s.instPct]);
+  } else if (MODE==='smart') {
+    hdr = ['Ticker','Name','SmartScore','S','M','A','R','T','OM%','ROE%','EPS%','Rev%','Stage2','Excl'];
+    rows = stocks.map(s=>[s.ticker,`"${s.name}"`,s.smart_score,+s.smart_S,+s.smart_M,+s.smart_A,+s.smart_R,+s.smart_T,s.opMargin,s.roe,s.epsGrowth,s.salesGrowth,+s.stage2,`"${(s.smart_excl||[]).join('/')}"`]);
+  } else {
+    hdr = ['Ticker','Name','Combined','CANSLIM','SMART','C','A','S','N','L','I','SM_M','SM_R','SM_T','EPS%','Rev%','RS','OM%','ROE%','From52H','Excl'];
+    rows = stocks.map(s=>[s.ticker,`"${s.name}"`,s.combined_score,s.score,s.smart_score,+s.C,+s.A,+s.S,+s.N,+s.L,s.I,+s.smart_M,+s.smart_R,+s.smart_T,s.epsGrowth,s.salesGrowth,s.rsScore,s.opMargin,s.roe,s.fromHigh,`"${(s.smart_excl||[]).join('/')}"`]);
+  }
+  const csv = [hdr, ...rows].map(r=>r.join(',')).join('\n');
+  const a = document.createElement('a');
+  a.href = 'data:text/csv;charset=utf-8,﻿'+encodeURIComponent(csv);
+  a.download = `${MODE}_${new Date().toISOString().slice(0,10)}.csv`;
+  a.click();
+}
+
+// ═══════════════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════════════════
+
+</script>
+
+<script>
+
+</script>
+<script>
+
+</script>
+<script>
+
+</script>
+<script>
+
+</script>
+<script>
+
+</script>
+<script>
+
+</script>
+<script>
+
+</script>
+<script>
+
+</script>
+<script>
+
+</script>
+<script>
+
+</script>
+<script>
+
+</script>
+<script>
+
+</script>
+<script>
+
+</script>
+<script>
+
+</script>
+<script>
+
+</script>
+<script>
+// ── Auto-updated: 2026-06-02T23:36:46.226405+00:00 ──
+loadData({
+  "market": {
+    "status": "bullish",
+    "spyPrice": 759.57,
+    "spyChange": 0.14,
+    "ma60": 700.76,
+    "aboveMa60": true,
+    "distributionDays": 3,
+    "hiLoRatio": 1.011,
+    "hiLoDesc": "新値圏（52週高値-0.2%）",
+    "followThrough": true,
+    "followThroughDate": "2026-05-08"
+  },
+  "stocks": [
+    {
+      "ticker": "LPG",
+      "name": "Dorian LPG Ltd.",
+      "sector": "Energy",
+      "price": 40.9,
+      "mktCap": 1749811712.0,
+      "score": 6,
+      "smart_score": 4,
+      "combined_score": 10,
+      "C": true,
+      "A": false,
+      "S": true,
+      "N": true,
+      "L": true,
+      "I": "Accumulation",
+      "Ipass": true,
+      "M": true,
+      "smart_S": true,
+      "smart_M": true,
+      "smart_A": true,
+      "smart_R": false,
+      "smart_T": true,
+      "epsGrowth": 901.2,
+      "salesGrowth": 105.2,
+      "opMargin": 55.2,
+      "roe": 17.7,
+      "rsScore": 88,
+      "fromHigh": 15.0,
+      "instPct": 69.9,
+      "stage2": true,
+      "avg200": 31.38,
+      "avg50": 38.0,
+      "smart_excl": [],
+      "comment": "EPS +901.2% 売上 +105.2% RS=88 52wH-15.0% OM=55.2% ROE=17.7%"
+    },
+    {
+      "ticker": "EGBN",
+      "name": "Eagle Bancorp, Inc.",
+      "sector": "Financial Services",
+      "price": 26.85,
+      "mktCap": 818807296.0,
+      "score": 6,
+      "smart_score": 4,
+      "combined_score": 10,
+      "C": true,
+      "A": false,
+      "S": true,
+      "N": true,
+      "L": true,
+      "I": "Accumulation",
+      "Ipass": true,
+      "M": true,
+      "smart_S": true,
+      "smart_M": true,
+      "smart_A": true,
+      "smart_R": false,
+      "smart_T": true,
+      "epsGrowth": 778.7,
+      "salesGrowth": 35.3,
+      "opMargin": 35.6,
+      "roe": -10.5,
+      "rsScore": 73,
+      "fromHigh": 8.2,
+      "instPct": 80.9,
+      "stage2": true,
+      "avg200": 22.56,
+      "avg50": 26.02,
+      "smart_excl": [],
+      "comment": "EPS +778.7% 売上 +35.3% RS=73 52wH-8.2% OM=35.6% ROE=-10.5%"
+    },
+    {
+      "ticker": "MU",
+      "name": "Micron Technology, Inc.",
+      "sector": "Technology",
+      "price": 1064.1,
+      "mktCap": 1200021700608.0,
+      "score": 6,
+      "smart_score": 3,
+      "combined_score": 9,
+      "C": true,
+      "A": false,
+      "S": true,
+      "N": true,
+      "L": true,
+      "I": "Accumulation",
+      "Ipass": true,
+      "M": true,
+      "smart_S": true,
+      "smart_M": false,
+      "smart_A": true,
+      "smart_R": true,
+      "smart_T": false,
+      "epsGrowth": 770.8,
+      "salesGrowth": 196.3,
+      "opMargin": 67.6,
+      "roe": 39.8,
+      "rsScore": 98,
+      "fromHigh": 1.2,
+      "instPct": 81.6,
+      "stage2": true,
+      "avg200": 343.29,
+      "avg50": 569.38,
+      "smart_excl": [
+        "除外①2x200MA"
+      ],
+      "comment": "EPS +770.8% 売上 +196.3% RS=98 52wH-1.2% OM=67.6% ROE=39.8%"
+    },
+    {
+      "ticker": "WDC",
+      "name": "Western Digital Corporation",
+      "sector": "Technology",
+      "price": 563.1,
+      "mktCap": 194090500096.0,
+      "score": 6,
+      "smart_score": 4,
+      "combined_score": 10,
+      "C": true,
+      "A": false,
+      "S": true,
+      "N": true,
+      "L": true,
+      "I": "Accumulation",
+      "Ipass": true,
+      "M": true,
+      "smart_S": true,
+      "smart_M": true,
+      "smart_A": true,
+      "smart_R": true,
+      "smart_T": false,
+      "epsGrowth": 516.3,
+      "salesGrowth": 45.5,
+      "opMargin": 37.0,
+      "roe": 85.9,
+      "rsScore": 98,
+      "fromHigh": 1.4,
+      "instPct": 101.2,
+      "stage2": true,
+      "avg200": 232.86,
+      "avg50": 402.77,
+      "smart_excl": [
+        "除外①2x200MA"
+      ],
+      "comment": "EPS +516.3% 売上 +45.5% RS=98 52wH-1.4% OM=37.0% ROE=85.9%"
+    },
+    {
+      "ticker": "CUBI",
+      "name": "Customers Bancorp, Inc.",
+      "sector": "Financial Services",
+      "price": 74.34,
+      "mktCap": 2514556928.0,
+      "score": 6,
+      "smart_score": 4,
+      "combined_score": 10,
+      "C": true,
+      "A": false,
+      "S": true,
+      "N": true,
+      "L": true,
+      "I": "Accumulation",
+      "Ipass": true,
+      "M": true,
+      "smart_S": true,
+      "smart_M": true,
+      "smart_A": true,
+      "smart_R": false,
+      "smart_T": true,
+      "epsGrowth": 439.4,
+      "salesGrowth": 76.4,
+      "opMargin": 48.7,
+      "roe": 14.0,
+      "rsScore": 72,
+      "fromHigh": 10.0,
+      "instPct": 102.1,
+      "stage2": true,
+      "avg200": 71.1,
+      "avg50": 74.05,
+      "smart_excl": [],
+      "comment": "EPS +439.4% 売上 +76.4% RS=72 52wH-10.0% OM=48.7% ROE=14.0%"
+    },
+    {
+      "ticker": "BTSG",
+      "name": "BrightSpring Health Services, Inc.",
+      "sector": "Healthcare",
+      "price": 59.34,
+      "mktCap": 11507118080.0,
+      "score": 6,
+      "smart_score": 3,
+      "combined_score": 9,
+      "C": true,
+      "A": false,
+      "S": true,
+      "N": true,
+      "L": true,
+      "I": "Accumulation",
+      "Ipass": true,
+      "M": true,
+      "smart_S": true,
+      "smart_M": false,
+      "smart_A": true,
+      "smart_R": false,
+      "smart_T": true,
+      "epsGrowth": 403.6,
+      "salesGrowth": 25.6,
+      "opMargin": 3.4,
+      "roe": 9.2,
+      "rsScore": 93,
+      "fromHigh": 4.5,
+      "instPct": 110.7,
+      "stage2": true,
+      "avg200": 38.05,
+      "avg50": 50.07,
+      "smart_excl": [],
+      "comment": "EPS +403.6% 売上 +25.6% RS=93 52wH-4.5% OM=3.4% ROE=9.2%"
+    },
+    {
+      "ticker": "LSCC",
+      "name": "Lattice Semiconductor Corporation",
+      "sector": "Technology",
+      "price": 151.35,
+      "mktCap": 20736139264.0,
+      "score": 6,
+      "smart_score": 3,
+      "combined_score": 9,
+      "C": true,
+      "A": false,
+      "S": true,
+      "N": true,
+      "L": true,
+      "I": "Accumulation",
+      "Ipass": true,
+      "M": true,
+      "smart_S": true,
+      "smart_M": false,
+      "smart_A": true,
+      "smart_R": false,
+      "smart_T": true,
+      "epsGrowth": 334.4,
+      "salesGrowth": 42.2,
+      "opMargin": 15.6,
+      "roe": 2.7,
+      "rsScore": 95,
+      "fromHigh": 1.1,
+      "instPct": 108.6,
+      "stage2": true,
+      "avg200": 86.67,
+      "avg50": 116.77,
+      "smart_excl": [],
+      "comment": "EPS +334.4% 売上 +42.2% RS=95 52wH-1.1% OM=15.6% ROE=2.7%"
+    },
+    {
+      "ticker": "TER",
+      "name": "Teradyne, Inc.",
+      "sector": "Technology",
+      "price": 392.62,
+      "mktCap": 61461581824.0,
+      "score": 6,
+      "smart_score": 5,
+      "combined_score": 11,
+      "C": true,
+      "A": false,
+      "S": true,
+      "N": true,
+      "L": true,
+      "I": "Accumulation",
+      "Ipass": true,
+      "M": true,
+      "smart_S": true,
+      "smart_M": true,
+      "smart_A": true,
+      "smart_R": true,
+      "smart_T": true,
+      "epsGrowth": 303.4,
+      "salesGrowth": 87.0,
+      "opMargin": 37.6,
+      "roe": 28.7,
+      "rsScore": 96,
+      "fromHigh": 7.0,
+      "instPct": 96.4,
+      "stage2": true,
+      "avg200": 235.17,
+      "avg50": 350.0,
+      "smart_excl": [],
+      "comment": "EPS +303.4% 売上 +87.0% RS=96 52wH-7.0% OM=37.6% ROE=28.7%"
+    },
+    {
+      "ticker": "AMKR",
+      "name": "Amkor Technology, Inc.",
+      "sector": "Technology",
+      "price": 74.74,
+      "mktCap": 18525990912.0,
+      "score": 6,
+      "smart_score": 3,
+      "combined_score": 9,
+      "C": true,
+      "A": false,
+      "S": true,
+      "N": true,
+      "L": true,
+      "I": "Accumulation",
+      "Ipass": true,
+      "M": true,
+      "smart_S": true,
+      "smart_M": false,
+      "smart_A": true,
+      "smart_R": false,
+      "smart_T": true,
+      "epsGrowth": 294.5,
+      "salesGrowth": 27.5,
+      "opMargin": 6.0,
+      "roe": 10.0,
+      "rsScore": 96,
+      "fromHigh": 5.7,
+      "instPct": 51.2,
+      "stage2": true,
+      "avg200": 44.34,
+      "avg50": 63.71,
+      "smart_excl": [],
+      "comment": "EPS +294.5% 売上 +27.5% RS=96 52wH-5.7% OM=6.0% ROE=10.0%"
+    },
+    {
+      "ticker": "DELL",
+      "name": "Dell Technologies Inc.",
+      "sector": "Technology",
+      "price": 435.31,
+      "mktCap": 282763558912.0,
+      "score": 7,
+      "smart_score": 2,
+      "combined_score": 9,
+      "C": true,
+      "A": true,
+      "S": true,
+      "N": true,
+      "L": true,
+      "I": "Accumulation",
+      "Ipass": true,
+      "M": true,
+      "smart_S": true,
+      "smart_M": false,
+      "smart_A": true,
+      "smart_R": false,
+      "smart_T": false,
+      "epsGrowth": 256.3,
+      "salesGrowth": 87.5,
+      "opMargin": 8.3,
+      "roe": null,
+      "rsScore": 98,
+      "fromHigh": 7.3,
+      "instPct": 82.4,
+      "stage2": true,
+      "avg200": 155.89,
+      "avg50": 222.04,
+      "smart_excl": [
+        "除外①2x200MA"
+      ],
+      "comment": "EPS +256.3% 売上 +87.5% RS=98 52wH-7.3% OM=8.3% ROE=None%"
+    },
+    {
+      "ticker": "CIEN",
+      "name": "Ciena Corporation",
+      "sector": "Technology",
+      "price": 627.0,
+      "mktCap": 88656814080.0,
+      "score": 6,
+      "smart_score": 2,
+      "combined_score": 8,
+      "C": true,
+      "A": false,
+      "S": true,
+      "N": true,
+      "L": true,
+      "I": "Accumulation",
+      "Ipass": true,
+      "M": true,
+      "smart_S": true,
+      "smart_M": false,
+      "smart_A": true,
+      "smart_R": false,
+      "smart_T": false,
+      "epsGrowth": 237.2,
+      "salesGrowth": 33.1,
+      "opMargin": 13.4,
+      "roe": 8.2,
+      "rsScore": 97,
+      "fromHigh": 0.4,
+      "instPct": 97.9,
+      "stage2": true,
+      "avg200": 284.67,
+      "avg50": 504.78,
+      "smart_excl": [
+        "除外①2x200MA"
+      ],
+      "comment": "EPS +237.2% 売上 +33.1% RS=97 52wH-0.4% OM=13.4% ROE=8.2%"
+    },
+    {
+      "ticker": "NVDA",
+      "name": "NVIDIA Corporation",
+      "sector": "Technology",
+      "price": 222.82,
+      "mktCap": 5396923154432.0,
+      "score": 7,
+      "smart_score": 4,
+      "combined_score": 11,
+      "C": true,
+      "A": true,
+      "S": true,
+      "N": true,
+      "L": true,
+      "I": "Accumulation",
+      "Ipass": true,
+      "M": true,
+      "smart_S": true,
+      "smart_M": false,
+      "smart_A": true,
+      "smart_R": true,
+      "smart_T": true,
+      "epsGrowth": 210.6,
+      "salesGrowth": 85.2,
+      "opMargin": 65.6,
+      "roe": 114.3,
+      "rsScore": 81,
+      "fromHigh": 5.8,
+      "instPct": 70.9,
+      "stage2": true,
+      "avg200": 187.87,
+      "avg50": 200.26,
+      "smart_excl": [],
+      "comment": "EPS +210.6% 売上 +85.2% RS=81 52wH-5.8% OM=65.6% ROE=114.3%"
+    },
+    {
+      "ticker": "ARW",
+      "name": "Arrow Electronics, Inc.",
+      "sector": "Technology",
+      "price": 228.4,
+      "mktCap": 11678992384.0,
+      "score": 6,
+      "smart_score": 3,
+      "combined_score": 9,
+      "C": true,
+      "A": false,
+      "S": true,
+      "N": true,
+      "L": true,
+      "I": "Accumulation",
+      "Ipass": true,
+      "M": true,
+      "smart_S": true,
+      "smart_M": false,
+      "smart_A": true,
+      "smart_R": false,
+      "smart_T": true,
+      "epsGrowth": 194.9,
+      "salesGrowth": 39.0,
+      "opMargin": 4.2,
+      "roe": 11.3,
+      "rsScore": 91,
+      "fromHigh": 1.4,
+      "instPct": 108.5,
+      "stage2": true,
+      "avg200": 138.22,
+      "avg50": 180.51,
+      "smart_excl": [],
+      "comment": "EPS +194.9% 売上 +39.0% RS=91 52wH-1.4% OM=4.2% ROE=11.3%"
+    },
+    {
+      "ticker": "KALU",
+      "name": "Kaiser Aluminum Corporation",
+      "sector": "Basic Materials",
+      "price": 190.34,
+      "mktCap": 3110270976.0,
+      "score": 6,
+      "smart_score": 3,
+      "combined_score": 9,
+      "C": true,
+      "A": false,
+      "S": true,
+      "N": true,
+      "L": true,
+      "I": "Accumulation",
+      "Ipass": true,
+      "M": true,
+      "smart_S": true,
+      "smart_M": false,
+      "smart_A": true,
+      "smart_R": false,
+      "smart_T": true,
+      "epsGrowth": 189.4,
+      "salesGrowth": 42.4,
+      "opMargin": 8.7,
+      "roe": 18.8,
+      "rsScore": 93,
+      "fromHigh": 2.1,
+      "instPct": 100.9,
+      "stage2": true,
+      "avg200": 116.05,
+      "avg50": 155.7,
+      "smart_excl": [],
+      "comment": "EPS +189.4% 売上 +42.4% RS=93 52wH-2.1% OM=8.7% ROE=18.8%"
+    },
+    {
+      "ticker": "LLY",
+      "name": "Eli Lilly and Company",
+      "sector": "Healthcare",
+      "price": 1064.15,
+      "mktCap": 948946599936.0,
+      "score": 6,
+      "smart_score": 5,
+      "combined_score": 11,
+      "C": true,
+      "A": false,
+      "S": true,
+      "N": true,
+      "L": true,
+      "I": "Accumulation",
+      "Ipass": true,
+      "M": true,
+      "smart_S": true,
+      "smart_M": true,
+      "smart_A": true,
+      "smart_R": true,
+      "smart_T": true,
+      "epsGrowth": 168.1,
+      "salesGrowth": 55.5,
+      "opMargin": 49.4,
+      "roe": 107.5,
+      "rsScore": 72,
+      "fromHigh": 7.4,
+      "instPct": 85.3,
+      "stage2": true,
+      "avg200": 939.55,
+      "avg50": 957.76,
+      "smart_excl": [],
+      "comment": "EPS +168.1% 売上 +55.5% RS=72 52wH-7.4% OM=49.4% ROE=107.5%"
+    },
+    {
+      "ticker": "STRL",
+      "name": "Sterling Infrastructure, Inc.",
+      "sector": "Industrials",
+      "price": 875.52,
+      "mktCap": 26866167808.0,
+      "score": 6,
+      "smart_score": 3,
+      "combined_score": 9,
+      "C": true,
+      "A": false,
+      "S": true,
+      "N": true,
+      "L": true,
+      "I": "Accumulation",
+      "Ipass": true,
+      "M": true,
+      "smart_S": true,
+      "smart_M": false,
+      "smart_A": true,
+      "smart_R": true,
+      "smart_T": false,
+      "epsGrowth": 143.1,
+      "salesGrowth": 91.6,
+      "opMargin": 17.2,
+      "roe": 36.7,
+      "rsScore": 97,
+      "fromHigh": 2.0,
+      "instPct": 95.8,
+      "stage2": true,
+      "avg200": 410.93,
+      "avg50": 589.93,
+      "smart_excl": [
+        "除外①2x200MA"
+      ],
+      "comment": "EPS +143.1% 売上 +91.6% RS=97 52wH-2.0% OM=17.2% ROE=36.7%"
+    },
+    {
+      "ticker": "VRT",
+      "name": "Vertiv Holdings Co",
+      "sector": "Industrials",
+      "price": 334.49,
+      "mktCap": 128480550912.0,
+      "score": 6,
+      "smart_score": 4,
+      "combined_score": 10,
+      "C": true,
+      "A": false,
+      "S": true,
+      "N": true,
+      "L": true,
+      "I": "Accumulation",
+      "Ipass": true,
+      "M": true,
+      "smart_S": true,
+      "smart_M": false,
+      "smart_A": true,
+      "smart_R": true,
+      "smart_T": true,
+      "epsGrowth": 137.1,
+      "salesGrowth": 30.1,
+      "opMargin": 16.4,
+      "roe": 45.1,
+      "rsScore": 94,
+      "fromHigh": 12.0,
+      "instPct": 85.8,
+      "stage2": true,
+      "avg200": 212.21,
+      "avg50": 308.45,
+      "smart_excl": [],
+      "comment": "EPS +137.1% 売上 +30.1% RS=94 52wH-12.0% OM=16.4% ROE=45.1%"
+    },
+    {
+      "ticker": "STX",
+      "name": "Seagate Technology Holdings plc",
+      "sector": "Technology",
+      "price": 926.61,
+      "mktCap": 209647468544.0,
+      "score": 6,
+      "smart_score": 4,
+      "combined_score": 10,
+      "C": true,
+      "A": false,
+      "S": true,
+      "N": true,
+      "L": true,
+      "I": "Accumulation",
+      "Ipass": true,
+      "M": true,
+      "smart_S": true,
+      "smart_M": true,
+      "smart_A": true,
+      "smart_R": true,
+      "smart_T": false,
+      "epsGrowth": 120.0,
+      "salesGrowth": 44.1,
+      "opMargin": 35.7,
+      "roe": 1788.0,
+      "rsScore": 98,
+      "fromHigh": 2.8,
+      "instPct": 88.2,
+      "stage2": true,
+      "avg200": 371.54,
+      "avg50": 626.23,
+      "smart_excl": [
+        "除外①2x200MA"
+      ],
+      "comment": "EPS +120.0% 売上 +44.1% RS=98 52wH-2.8% OM=35.7% ROE=1788.0%"
+    },
+    {
+      "ticker": "ASTH",
+      "name": "Astrana Health, Inc.",
+      "sector": "Healthcare",
+      "price": 36.91,
+      "mktCap": 1830123904.0,
+      "score": 6,
+      "smart_score": 3,
+      "combined_score": 9,
+      "C": true,
+      "A": false,
+      "S": true,
+      "N": true,
+      "L": true,
+      "I": "Accumulation",
+      "Ipass": true,
+      "M": true,
+      "smart_S": true,
+      "smart_M": false,
+      "smart_A": true,
+      "smart_R": false,
+      "smart_T": true,
+      "epsGrowth": 115.7,
+      "salesGrowth": 55.6,
+      "opMargin": 3.0,
+      "roe": 5.7,
+      "rsScore": 88,
+      "fromHigh": 7.6,
+      "instPct": 61.5,
+      "stage2": true,
+      "avg200": 27.77,
+      "avg50": 32.5,
+      "smart_excl": [],
+      "comment": "EPS +115.7% 売上 +55.6% RS=88 52wH-7.6% OM=3.0% ROE=5.7%"
+    },
+    {
+      "ticker": "DDOG",
+      "name": "Datadog, Inc.",
+      "sector": "Technology",
+      "price": 269.13,
+      "mktCap": 95799566336.0,
+      "score": 6,
+      "smart_score": 3,
+      "combined_score": 9,
+      "C": true,
+      "A": false,
+      "S": true,
+      "N": true,
+      "L": true,
+      "I": "Accumulation",
+      "Ipass": true,
+      "M": true,
+      "smart_S": true,
+      "smart_M": false,
+      "smart_A": true,
+      "smart_R": false,
+      "smart_T": true,
+      "epsGrowth": 113.4,
+      "salesGrowth": 32.2,
+      "opMargin": 0.8,
+      "roe": 3.9,
+      "rsScore": 97,
+      "fromHigh": 3.4,
+      "instPct": 91.9,
+      "stage2": true,
+      "avg200": 144.62,
+      "avg50": 156.05,
+      "smart_excl": [],
+      "comment": "EPS +113.4% 売上 +32.2% RS=97 52wH-3.4% OM=0.8% ROE=3.9%"
+    },
+    {
+      "ticker": "ADI",
+      "name": "Analog Devices, Inc.",
+      "sector": "Technology",
+      "price": 423.2,
+      "mktCap": 206135246848.0,
+      "score": 6,
+      "smart_score": 4,
+      "combined_score": 10,
+      "C": true,
+      "A": false,
+      "S": true,
+      "N": true,
+      "L": true,
+      "I": "Accumulation",
+      "Ipass": true,
+      "M": true,
+      "smart_S": true,
+      "smart_M": true,
+      "smart_A": true,
+      "smart_R": false,
+      "smart_T": true,
+      "epsGrowth": 106.5,
+      "salesGrowth": 37.2,
+      "opMargin": 38.1,
+      "roe": 9.6,
+      "rsScore": 86,
+      "fromHigh": 2.9,
+      "instPct": 93.6,
+      "stage2": true,
+      "avg200": 299.41,
+      "avg50": 375.46,
+      "smart_excl": [],
+      "comment": "EPS +106.5% 売上 +37.2% RS=86 52wH-2.9% OM=38.1% ROE=9.6%"
+    },
+    {
+      "ticker": "EVR",
+      "name": "Evercore Inc.",
+      "sector": "Financial Services",
+      "price": 347.06,
+      "mktCap": 13425142784.0,
+      "score": 6,
+      "smart_score": 4,
+      "combined_score": 10,
+      "C": true,
+      "A": false,
+      "S": true,
+      "N": true,
+      "L": true,
+      "I": "Accumulation",
+      "Ipass": true,
+      "M": true,
+      "smart_S": true,
+      "smart_M": false,
+      "smart_A": true,
+      "smart_R": true,
+      "smart_T": true,
+      "epsGrowth": 106.1,
+      "salesGrowth": 100.3,
+      "opMargin": 23.9,
+      "roe": 42.2,
+      "rsScore": 76,
+      "fromHigh": 10.7,
+      "instPct": 93.9,
+      "stage2": true,
+      "avg200": 327.85,
+      "avg50": 328.41,
+      "smart_excl": [],
+      "comment": "EPS +106.1% 売上 +100.3% RS=76 52wH-10.7% OM=23.9% ROE=42.2%"
+    },
+    {
+      "ticker": "AMD",
+      "name": "Advanced Micro Devices, Inc.",
+      "sector": "Technology",
+      "price": 521.54,
+      "mktCap": 850423382016.0,
+      "score": 6,
+      "smart_score": 2,
+      "combined_score": 8,
+      "C": true,
+      "A": false,
+      "S": true,
+      "N": true,
+      "L": true,
+      "I": "Accumulation",
+      "Ipass": true,
+      "M": true,
+      "smart_S": true,
+      "smart_M": false,
+      "smart_A": true,
+      "smart_R": false,
+      "smart_T": false,
+      "epsGrowth": 95.1,
+      "salesGrowth": 37.8,
+      "opMargin": 14.4,
+      "roe": 8.1,
+      "rsScore": 98,
+      "fromHigh": 1.1,
+      "instPct": 72.1,
+      "stage2": true,
+      "avg200": 239.21,
+      "avg50": 334.24,
+      "smart_excl": [
+        "除外①2x200MA"
+      ],
+      "comment": "EPS +95.1% 売上 +37.8% RS=98 52wH-1.1% OM=14.4% ROE=8.1%"
+    },
+    {
+      "ticker": "VIRT",
+      "name": "Virtu Financial, Inc.",
+      "sector": "Financial Services",
+      "price": 49.51,
+      "mktCap": 10653467648.0,
+      "score": 6,
+      "smart_score": 5,
+      "combined_score": 11,
+      "C": true,
+      "A": false,
+      "S": true,
+      "N": true,
+      "L": true,
+      "I": "Accumulation",
+      "Ipass": true,
+      "M": true,
+      "smart_S": true,
+      "smart_M": true,
+      "smart_A": true,
+      "smart_R": true,
+      "smart_T": true,
+      "epsGrowth": 82.9,
+      "salesGrowth": 30.3,
+      "opMargin": 46.8,
+      "roe": 56.9,
+      "rsScore": 70,
+      "fromHigh": 12.3,
+      "instPct": 92.0,
+      "stage2": true,
+      "avg200": 39.79,
+      "avg50": 49.16,
+      "smart_excl": [],
+      "comment": "EPS +82.9% 売上 +30.3% RS=70 52wH-12.3% OM=46.8% ROE=56.9%"
+    },
+    {
+      "ticker": "VCTR",
+      "name": "Victory Capital Holdings, Inc.",
+      "sector": "Financial Services",
+      "price": 85.06,
+      "mktCap": 5318895616.0,
+      "score": 6,
+      "smart_score": 5,
+      "combined_score": 11,
+      "C": true,
+      "A": false,
+      "S": true,
+      "N": true,
+      "L": true,
+      "I": "Accumulation",
+      "Ipass": true,
+      "M": true,
+      "smart_S": true,
+      "smart_M": true,
+      "smart_A": true,
+      "smart_R": true,
+      "smart_T": true,
+      "epsGrowth": 80.9,
+      "salesGrowth": 76.7,
+      "opMargin": 45.8,
+      "roe": 21.7,
+      "rsScore": 77,
+      "fromHigh": 4.1,
+      "instPct": 82.9,
+      "stage2": true,
+      "avg200": 69.44,
+      "avg50": 76.21,
+      "smart_excl": [],
+      "comment": "EPS +80.9% 売上 +76.7% RS=77 52wH-4.1% OM=45.8% ROE=21.7%"
+    },
+    {
+      "ticker": "COCO",
+      "name": "The Vita Coco Company, Inc.",
+      "sector": "Consumer Defensive",
+      "price": 74.45,
+      "mktCap": 4252036096.0,
+      "score": 6,
+      "smart_score": 4,
+      "combined_score": 10,
+      "C": true,
+      "A": false,
+      "S": true,
+      "N": true,
+      "L": true,
+      "I": "Accumulation",
+      "Ipass": true,
+      "M": true,
+      "smart_S": true,
+      "smart_M": false,
+      "smart_A": true,
+      "smart_R": true,
+      "smart_T": true,
+      "epsGrowth": 61.4,
+      "salesGrowth": 37.3,
+      "opMargin": 18.7,
+      "roe": 26.3,
+      "rsScore": 90,
+      "fromHigh": 6.6,
+      "instPct": 95.8,
+      "stage2": true,
+      "avg200": 51.0,
+      "avg50": 60.66,
+      "smart_excl": [],
+      "comment": "EPS +61.4% 売上 +37.3% RS=90 52wH-6.6% OM=18.7% ROE=26.3%"
+    },
+    {
+      "ticker": "ECG",
+      "name": "Everus Construction Group, Inc.",
+      "sector": "Industrials",
+      "price": 150.76,
+      "mktCap": 7695032320.0,
+      "score": 6,
+      "smart_score": 4,
+      "combined_score": 10,
+      "C": true,
+      "A": false,
+      "S": true,
+      "N": true,
+      "L": true,
+      "I": "Accumulation",
+      "Ipass": true,
+      "M": true,
+      "smart_S": true,
+      "smart_M": false,
+      "smart_A": true,
+      "smart_R": true,
+      "smart_T": true,
+      "epsGrowth": 59.0,
+      "salesGrowth": 25.4,
+      "opMargin": 7.5,
+      "roe": 39.0,
+      "rsScore": 91,
+      "fromHigh": 12.1,
+      "instPct": 87.4,
+      "stage2": true,
+      "avg200": 103.13,
+      "avg50": 138.74,
+      "smart_excl": [],
+      "comment": "EPS +59.0% 売上 +25.4% RS=91 52wH-12.1% OM=7.5% ROE=39.0%"
+    },
+    {
+      "ticker": "KRYS",
+      "name": "Krystal Biotech, Inc.",
+      "sector": "Healthcare",
+      "price": 293.21,
+      "mktCap": 8643759104.0,
+      "score": 7,
+      "smart_score": 4,
+      "combined_score": 11,
+      "C": true,
+      "A": true,
+      "S": true,
+      "N": true,
+      "L": true,
+      "I": "Accumulation",
+      "Ipass": true,
+      "M": true,
+      "smart_S": true,
+      "smart_M": true,
+      "smart_A": true,
+      "smart_R": false,
+      "smart_T": true,
+      "epsGrowth": 56.5,
+      "salesGrowth": 31.9,
+      "opMargin": 46.1,
+      "roe": 19.9,
+      "rsScore": 87,
+      "fromHigh": 8.2,
+      "instPct": 99.4,
+      "stage2": true,
+      "avg200": 233.27,
+      "avg50": 278.24,
+      "smart_excl": [],
+      "comment": "EPS +56.5% 売上 +31.9% RS=87 52wH-8.2% OM=46.1% ROE=19.9%"
+    },
+    {
+      "ticker": "TTMI",
+      "name": "TTM Technologies, Inc.",
+      "sector": "Technology",
+      "price": 179.62,
+      "mktCap": 18653546496.0,
+      "score": 6,
+      "smart_score": 2,
+      "combined_score": 8,
+      "C": true,
+      "A": false,
+      "S": true,
+      "N": true,
+      "L": true,
+      "I": "Accumulation",
+      "Ipass": true,
+      "M": true,
+      "smart_S": true,
+      "smart_M": false,
+      "smart_A": true,
+      "smart_R": false,
+      "smart_T": false,
+      "epsGrowth": 55.3,
+      "salesGrowth": 30.4,
+      "opMargin": 8.6,
+      "roe": 11.4,
+      "rsScore": 97,
+      "fromHigh": 10.5,
+      "instPct": 96.1,
+      "stage2": true,
+      "avg200": 88.47,
+      "avg50": 138.25,
+      "smart_excl": [
+        "除外①2x200MA"
+      ],
+      "comment": "EPS +55.3% 売上 +30.4% RS=97 52wH-10.5% OM=8.6% ROE=11.4%"
+    },
+    {
+      "ticker": "FN",
+      "name": "Fabrinet",
+      "sector": "Technology",
+      "price": 701.11,
+      "mktCap": 25120587776.0,
+      "score": 6,
+      "smart_score": 4,
+      "combined_score": 10,
+      "C": true,
+      "A": false,
+      "S": true,
+      "N": true,
+      "L": true,
+      "I": "Accumulation",
+      "Ipass": true,
+      "M": true,
+      "smart_S": true,
+      "smart_M": false,
+      "smart_A": true,
+      "smart_R": true,
+      "smart_T": true,
+      "epsGrowth": 54.0,
+      "salesGrowth": 39.3,
+      "opMargin": 9.9,
+      "roe": 20.0,
+      "rsScore": 93,
+      "fromHigh": 6.4,
+      "instPct": 113.3,
+      "stage2": true,
+      "avg200": 490.77,
+      "avg50": 645.2,
+      "smart_excl": [],
+      "comment": "EPS +54.0% 売上 +39.3% RS=93 52wH-6.4% OM=9.9% ROE=20.0%"
+    }
+  ],
+  "meta": {
+    "updatedAt": "2026-06-02T23:36:46.226405+00:00",
+    "screened": 1514,
+    "failed": 5,
+    "universe": "S&P500+Nasdaq100",
+    "totalUniverse": 1519,
+    "sources": [
+      "YahooFinance",
+      "FMP"
+    ],
+    "marketNote": "IBD Confirmed Uptrend: DD=3, FTD=2026-05-08"
+  }
+});
+</script>
+</body>
+</html>
