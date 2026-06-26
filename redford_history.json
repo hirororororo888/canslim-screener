@@ -1,0 +1,26 @@
+[
+  {
+    "report_no": "1638",
+    "date": "2026-06-23",
+    "trend": "pressure",
+    "trend_score": 2,
+    "trend_label": "Uptrend Under Pressure",
+    "dd_sp500": 4,
+    "dd_nasdaq": 8,
+    "put_call": 0.92,
+    "equity_low": 60,
+    "equity_high": 80
+  },
+  {
+    "report_no": "1637",
+    "date": "2026-06-26",
+    "trend": "pressure",
+    "trend_score": 2,
+    "trend_label": "Uptrend Under Pressure",
+    "dd_sp500": 4,
+    "dd_nasdaq": 8,
+    "put_call": 1.02,
+    "equity_low": 60,
+    "equity_high": 80
+  }
+]

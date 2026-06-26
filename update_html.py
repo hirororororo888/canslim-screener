@@ -25,6 +25,14 @@ def main():
     with open(JSON_FILE, encoding="utf-8") as f:
         data = normalize(json.load(f))
 
+    # REDFORD履歴を埋め込み
+    hist_file = ROOT / "redford_history.json"
+    if hist_file.exists():
+        try:
+            data["redfordHistory"] = json.loads(hist_file.read_text(encoding="utf-8"))
+        except Exception:
+            pass
+
     js_block = (
         f"// ── Auto-updated: {data['meta']['updatedAt']} ──\n"
         f"loadData({json.dumps(data, ensure_ascii=False, indent=2)});"

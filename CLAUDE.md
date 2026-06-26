@@ -68,3 +68,40 @@ python -m http.server 5174 --directory . --bind 0.0.0.0
 ```
 ngrok http 5174 --response-header-add "ngrok-skip-browser-warning:true"
 ```
+
+## REDFORD自動収集（手動トリガー）
+ユーザーが「REDFORD確認して」と言ったら以下を実行:
+1. Chrome拡張（mcp__Claude_in_Chrome__）でアクセス
+   - browser: deviceId e4ff71ad-9007-4d58-ac38-e0b3e4c41f25（Browser 1）
+   - URL: https://x.com/3b4w4aRedford
+   - ユーザーは @sannzamenai でログイン済み・REDFORDフォロー中
+2. 最新の「REDFORD REPORTS-XXXX」を get_page_text で取得
+   - スクロールして固定ポスト下の最新レポートを読む
+3. 抽出項目:
+   - トレンド評価（Confirmed Uptrend / Uptrend Under Pressure / Market in Correction）
+   - 売抜け日（S&P500=X / Nasdaq=X）
+   - Put/Call Ratio
+   - エントリーポイント突破銘柄・リーディング銘柄
+4. screening_results.json の market を更新:
+   - Confirmed Uptrend → status="bullish", M全通過
+   - Uptrend Under Pressure → status="caution", M全て—
+   - Market in Correction → status="bearish", M全て—
+   - distributionDdays = Nasdaqの売抜日（厳しい方）
+5. python update_html.py → GitHub push
+6. REDFORDのセクター情報とスクリーナーを照合して投資戦略を提示
+
+## REDFORD レポート保存先
+取得したレポートは redford_reports/REPORTS-XXXX_YYYY-MM-DD.txt に保存（履歴蓄積）
+
+## Put/Call Ratio 判定基準（REDFORD/IBD）
+- 0.7以下: 強気
+- 0.7-0.79: やや強気
+- 0.8-0.89: 中立〜弱気
+- 0.9以上: 下落リスクかなり高い
+- 1.0以上: 「これじゃダメじゃん」レベル（最大警戒）
+
+## 売抜け日（Distribution Days）基準
+- 6〜7回でマーケット下落に向かう
+- Confirmed Uptrend: DD 0-5
+- Under Pressure: DD 5-8 + 株価軟調
+- Market in Correction: DD 6超 + 主要指数MA割れ

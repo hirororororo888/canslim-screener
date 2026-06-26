@@ -238,6 +238,22 @@ td{padding:9px 12px;vertical-align:middle;white-space:nowrap;}
   </div>
 </div>
 
+<!-- REDFORD トレンド履歴 -->
+<div class="market-panel" id="redfordPanel" style="display:none">
+  <div class="mp-header">
+    <div class="mp-title">📕 REDFORD トレンド推移</div>
+    <div class="mp-sub" id="redfordLatest" style="font-size:11px;color:var(--text2)">—</div>
+  </div>
+  <div class="table-wrap" style="border:none">
+    <table style="font-size:12px">
+      <thead><tr>
+        <th>日付</th><th>No</th><th>トレンド</th><th>SP500 DD</th><th>NQ DD</th><th>Put/Call</th><th>推奨株%</th>
+      </tr></thead>
+      <tbody id="redfordHistBody"></tbody>
+    </table>
+  </div>
+</div>
+
 <!-- Threshold Controls -->
 <div class="controls" id="controlsBar">
   <!-- CANSLIM controls: 各グループを個別に show/hide -->
@@ -750,7 +766,35 @@ function loadData(data) {
     $('lastUpdate').textContent = '更新: ' + new Date(meta.updatedAt).toLocaleString('ja-JP');
   if (meta.screened)
     $('screenedCount').textContent = `${meta.screened}銘柄スクリーニング済み`;
+  if (data.redfordHistory) renderRedford(data.redfordHistory);
   render();
+}
+
+// ═══════════════════════════════════════════════════════════════
+// REDFORD トレンド履歴
+// ═══════════════════════════════════════════════════════════════
+function renderRedford(hist) {
+  if (!hist || !hist.length) return;
+  $('redfordPanel').style.display = '';
+  const icon = {confirmed:'🟢', pressure:'🟡', correction:'🔴', uncertain:'⚪'};
+  const pcColor = pc => pc>=1.0?'var(--red)' : pc>=0.9?'var(--orange)' : pc<=0.7?'var(--green)' : 'var(--text2)';
+  // 新しい順に表示
+  const rows = [...hist].reverse().map(h => {
+    const pc = h.put_call;
+    const eq = h.equity_low ? `${h.equity_low}-${h.equity_high}%` : '—';
+    return `<tr>
+      <td>${h.date}</td>
+      <td>#${h.report_no}</td>
+      <td>${icon[h.trend]||''} ${h.trend_label}</td>
+      <td style="color:${(h.dd_sp500||0)>=6?'var(--red)':'var(--text)'}">${h.dd_sp500??'—'}</td>
+      <td style="color:${(h.dd_nasdaq||0)>=6?'var(--red)':'var(--text)'}">${h.dd_nasdaq??'—'}</td>
+      <td style="color:${pc?pcColor(pc):'var(--text2)'};font-weight:600">${pc??'—'}</td>
+      <td>${eq}</td>
+    </tr>`;
+  }).join('');
+  $('redfordHistBody').innerHTML = rows;
+  const latest = hist[hist.length-1];
+  $('redfordLatest').textContent = `最新 #${latest.report_no} (${latest.date})`;
 }
 
 // ═══════════════════════════════════════════════════════════════
@@ -783,6 +827,9 @@ function exportCSV() {
 
 </script>
 
+<script>
+
+</script>
 <script>
 
 </script>
@@ -1988,7 +2035,33 @@ loadData({
       "FMP"
     ],
     "marketNote": "IBD Uptrend Under Pressure: SP500=4DD / Nasdaq=8DD (maintained)"
-  }
+  },
+  "redfordHistory": [
+    {
+      "report_no": "1638",
+      "date": "2026-06-23",
+      "trend": "pressure",
+      "trend_score": 2,
+      "trend_label": "Uptrend Under Pressure",
+      "dd_sp500": 4,
+      "dd_nasdaq": 8,
+      "put_call": 0.92,
+      "equity_low": 60,
+      "equity_high": 80
+    },
+    {
+      "report_no": "1637",
+      "date": "2026-06-26",
+      "trend": "pressure",
+      "trend_score": 2,
+      "trend_label": "Uptrend Under Pressure",
+      "dd_sp500": 4,
+      "dd_nasdaq": 8,
+      "put_call": 1.02,
+      "equity_low": 60,
+      "equity_high": 80
+    }
+  ]
 });
 </script>
 </body>
