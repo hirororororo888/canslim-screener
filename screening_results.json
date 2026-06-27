@@ -5,9 +5,9 @@
     "spyChange": 0.14,
     "ma60": 721.37,
     "aboveMa60": true,
-    "distributionDays": 8,
+    "distributionDays": 9,
     "hiLoRatio": 0.989,
-    "hiLoDesc": "Uptrend Under Pressure (SP500:4 / NQ:8 売抜日)",
+    "hiLoDesc": "Uptrend Under Pressure (SP500:4 / NQ:9 売抜日) P/C=0.99",
     "followThrough": true,
     "followThroughDate": "2026-05-08"
   },
@@ -1128,7 +1128,7 @@
     }
   ],
   "meta": {
-    "updatedAt": "2026-06-26T00:41:59.453672+00:00",
+    "updatedAt": "2026-06-27T06:38:43.419979+00:00",
     "screened": 1511,
     "failed": 8,
     "universe": "S&P500+Nasdaq100",
@@ -1137,6 +1137,6 @@
       "YahooFinance",
       "FMP"
     ],
-    "marketNote": "IBD Uptrend Under Pressure: SP500=4DD / Nasdaq=8DD (maintained)"
+    "marketNote": "IBD Uptrend Under Pressure: SP500=4DD / Nasdaq=9DD / P-C=0.99 (REPORTS-1638, 2026-06-27)"
   }
 }
