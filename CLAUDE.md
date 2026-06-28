@@ -105,3 +105,32 @@ ngrok http 5174 --response-header-add "ngrok-skip-browser-warning:true"
 - Confirmed Uptrend: DD 0-5
 - Under Pressure: DD 5-8 + 株価軟調
 - Market in Correction: DD 6超 + 主要指数MA割れ
+
+## ユーザーの指数ETF積立ルール
+- 対象ETF: QQQ（2026年6月までVOOだったが、7月分以降QQQに変更）
+- メインルール: SPX（^GSPC）の月足が陰線（始値>終値）の月末に1株購入
+  - 月末（最終営業日）の終値で判定
+  - 陰線確定 → QQQを1株購入
+  - 陽線 → その月は見送り
+- 下落ナンピン補強ルール:
+  - 52週高値から-10%でQQQ買い増し（余力の40%）
+  - 52週高値から-20%でさらに買い増し（余力の60%）
+  - 余力は楽天証券+Webull（2026/6時点で計約$3,344）
+- ユーザーが「月足確認」と言ったらSPX月足陰線/陽線を判定
+- VOO切替前の実績: VOO 9株を平均$500.47で保有済み（コア）
+- その他コア資産: S&P500投信 約¥1,180万、円預金約¥60万
+
+## Checker（独立検証）機能
+論文「Loop Engineering」のmaker-checker分離を実装。
+- `checker.py`: スクリーニング結果(Maker)をCANSLIM/SMARTとは独立した6ゲートで再検証
+- 6つの検証ゲート:
+  - G1 出来高: 5日平均 >= 50日平均×0.9（買い集めの実在）
+  - G2 トレンド: 21MA上 かつ 50MA上（だましでない真の上昇）
+  - G3 非過熱: 200MAの2倍未満（クライマックス回避）
+  - G4 適正位置: 50MAから+15%以内（過延長でない）
+  - G5 主導力: 堅調セクター or RS>=85
+  - G6 高値圏: 52週高値の8%以内
+- 判定: verified（5-6通過）/ caution（3-4）/ reject（2以下）
+- Under Pressure/Correction時は厳格モード（G5主導力+G2トレンド必須）
+- スクリーニング後の標準フロー: run_full_screen.py → fix_a_condition.py → checker.py → update_html.py → git push
+- HTMLに「検証」列で✅検証/⚠️注意/❌却下を表示（ホバーで失敗ゲート詳細）
