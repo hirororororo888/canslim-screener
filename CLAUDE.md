@@ -134,3 +134,17 @@ ngrok http 5174 --response-header-add "ngrok-skip-browser-warning:true"
 - Under Pressure/Correction時は厳格モード（G5主導力+G2トレンド必須）
 - スクリーニング後の標準フロー: run_full_screen.py → fix_a_condition.py → checker.py → update_html.py → git push
 - HTMLに「検証」列で✅検証/⚠️注意/❌却下を表示（ホバーで失敗ゲート詳細）
+
+## Mark Minervini自動収集（手動トリガー）
+ユーザーが「Minervini確認」と言ったら以下を実行:
+1. Chrome拡張でアクセス: https://x.com/markminervini（ログイン済み・フォロー中）
+2. 最新投稿を get_page_text で取得（スクロールして固定ポスト下を読む）
+3. minervini_history.py の add_post() で2軸に振り分け:
+   - 銘柄アクション（added/sold $TICKER）→ minervini_actions.json
+   - トレード哲学・教訓 → minervini_wisdom.md（知識ベース）
+   - 宣伝（Private Access勧誘）→ スキップ
+4. アクション銘柄をスクリーナー/Checkerと照合
+   - 例: LLY追加 → 既にCANSLIM/Checker検証済みなら強い確証
+5. minervini_posts/ に原文保存（履歴蓄積）
+- 投稿種類: REDFORDと違い構造化レポートでなく、売買アクション+哲学が中心
+- Minerviniの実際の買い銘柄は、スクリーナー候補の「プロによる確証」として価値大
