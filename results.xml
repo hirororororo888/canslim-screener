@@ -1,0 +1,402 @@
+<Objs Version="1.1.0.1" xmlns="http://schemas.microsoft.com/powershell/2004/04">
+  <Obj RefId="0">
+    <TN RefId="0">
+      <T>Selected.System.Management.Automation.PSCustomObject</T>
+      <T>System.Management.Automation.PSCustomObject</T>
+      <T>System.Object</T>
+    </TN>
+    <MS>
+      <S N="ticker">AMD</S>
+      <S N="name">Advanced Micro Devices, Inc.</S>
+      <I32 N="score">5</I32>
+      <B N="C">true</B>
+      <B N="A">false</B>
+      <B N="S">true</B>
+      <B N="N">true</B>
+      <B N="L">true</B>
+      <S N="I">Accumulation</S>
+      <B N="Ipass">true</B>
+      <B N="M">false</B>
+      <Db N="epsGrowth">164.4</Db>
+      <Db N="salesGrowth">34.3</Db>
+      <I32 N="rsScore">100</I32>
+      <Db N="fromHigh">2.1</Db>
+      <Db N="price">516.1</Db>
+      <I64 N="mktCap">841552660000</I64>
+    </MS>
+  </Obj>
+  <Obj RefId="1">
+    <TNRef RefId="0" />
+    <MS>
+      <S N="ticker">NVDA</S>
+      <S N="name">NVIDIA Corporation</S>
+      <I32 N="score">5</I32>
+      <B N="C">true</B>
+      <B N="A">true</B>
+      <B N="S">true</B>
+      <B N="N">true</B>
+      <B N="L">false</B>
+      <S N="I">Accumulation</S>
+      <B N="Ipass">true</B>
+      <B N="M">false</B>
+      <Db N="epsGrowth">66</Db>
+      <Db N="salesGrowth">65.5</Db>
+      <I32 N="rsScore">51</I32>
+      <Db N="fromHigh">10.7</Db>
+      <Db N="price">211.14</Db>
+      <I64 N="mktCap">5114021940000</I64>
+    </MS>
+  </Obj>
+  <Obj RefId="2">
+    <TNRef RefId="0" />
+    <MS>
+      <S N="ticker">GOOGL</S>
+      <S N="name">Alphabet Inc.</S>
+      <I32 N="score">4</I32>
+      <B N="C">true</B>
+      <B N="A">true</B>
+      <B N="S">false</B>
+      <B N="N">true</B>
+      <B N="L">false</B>
+      <S N="I">Accumulation</S>
+      <B N="Ipass">true</B>
+      <B N="M">false</B>
+      <Db N="epsGrowth">34.2</Db>
+      <Db N="salesGrowth">15.1</Db>
+      <I32 N="rsScore">61</I32>
+      <Db N="fromHigh">6.9</Db>
+      <Db N="price">380.34</Db>
+      <I64 N="mktCap">4600162967240</I64>
+    </MS>
+  </Obj>
+  <Obj RefId="3">
+    <TNRef RefId="0" />
+    <MS>
+      <S N="ticker">AMZN</S>
+      <S N="name">Amazon.com, Inc.</S>
+      <I32 N="score">4</I32>
+      <B N="C">true</B>
+      <B N="A">true</B>
+      <B N="S">false</B>
+      <B N="N">true</B>
+      <B N="L">false</B>
+      <S N="I">Accumulation</S>
+      <B N="Ipass">true</B>
+      <B N="M">false</B>
+      <Db N="epsGrowth">28.8</Db>
+      <Db N="salesGrowth">12.4</Db>
+      <I32 N="rsScore">54</I32>
+      <Db N="fromHigh">2.8</Db>
+      <Db N="price">270.64</Db>
+      <I64 N="mktCap">2911301544000</I64>
+    </MS>
+  </Obj>
+  <Obj RefId="4">
+    <TNRef RefId="0" />
+    <MS>
+      <S N="ticker">PLTR</S>
+      <S N="name">Palantir Technologies Inc.</S>
+      <I32 N="score">3</I32>
+      <B N="C">true</B>
+      <B N="A">true</B>
+      <B N="S">true</B>
+      <B N="N">false</B>
+      <B N="L">false</B>
+      <S N="I">Neutral</S>
+      <B N="Ipass">false</B>
+      <B N="M">false</B>
+      <Db N="epsGrowth">228.6</Db>
+      <Db N="salesGrowth">56.2</Db>
+      <I32 N="rsScore">40</I32>
+      <Db N="fromHigh">24.6</Db>
+      <Db N="price">156.54</Db>
+      <I64 N="mktCap">359426797800</I64>
+    </MS>
+  </Obj>
+  <Obj RefId="5">
+    <TNRef RefId="0" />
+    <MS>
+      <S N="ticker">GS</S>
+      <S N="name">The Goldman Sachs Group, Inc.</S>
+      <I32 N="score">3</I32>
+      <B N="C">true</B>
+      <B N="A">false</B>
+      <B N="S">false</B>
+      <B N="N">true</B>
+      <B N="L">false</B>
+      <S N="I">Accumulation</S>
+      <B N="Ipass">true</B>
+      <B N="M">false</B>
+      <Db N="epsGrowth">26</Db>
+      <Db N="salesGrowth">-1.4</Db>
+      <I32 N="rsScore">56</I32>
+      <Db N="fromHigh">0.2</Db>
+      <Db N="price">1025.56</Db>
+      <I64 N="mktCap">302547810681</I64>
+    </MS>
+  </Obj>
+  <Obj RefId="6">
+    <TNRef RefId="0" />
+    <MS>
+      <S N="ticker">AAPL</S>
+      <S N="name">Apple Inc.</S>
+      <I32 N="score">2</I32>
+      <B N="C">false</B>
+      <B N="A">false</B>
+      <B N="S">false</B>
+      <B N="N">true</B>
+      <B N="L">false</B>
+      <S N="I">Accumulation</S>
+      <B N="Ipass">true</B>
+      <B N="M">false</B>
+      <Db N="epsGrowth">22.6</Db>
+      <Db N="salesGrowth">6.4</Db>
+      <I32 N="rsScore">55</I32>
+      <Db N="fromHigh">0.9</Db>
+      <Db N="price">312.06</Db>
+      <I64 N="mktCap">4583336313360</I64>
+    </MS>
+  </Obj>
+  <Obj RefId="7">
+    <TNRef RefId="0" />
+    <MS>
+      <S N="ticker">V</S>
+      <S N="name">Visa Inc.</S>
+      <I32 N="score">2</I32>
+      <B N="C">false</B>
+      <B N="A">false</B>
+      <B N="S">false</B>
+      <B N="N">true</B>
+      <B N="L">false</B>
+      <S N="I">Accumulation</S>
+      <B N="Ipass">true</B>
+      <B N="M">false</B>
+      <Db N="epsGrowth">4.9</Db>
+      <Db N="salesGrowth">11.3</Db>
+      <I32 N="rsScore">42</I32>
+      <Db N="fromHigh">13.1</Db>
+      <Db N="price">326.36</Db>
+      <I64 N="mktCap">625575451176</I64>
+    </MS>
+  </Obj>
+  <Obj RefId="8">
+    <TNRef RefId="0" />
+    <MS>
+      <S N="ticker">ABBV</S>
+      <S N="name">AbbVie Inc.</S>
+      <I32 N="score">2</I32>
+      <B N="C">false</B>
+      <B N="A">false</B>
+      <B N="S">false</B>
+      <B N="N">true</B>
+      <B N="L">false</B>
+      <S N="I">Accumulation</S>
+      <B N="Ipass">true</B>
+      <B N="M">false</B>
+      <Db N="epsGrowth">-1.2</Db>
+      <Db N="salesGrowth">8.6</Db>
+      <I32 N="rsScore">42</I32>
+      <Db N="fromHigh">11.1</Db>
+      <Db N="price">217.58</Db>
+      <I64 N="mktCap">384418781993</I64>
+    </MS>
+  </Obj>
+  <Obj RefId="9">
+    <TNRef RefId="0" />
+    <MS>
+      <S N="ticker">TSLA</S>
+      <S N="name">Tesla, Inc.</S>
+      <I32 N="score">2</I32>
+      <B N="C">false</B>
+      <B N="A">false</B>
+      <B N="S">false</B>
+      <B N="N">true</B>
+      <B N="L">false</B>
+      <S N="I">Accumulation</S>
+      <B N="Ipass">true</B>
+      <B N="M">false</B>
+      <Db N="epsGrowth">-47.1</Db>
+      <Db N="salesGrowth">-2.9</Db>
+      <I32 N="rsScore">46</I32>
+      <Db N="fromHigh">12.6</Db>
+      <Db N="price">435.79</Db>
+      <I64 N="mktCap">1636705218800</I64>
+    </MS>
+  </Obj>
+  <Obj RefId="10">
+    <TNRef RefId="0" />
+    <MS>
+      <S N="ticker">PYPL</S>
+      <S N="name">PayPal Holdings, Inc.</S>
+      <I32 N="score">1</I32>
+      <B N="C">true</B>
+      <B N="A">false</B>
+      <B N="S">false</B>
+      <B N="N">false</B>
+      <B N="L">false</B>
+      <S N="I">Distribution</S>
+      <B N="Ipass">false</B>
+      <B N="M">false</B>
+      <Db N="epsGrowth">35.5</Db>
+      <Db N="salesGrowth">4.3</Db>
+      <I32 N="rsScore">28</I32>
+      <Db N="fromHigh">43.7</Db>
+      <Db N="price">44.75</Db>
+      <I64 N="mktCap">39474220812</I64>
+    </MS>
+  </Obj>
+  <Obj RefId="11">
+    <TNRef RefId="0" />
+    <MS>
+      <S N="ticker">NFLX</S>
+      <S N="name">Netflix, Inc.</S>
+      <I32 N="score">1</I32>
+      <B N="C">true</B>
+      <B N="A">false</B>
+      <B N="S">false</B>
+      <B N="N">false</B>
+      <B N="L">false</B>
+      <S N="I">Distribution</S>
+      <B N="Ipass">false</B>
+      <B N="M">false</B>
+      <Db N="epsGrowth">27.1</Db>
+      <Db N="salesGrowth">15.9</Db>
+      <I32 N="rsScore">33</I32>
+      <Db N="fromHigh">35.9</Db>
+      <Db N="price">86.02</Db>
+      <I64 N="mktCap">362213016000</I64>
+    </MS>
+  </Obj>
+  <Obj RefId="12">
+    <TNRef RefId="0" />
+    <MS>
+      <S N="ticker">COST</S>
+      <S N="name">Costco Wholesale Corporation</S>
+      <I32 N="score">1</I32>
+      <B N="C">false</B>
+      <B N="A">false</B>
+      <B N="S">false</B>
+      <B N="N">true</B>
+      <B N="L">false</B>
+      <S N="I">Distribution</S>
+      <B N="Ipass">false</B>
+      <B N="M">false</B>
+      <Db N="epsGrowth">9.9</Db>
+      <Db N="salesGrowth">8.2</Db>
+      <I32 N="rsScore">43</I32>
+      <Db N="fromHigh">12.8</Db>
+      <Db N="price">956.32</Db>
+      <I64 N="mktCap">424274236960</I64>
+    </MS>
+  </Obj>
+  <Obj RefId="13">
+    <TNRef RefId="0" />
+    <MS>
+      <S N="ticker">SHOP</S>
+      <S N="name">Shopify Inc.</S>
+      <I32 N="score">1</I32>
+      <B N="C">false</B>
+      <B N="A">false</B>
+      <B N="S">true</B>
+      <B N="N">false</B>
+      <B N="L">false</B>
+      <S N="I">Neutral</S>
+      <B N="Ipass">false</B>
+      <B N="M">false</B>
+      <Db N="epsGrowth">-39.1</Db>
+      <Db N="salesGrowth">30.1</Db>
+      <I32 N="rsScore">33</I32>
+      <Db N="fromHigh">34.8</Db>
+      <Db N="price">118.71</Db>
+      <I64 N="mktCap">154044579821</I64>
+    </MS>
+  </Obj>
+  <Obj RefId="14">
+    <TNRef RefId="0" />
+    <MS>
+      <S N="ticker">MSFT</S>
+      <S N="name">Microsoft Corporation</S>
+      <I32 N="score">0</I32>
+      <B N="C">false</B>
+      <B N="A">false</B>
+      <B N="S">false</B>
+      <B N="N">false</B>
+      <B N="L">false</B>
+      <S N="I">Neutral</S>
+      <B N="Ipass">false</B>
+      <B N="M">false</B>
+      <Db N="epsGrowth">15.5</Db>
+      <Db N="salesGrowth">14.9</Db>
+      <I32 N="rsScore">41</I32>
+      <Db N="fromHigh">18.9</Db>
+      <Db N="price">450.24</Db>
+      <I64 N="mktCap">3344576323200</I64>
+    </MS>
+  </Obj>
+  <Obj RefId="15">
+    <TNRef RefId="0" />
+    <MS>
+      <S N="ticker">UBER</S>
+      <S N="name">Uber Technologies, Inc.</S>
+      <I32 N="score">0</I32>
+      <B N="C">false</B>
+      <B N="A">false</B>
+      <B N="S">false</B>
+      <B N="N">false</B>
+      <B N="L">false</B>
+      <S N="I">Distribution</S>
+      <B N="Ipass">false</B>
+      <B N="M">false</B>
+      <Db N="epsGrowth">2.3</Db>
+      <Db N="salesGrowth">18.3</Db>
+      <I32 N="rsScore">32</I32>
+      <Db N="fromHigh">31</Db>
+      <Db N="price">70.4</Db>
+      <I64 N="mktCap">143306240000</I64>
+    </MS>
+  </Obj>
+  <Obj RefId="16">
+    <TNRef RefId="0" />
+    <MS>
+      <S N="ticker">META</S>
+      <S N="name">Meta Platforms, Inc.</S>
+      <I32 N="score">0</I32>
+      <B N="C">false</B>
+      <B N="A">false</B>
+      <B N="S">false</B>
+      <B N="N">false</B>
+      <B N="L">false</B>
+      <S N="I">Neutral</S>
+      <B N="Ipass">false</B>
+      <B N="M">false</B>
+      <Db N="epsGrowth">-2.6</Db>
+      <Db N="salesGrowth">22.2</Db>
+      <I32 N="rsScore">39</I32>
+      <Db N="fromHigh">20.6</Db>
+      <Db N="price">632.51</Db>
+      <I64 N="mktCap">1605578098080</I64>
+    </MS>
+  </Obj>
+  <Obj RefId="17">
+    <TNRef RefId="0" />
+    <MS>
+      <S N="ticker">COIN</S>
+      <S N="name">Coinbase Global, Inc.</S>
+      <I32 N="score">0</I32>
+      <B N="C">false</B>
+      <B N="A">false</B>
+      <B N="S">false</B>
+      <B N="N">false</B>
+      <B N="L">false</B>
+      <S N="I">Distribution</S>
+      <B N="Ipass">false</B>
+      <B N="M">false</B>
+      <Db N="epsGrowth">-53.5</Db>
+      <Db N="salesGrowth">9.4</Db>
+      <I32 N="rsScore">27</I32>
+      <Db N="fromHigh">57.5</Db>
+      <Db N="price">189.03</Db>
+      <I64 N="mktCap">49801747962</I64>
+    </MS>
+  </Obj>
+</Objs>

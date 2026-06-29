@@ -148,3 +148,15 @@ ngrok http 5174 --response-header-add "ngrok-skip-browser-warning:true"
 5. minervini_posts/ に原文保存（履歴蓄積）
 - 投稿種類: REDFORDと違い構造化レポートでなく、売買アクション+哲学が中心
 - Minerviniの実際の買い銘柄は、スクリーナー候補の「プロによる確証」として価値大
+
+## 統合トリガー「両者確認」
+ユーザーが「両者確認」と言ったら、REDFORDとMinervini両方を順に取得:
+1. REDFORD確認の手順を実行（市場トレンド・売抜日・Put/Call → screening_results.json更新）
+2. Minervini確認の手順を実行（銘柄アクション・哲学 → actions.json/wisdom.md更新）
+3. 両者を統合した投資判断を提示:
+   - REDFORD市場トレンド（買ってよい局面か）
+   - Minoviniの実売買銘柄（プロの確証）
+   - スクリーナー候補 × Checker検証 との4層照合
+   - 複数ソースが一致する銘柄を最優先候補として提示
+4. update_html.py → GitHub push
+- 「REDFORD確認」「Minervini確認」は個別実行も可能

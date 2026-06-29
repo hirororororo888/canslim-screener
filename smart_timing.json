@@ -1,0 +1,13 @@
+[
+  {
+    "ticker": "LLY",
+    "price": 1105.0,
+    "avg50": 953.19,
+    "avg200": 934.56,
+    "ratio_200": 1.18,
+    "from_high": 3.8,
+    "from_50ma": 15.9,
+    "from_200ma": 18.2,
+    "vol_ratio": 1.14,
+    "touch_count": 3,
+    "stage2": 
