@@ -5,7 +5,7 @@
     "spyChange": 0.78,
     "ma60": 725.71,
     "aboveMa60": true,
-    "distributionDays": 9,
+    "distributionDays": 8,
     "hiLoRatio": 0.986,
     "hiLoDesc": "新値圏（52週高値-0.2%）",
     "followThrough": true,
@@ -1281,7 +1281,7 @@
       "FMP"
     ],
     "marketNote": "IBD Confirmed Uptrend: DD=3, FTD=2026-05-08",
-    "checkerRun": "2026-06-30T23:55:15.678918+00:00",
+    "checkerRun": "2026-07-01T08:55:15.678918+09:00",
     "checkerStats": {
       "verified": 22,
       "caution": 6,

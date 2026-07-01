@@ -46,5 +46,15 @@
     "put_call": 0.99,
     "equity_low": 60,
     "equity_high": 80
+  },
+  {
+    "date": "2026-07-01",
+    "report_no": "1658",
+    "trend": "Trend uncertain",
+    "sp500_dd": 4,
+    "nasdaq_dd": 8,
+    "put_call": 0.95,
+    "equity_pct": 90,
+    "notes": "全指数上昇(NQ+1.52%)。Trend uncertain（新ステータス）。P/C前日1.12→0.95に改善。NQ DD 9→8改善。AVAV+18.33%、AMD強し。"
   }
 ]
