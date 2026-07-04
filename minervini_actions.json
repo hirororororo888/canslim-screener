@@ -5,5 +5,19 @@
     "action": "buy",
     "text": "昨日 $LLY を追加しました。Minervini Private Access では、すべての買い・売り推奨がタイムスタンプ付きで配信されます。",
     "post_id": "lly_add"
+  },
+  {
+    "date": "2026-07-04",
+    "ticker": "AMKR",
+    "action": "sell",
+    "text": "ユーザー申告：売却済み（取得2026/6/15, 34株, .50）",
+    "post_id": "user_report"
+  },
+  {
+    "date": "2026-07-04",
+    "ticker": "MNST",
+    "action": "sell",
+    "text": "ユーザー申告：売却済み",
+    "post_id": "user_report"
   }
 ]
