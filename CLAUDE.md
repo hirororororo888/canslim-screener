@@ -49,20 +49,34 @@ python -m http.server 5174 --directory . --bind 0.0.0.0
 - R: ROE ≥20%
 - T: Stage2（price>200MA）かつ除外シグナルなし
 
-## 現在の市場状態（最終更新: 2026-06-03）
-- IBD: Confirmed Uptrend
-- 売抜け日: S&P500=3日 / Nasdaq=3日
-- FTD: 2026-05-08確認済み
-- 推奨ポジション: 80〜100%
+## 現在の市場状態（最終更新: 2026-07-08）
+- REDFORD: Trend uncertain（不確実なトレンド）
+- 売抜け日: S&P500=4日 / Nasdaq=9日（最警戒水準）
+- NQ: 21MA・50MAを一時割り込み（REPORTS-1668）
+- ダウ最高値×ナスダック軟調 = ダイバージェンス発生中
+- 最新レポート: REPORTS-1676（7/7）・Watch listシリーズ継続中
+- REDFORD結論: 「キャッシュポジションを増やせ」「直ちに購入は不適切」
+- Minervini: 売買アクションなし（$LLY追加 2026-06-27が最後）
+- 推奨ポジション: キャッシュ優先・個別株待機
+
+## ユーザーの現在保有ポジション（最終更新: 2026-07-04）
+- S&P500投信: 約¥1,180万（コア・売らない）
+- VOO: 9株 平均$500.47（コア・売らない）
+- 円預金: 約¥60万
+- 楽天証券+Webull: 約$3,344（全額現金待機中）
+- 個別株: ゼロ（AMKR・MNST は売却済み）
+- 最優先監視銘柄: LLY（4層確証：REDFORD医療強+Minervini実買い+スクリーナー+Checker✅）
+- 6月月足ルール: SPX -1.09%陰線だが「下落幅小さい」として見送り
 
 ## 除外シグナル
 - 除外①: 株価が200日MAの2倍以上（クライマックストップリスク）
 - 除外②③: 市場がBearish/Distribution（IBD確認で上書き可）
 
 ## GitHub Pages
-- リポジトリ: https://github.com/[ユーザー名]/canslim-screener
-- URL: https://[ユーザー名].github.io/canslim-screener/
+- リポジトリ: https://github.com/hirororororo888/canslim-screener
+- URL: https://hirororororo888.github.io/canslim-screener/
 - デプロイ: `deploy_github.bat`
+- push方法: git remote set-url origin "https://[PAT]@github.com/hirororororo888/canslim-screener.git"
 
 ## ngrok（スマホアクセス用）
 ```
@@ -70,8 +84,9 @@ ngrok http 5174 --response-header-add "ngrok-skip-browser-warning:true"
 ```
 
 ## REDFORD自動収集（手動トリガー）
-ユーザーが「REDFORD確認して」と言ったら以下を実行:
-1. Chrome拡張（mcp__Claude_in_Chrome__）でアクセス
+ユーザーが「REDFORD確認して」または「両方確認」と言ったら以下を実行:
+1. Chrome拡張（mcp__claude-in-chrome__）でアクセス（ツール名が小文字に変更）
+   - list_connected_browsers → select_browser
    - browser: deviceId e4ff71ad-9007-4d58-ac38-e0b3e4c41f25（Browser 1）
    - URL: https://x.com/3b4w4aRedford
    - ユーザーは @sannzamenai でログイン済み・REDFORDフォロー中
@@ -149,8 +164,8 @@ ngrok http 5174 --response-header-add "ngrok-skip-browser-warning:true"
 - 投稿種類: REDFORDと違い構造化レポートでなく、売買アクション+哲学が中心
 - Minerviniの実際の買い銘柄は、スクリーナー候補の「プロによる確証」として価値大
 
-## 統合トリガー「両者確認」
-ユーザーが「両者確認」と言ったら、REDFORDとMinervini両方を順に取得:
+## 統合トリガー「両方確認」「両者確認」
+ユーザーが「両方確認」または「両者確認」と言ったら、REDFORDとMinervini両方を順に取得:
 1. REDFORD確認の手順を実行（市場トレンド・売抜日・Put/Call → screening_results.json更新）
 2. Minervini確認の手順を実行（銘柄アクション・哲学 → actions.json/wisdom.md更新）
 3. 両者を統合した投資判断を提示:
