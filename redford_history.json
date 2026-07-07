@@ -66,5 +66,17 @@
     "put_call": 0.0,
     "equity_pct": 0,
     "notes": "キャッシュ積み増し推奨。NQ 21MA/50MA割れ。ダウ高値更新×NQ下落のダイバージェンス。半導体/AI売り→医療/運輸/金融へセクターローテーション。ベアトラップ警告。"
+  },
+  {
+    "report_no": "16",
+    "date": "2026-07-07",
+    "trend": "pressure",
+    "trend_score": 2,
+    "trend_label": "Uptrend Under Pressure",
+    "dd_sp500": 4,
+    "dd_nasdaq": 8,
+    "put_call": 0.79,
+    "equity_low": 60,
+    "equity_high": 80
   }
 ]
