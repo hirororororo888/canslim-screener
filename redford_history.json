@@ -78,5 +78,17 @@
     "put_call": 0.79,
     "equity_low": 60,
     "equity_high": 80
+  },
+  {
+    "report_no": "1679",
+    "date": "2026-07-08",
+    "trend": "pressure",
+    "trend_score": 2,
+    "trend_label": "Uptrend Under Pressure",
+    "dd_sp500": 4,
+    "dd_nasdaq": 9,
+    "put_call": 0.9,
+    "equity_low": 60,
+    "equity_high": 80
   }
 ]
