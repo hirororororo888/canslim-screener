@@ -1,10 +1,13 @@
 """
 S&P500 + Nasdaq-100 フルスクリーニング (516銘柄)
 """
-import json, time, datetime, pathlib, warnings
+import sys, json, time, datetime, pathlib, warnings
 import numpy as np
 warnings.filterwarnings("ignore")
 import yfinance as yf
+
+# Windowsコンソール(cp932)でも特殊文字で落ちないようUTF-8出力に固定
+sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
 THRESH = dict(C=25, A=25, S=25, L=70, smA=30, smR=20, smMLo=25)
 TOP_N  = 30
@@ -30,21 +33,30 @@ dist_days = sum(1 for i in range(max(1,n-25),n)
 hi5       = spy_hi[-5:].max()
 hi20p     = spy_hi[-25:-5].max()
 hi_lo     = round(float(hi5/hi20p), 3)
-spy_avg200= spy_cls[-200:].mean() if n>=200 else spy_cls.mean()
-spy_perf  = (spy_cur/spy_avg200-1)*100
-M_PASS    = True  # IBD Confirmed Uptrend（ユーザー確認済み）
-DD_IBD    = 3
+# 市場判定（status/売抜日/FTD）はREDFORD確認で手動更新するため、
+# 既存の screening_results.json から引き継ぐ。価格系の数値だけ再計算する。
+prev_mkt = {}
+_res = pathlib.Path("screening_results.json")
+if _res.exists():
+    try:
+        prev_mkt = json.loads(_res.read_text(encoding="utf-8")).get("market", {})
+    except Exception:
+        prev_mkt = {}
 
 mkt = dict(
-    status="bullish",
+    status=prev_mkt.get("status", "caution"),
     spyPrice=round(float(spy_cur),2),
     spyChange=round(float((spy_cls[-1]-spy_cls[-2])/spy_cls[-2]*100),2),
     ma60=round(float(ma60),2), aboveMa60=bool(spy_cur>ma60),
-    distributionDays=DD_IBD, hiLoRatio=float(hi_lo),
-    hiLoDesc="新値圏（52週高値-0.2%）",
-    followThrough=True, followThroughDate="2026-05-08"
+    distributionDays=prev_mkt.get("distributionDays", dist_days),
+    hiLoRatio=float(hi_lo),
+    hiLoDesc=("新値圏" if hi_lo >= 0.98 else "高値圏から後退") + f"（5日/20日高値比 {hi_lo}）",
+    followThrough=prev_mkt.get("followThrough", True),
+    followThroughDate=prev_mkt.get("followThroughDate", ""),
 )
-print(f"  SPY ${spy_cur:.2f}  MA60 ${ma60:.2f}  DD(IBD)={DD_IBD}  => Confirmed Uptrend")
+# M条件: Confirmed Uptrend(bullish)のときだけ合格。警戒・弱気ではM全て不合格（CANSLIMルール）
+M_PASS = mkt["status"] == "bullish"
+print(f"  SPY ${spy_cur:.2f}  MA60 ${ma60:.2f}  DD={mkt['distributionDays']}  status={mkt['status']}（引き継ぎ）  M={'合格' if M_PASS else '不合格'}")
 
 # ── IBD RS Rating: 全銘柄の15ヶ月価格を一括DL ─────────────────────
 print(f"\n[RS] {len(TICKERS)} 銘柄の価格データ一括取得...")
@@ -188,7 +200,7 @@ results.sort(key=lambda x: (x["score"], x.get("epsGrowth") or -9999), reverse=Tr
 
 print(f"\n{'='*85}")
 print(f"  CANSLIM Top{TOP_N} — S&P500+NQ100 ({len(results)}銘柄対象)")
-print(f"  Market: Confirmed Uptrend | SPY ${spy_cur:.2f} | IBD DD={DD_IBD}")
+print(f"  Market: {mkt['status']} | SPY ${spy_cur:.2f} | DD={mkt['distributionDays']}")
 print(f"{'='*85}")
 print(f"{'銘柄':<6} {'Sc':>4}  C  A  S  N  L  {'I':<6}  M  {'EPS%':>7} {'Rev%':>7}  RS  {'52wH':>6}  セクター")
 print("-"*90)
@@ -223,11 +235,11 @@ payload = dict(
     market=mkt,
     stocks=results[:TOP_N],
     meta=dict(
-        updatedAt=datetime.datetime.utcnow().isoformat()+"Z",
+        updatedAt=datetime.datetime.now(datetime.timezone.utc).isoformat(),
         screened=len(results), failed=len(failed),
         universe="S&P500+Nasdaq100", totalUniverse=len(TICKERS),
         sources=["YahooFinance","FMP"],
-        marketNote="IBD Confirmed Uptrend: DD=3, FTD=2026-05-08"
+        marketNote=f"market={mkt['status']}, DD={mkt['distributionDays']}（REDFORD確認で更新）"
     )
 )
 pathlib.Path("screening_results.json").write_text(

@@ -1,5 +1,8 @@
-import json, yfinance as yf, numpy as np
+import sys, json, yfinance as yf, numpy as np
 from datetime import datetime, timezone
+
+# Windowsコンソール(cp932)でも特殊文字で落ちないようUTF-8出力に固定
+sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
 with open("screening_results.json", encoding="utf-8") as f:
     data = json.load(f)

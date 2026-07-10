@@ -8,10 +8,13 @@ checker.py — 独立検証エージェント（Maker-Checkerパターン）
 使い方: python checker.py
   screening_results.json の各銘柄に checker_verdict を付与して上書き
 """
-import json, datetime, pathlib, warnings
+import sys, json, datetime, pathlib, warnings
 warnings.filterwarnings("ignore")
 import yfinance as yf
 import numpy as np
+
+# Windowsコンソール(cp932)でも絵文字で落ちないようUTF-8出力に固定
+sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
 ROOT = pathlib.Path(__file__).parent
 
@@ -19,13 +22,12 @@ ROOT = pathlib.Path(__file__).parent
 STRONG_SECTORS = ["Healthcare", "Energy", "Financial Services",
                   "Consumer Defensive", "Utilities"]
 
-def verify_stock(s, market_status):
+def verify_stock(s, market_status, hist):
     """1銘柄を独立検証。6つのハードゲートを適用し合否を返す。"""
-    tk = s["ticker"]
     try:
-        hist = yf.download(tk, period="6mo", progress=False, auto_adjust=True)
-        if hist.empty or len(hist) < 50:
+        if hist is None or hist.empty or len(hist.dropna()) < 50:
             return None
+        hist = hist.dropna()
         closes = hist["Close"].values.flatten().astype(float)
         vols   = hist["Volume"].values.flatten().astype(float)
         highs  = hist["High"].values.flatten().astype(float)
@@ -114,9 +116,22 @@ def main():
     print(f"{'銘柄':<6} {'判定':<10} {'ゲート':>6} {'出来高比':>7} {'50MA比':>7} 失敗ゲート")
     print("-"*78)
 
+    # 全銘柄の価格を一括ダウンロード（1銘柄ずつだと30回通信するため）
+    tickers = [s["ticker"] for s in data["stocks"]]
+    all_hist = yf.download(tickers, period="6mo", progress=False,
+                           auto_adjust=True, group_by="ticker")
+
+    def get_hist(tk):
+        try:
+            if len(tickers) == 1:
+                return all_hist
+            return all_hist[tk]
+        except Exception:
+            return None
+
     stats = {"verified":0, "caution":0, "reject":0}
     for s in data["stocks"]:
-        v = verify_stock(s, market_status)
+        v = verify_stock(s, market_status, get_hist(s["ticker"]))
         if v is None:
             s["checker_verdict"] = "unknown"
             continue

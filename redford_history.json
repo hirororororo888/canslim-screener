@@ -48,24 +48,28 @@
     "equity_high": 80
   },
   {
-    "date": "2026-07-01",
     "report_no": "1658",
-    "trend": "Trend uncertain",
-    "sp500_dd": 4,
-    "nasdaq_dd": 8,
+    "date": "2026-07-01",
+    "trend": "uncertain",
+    "trend_score": 0,
+    "trend_label": "Trend Uncertain",
+    "dd_sp500": 4,
+    "dd_nasdaq": 8,
     "put_call": 0.95,
-    "equity_pct": 90,
-    "notes": "全指数上昇(NQ+1.52%)。Trend uncertain（新ステータス）。P/C前日1.12→0.95に改善。NQ DD 9→8改善。AVAV+18.33%、AMD強し。"
+    "equity_low": 80,
+    "equity_high": 100
   },
   {
-    "date": "2026-07-03",
     "report_no": "1668",
-    "trend": "Uptrend Under Pressure",
-    "sp500_dd": 4,
-    "nasdaq_dd": 9,
-    "put_call": 0.0,
-    "equity_pct": 0,
-    "notes": "キャッシュ積み増し推奨。NQ 21MA/50MA割れ。ダウ高値更新×NQ下落のダイバージェンス。半導体/AI売り→医療/運輸/金融へセクターローテーション。ベアトラップ警告。"
+    "date": "2026-07-03",
+    "trend": "pressure",
+    "trend_score": 2,
+    "trend_label": "Uptrend Under Pressure",
+    "dd_sp500": 4,
+    "dd_nasdaq": 9,
+    "put_call": null,
+    "equity_low": null,
+    "equity_high": null
   },
   {
     "report_no": "16",
