@@ -1,0 +1,21 @@
+#綺麗なチャートを鑑賞する会
+REDFORD REPORTS-1690
+『綺麗なチャートを鑑賞する会』第52回
+投稿: 2026年7月12日 午前3:32
+
+ランキング1位〜15位（画像、判読できた範囲）
+1位 Micron Technology (MU)
+2位 Astera Labs
+3位 Liquidia
+（4〜15位は画像判読困難）
+
+ランキング19〜30位（画像、判読できた範囲）
+19位 Sezzle
+20位 Mirum Pharmaceuticals
+21位 Krystal Biotech (KRYS) ★スクリーナーCheckerでも5/6検証済みの重複候補
+22〜27位 判読困難
+28位 Astera Networks
+29位 Interactive Brokers
+30位 Kratos（推定）
+
+注記: 「綺麗なチャートを鑑賞する会」は機関投資家の買い集め(Accumulation)が起きている上位30銘柄のランキング。相場のUnder Pressure時でも継続掲載されている。KRYSはこちらのCANSLIM/SMARTスクリーナーでもChecker検証5/6・RS94の高評価候補であり、REDFORDのランキングとスクリーナーの両方で裏付けが取れた形。
