@@ -52,9 +52,9 @@ def parse_report(text):
     d["trend_score"] = TREND_SCORE[d["trend"]]
     d["trend_label"] = TREND_LABEL[d["trend_score"]]
     # 売抜け日
-    m = re.search(r"S&P\s*500\s*[=:：]\s*(\d+)", text)
+    m = re.search(r"S&P\s*500\s*[=:：＝]\s*(\d+)", text)
     d["dd_sp500"] = int(m.group(1)) if m else None
-    m = re.search(r"Nasdaq\s*[=:：]\s*(\d+)", text)
+    m = re.search(r"Nasdaq\s*[=:：＝]\s*(\d+)", text)
     d["dd_nasdaq"] = int(m.group(1)) if m else None
     # Put/Call
     m = re.search(r"Put\s*Call\s*Ratio\s*[=:：]\s*([\d.]+)", text)
