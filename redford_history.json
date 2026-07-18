@@ -142,5 +142,17 @@
     "put_call": 0.93,
     "equity_low": 60,
     "equity_high": 80
+  },
+  {
+    "report_no": "1712",
+    "date": "2026-07-18",
+    "trend": "uncertain",
+    "trend_score": 0,
+    "trend_label": "Trend Uncertain",
+    "dd_sp500": 5,
+    "dd_nasdaq": 9,
+    "put_call": 0.87,
+    "equity_low": 40,
+    "equity_high": 60
   }
 ]
