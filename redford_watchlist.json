@@ -1,0 +1,123 @@
+[
+  {
+    "ticker": "VRT",
+    "name": "Vertiv Holdings",
+    "date": "2026-07-07",
+    "report_no": "1674",
+    "series": null,
+    "summary": "REDFORD Watch List初期掲載。当時は直ちに購入は不適切と評価。",
+    "ibd_composite": null,
+    "ibd_rs": null,
+    "status": "watching"
+  },
+  {
+    "ticker": "KVYO",
+    "name": "Klaviyo",
+    "date": "2026-07-07",
+    "report_no": "1675",
+    "series": null,
+    "summary": "REDFORD Watch List初期掲載。当時Nasdaq売抜け日9で本格調整の瀬戸際、直ちに購入は不適切と評価。",
+    "ibd_composite": null,
+    "ibd_rs": null,
+    "status": "watching"
+  },
+  {
+    "ticker": "QBTS/IONQ/QUBT",
+    "name": "量子コンピュータ関連3銘柄",
+    "date": "2026-07-07",
+    "report_no": "1676",
+    "series": null,
+    "summary": "量子コンピュータセクターとして一括掲載。将来の上昇相場への備え目的、直ちに購入は不適切と評価。",
+    "ibd_composite": null,
+    "ibd_rs": null,
+    "status": "watching"
+  },
+  {
+    "ticker": "LQDA",
+    "name": "Liquidia Technologies",
+    "date": "2026-07-17",
+    "report_no": "1710",
+    "series": "Watch listを作成しよう 第9回",
+    "summary": "肺動脈性高血圧症等の希少心肺疾患治療薬を開発するバイオテック。独自技術「PRINT」で均一な薬剤粒子を形成。Q1 EPS52セント（前年同期-45セント）で黒字転換、売上高310万ドル→1億3290万ドル(+4158%)。Q2はEPS76セント、売上1億6900万ドル見込み。",
+    "ibd_composite": null,
+    "ibd_rs": null,
+    "status": "watching"
+  },
+  {
+    "ticker": "ASTH",
+    "name": "Astrana Health",
+    "date": "2026-07-17",
+    "report_no": "1711",
+    "series": "Watch listを作成しよう 第10回",
+    "summary": "マネージド・ヘルスケア・プロバイダー。3年間売上高成長率年率45%。2024-25年は利益減少も今年EPSは1.27ドルへ+176%急増、2027年は+48%で1.88ドル見込み。2026年初来株価ほぼ2倍。週足で巨大カップ型ベース形成、エントリーポイント29.33。2024年10月63.20が直近高値、2021年11月に133.23で過去最高値。3/2決算ギャップアップ以降、機関投資家の買い集めの兆候複数。",
+    "ibd_composite": null,
+    "ibd_rs": null,
+    "status": "watching"
+  },
+  {
+    "ticker": "TVTX",
+    "name": "Travere Therapeutics",
+    "date": "2026-07-18",
+    "report_no": "1713",
+    "series": "Watch listを作成しよう 第11回",
+    "summary": "サンディエゴ拠点、腎臓病・血液疾患・代謝疾患の希少疾患治療薬開発。時価総額50億ドル突破。直近四半期売上+76%(1億2970万ドル)、主力薬フィルスパリ(FSGS治療薬、対象患者10万人以上)は売上+108%。2026年EPS20セント予想、2027年2.43ドル予想。3週間タイトパターン形成、エントリーポイント59.69。",
+    "ibd_composite": null,
+    "ibd_rs": null,
+    "status": "watching"
+  },
+  {
+    "ticker": "DAVE",
+    "name": "Dave Inc.",
+    "date": "2026-07-19",
+    "report_no": "1717",
+    "series": "Watch listを作成しよう 第12回",
+    "summary": "従来銀行で十分なサービスを受けられない消費者向けデジタルバンキング。高金利ペイデイローンの代替として短期キャッシング・家計管理ツール提供。Q1決算：EPS+104%(4.02ドル)、売上+47%(1億5840万ドル)。4/8のFTD直後に24週コンソリデーションからブレイクアウト、6月中旬に2度目のブレイクアウト成功。",
+    "ibd_composite": null,
+    "ibd_rs": null,
+    "status": "watching"
+  },
+  {
+    "ticker": "KNSA",
+    "name": "Kiniksa Pharmaceuticals",
+    "date": "2026-07-19",
+    "report_no": "1718",
+    "series": "Watch listを作成しよう 第13回",
+    "summary": "自己炎症性・自己免疫疾患領域。主力薬ARCALYST（再発性心膜炎治療薬）。過去8四半期の売上成長率44-73%で推移、黒字転換済み。2/24決算はEPS17セントでコンセンサス29セントを下回るも売上+65%。6月期はEPS30セント(+30%)・売上+44%見込み。アナリスト7名全員Strong Buy、目標株価68.29ドル。",
+    "ibd_composite": null,
+    "ibd_rs": null,
+    "status": "watching"
+  },
+  {
+    "ticker": "GH",
+    "name": "Guardant Health",
+    "date": "2026-07-19",
+    "report_no": "1719",
+    "series": "Watch listを作成しよう 第14回",
+    "summary": "精密腫瘍学企業。5/20にFDA承認済み液体生検パネル最大規模の「Guardant360 Liquid CDx」発表。米国がん協会が大腸がん検診ガイドラインに同社の血液検査「Shield」を追加。133ドル抵抗線突破、20%利益目標達成後も上昇継続。2024年4月に15.81まで急落後の大幅巻き返し。決算発表7/30予定。",
+    "ibd_composite": null,
+    "ibd_rs": null,
+    "status": "watching"
+  },
+  {
+    "ticker": "LTH",
+    "name": "Life Time Holdings",
+    "date": "2026-07-20",
+    "report_no": "1721",
+    "series": "Watch listを作成しよう 第15回",
+    "summary": "リゾート型アスレティッククラブ運営（米国29州+カナダ1州、151施設）。会員費収入＋付帯サービスの高利益率モデル。株価42.15は21日/50日/200日MA全て上抜けで強気トレンド継続（NYSE全体軟調の中）。直近3四半期平均EPS成長率+123%。",
+    "ibd_composite": 99,
+    "ibd_rs": 93,
+    "status": "watching"
+  },
+  {
+    "ticker": "CRWD",
+    "name": "CrowdStrike",
+    "date": "2026-07-20",
+    "report_no": "1722",
+    "series": "Watch listを作成しよう 第16回",
+    "summary": "サイバーセキュリティ大手。2027年度売上+20%超・60億ドル超見込み。AI検出・対応(AIDR)へ事業拡大中。初の4:1株式分割、四半期年間経常収益が過去最高成長率。IBD業種ランキングでコンピューターセキュリティ・グループが197業種中3位。Minerviniも7/8・7/13のベストパフォーマーに継続掲載。",
+    "ibd_composite": 99,
+    "ibd_rs": 97,
+    "status": "watching"
+  }
+]

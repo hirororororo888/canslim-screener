@@ -12,6 +12,7 @@ NYSE/NASDAQ の米国株を CANSLIM + SMART + Minervini Trend Template で自動
 - `run_screener.bat` — ワンクリック実行（Windows）
 - `deploy_github.bat` — GitHub Pages デプロイ
 - `sp500_tickers.json` — 1519銘柄リスト（S&P500+400+600）
+- `redford_watchlist.json` — REDFORDの「Watch listを作成しよう」等で紹介した銘柄の記録。トレンドがConfirmed Uptrendに転換した際のリーダー銘柄候補。REDFORD確認時にウォッチリスト系の投稿（個別銘柄解説）があれば追記する
 
 ## データソース
 - **Yahoo Finance (yfinance)**: 価格・ファンダメンタル・機関保有（無制限）
