@@ -119,5 +119,38 @@
     "ibd_composite": 99,
     "ibd_rs": 97,
     "status": "watching"
+  },
+  {
+    "ticker": "SKWD",
+    "name": "Skyward Specialty Insurance",
+    "date": "2026-07-21",
+    "report_no": "1724",
+    "series": "Watch listを作成しよう 第16回（番号重複、CRWDと同じ第16回表記）",
+    "summary": "ヒューストン拠点、特殊損害保険（一般賠償責任・商用自動車・団体傷害健康・財産保険）。2026年EPSは+22%の4.89ドル見込み。時価総額24億ドル。前回パターン不発直後にベースカウント1でリセット、Accumulation/Distribution Ratingは「A」。エントリーポイント63.03。IBD総合評価99、RSI84。3年平均売上成長28.06%、3四半期平均EPS成長44.3%。",
+    "ibd_composite": 99,
+    "ibd_rs": 84,
+    "status": "watching"
+  },
+  {
+    "ticker": "APH",
+    "name": "Amphenol",
+    "date": "2026-07-21",
+    "report_no": "1727",
+    "series": "Watch listを作成しよう 第17回",
+    "summary": "光ファイバー・高速コネクタの世界最大級サプライヤー（データセンター向け）。約40カ国に工場。2025年に5件の買収（トレクソン等）、2026年1月にコムスコープのコネクティビティ事業を105億ドルで買収し光ファイバー分野で優位性獲得。IBD総合評価89、EPS評価98。過去4四半期EPS成長84%/86%/76%/68%。アナリスト11名中10名「買い」。目標株価191.20ドル（+27.03%上昇余地）。",
+    "ibd_composite": 89,
+    "ibd_rs": null,
+    "status": "watching"
+  },
+  {
+    "ticker": "DDOG",
+    "name": "Datadog",
+    "date": "2026-07-21",
+    "report_no": "1728",
+    "series": "Watch listを作成しよう 第18回",
+    "summary": "エンタープライズソフトウェア業界トップクラスのオブザーバビリティ企業。IBD業界グループ内最高EPSレーティング93。過去4四半期EPS成長7%/20%/20%/30%、Q2はEPS+27%予想。カップベース形成中、エントリーポイント278.70。RSIは新高値98(NYSE上位2%)。主要顧客はAmazon/Microsoft Azure/Google Cloud。アナリスト37名中35名Strong Buy。7/15にUBSが目標株価220→315に引き上げ。",
+    "ibd_composite": null,
+    "ibd_rs": 98,
+    "status": "watching"
   }
 ]
