@@ -33,6 +33,14 @@ def main():
         except Exception:
             pass
 
+    # REDFORD Watch List を埋め込み
+    watchlist_file = ROOT / "redford_watchlist.json"
+    if watchlist_file.exists():
+        try:
+            data["redfordWatchlist"] = json.loads(watchlist_file.read_text(encoding="utf-8"))
+        except Exception:
+            pass
+
     js_block = (
         f"// ── Auto-updated: {data['meta']['updatedAt']} ──\n"
         f"loadData({json.dumps(data, ensure_ascii=False, indent=2)});"
