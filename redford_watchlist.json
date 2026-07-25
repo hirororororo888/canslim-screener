@@ -152,5 +152,27 @@
     "ibd_composite": null,
     "ibd_rs": 98,
     "status": "watching"
+  },
+  {
+    "ticker": "CRWD/PANW/FTNT/RBRK/CYBR",
+    "name": "サイバーセキュリティ・グループ",
+    "date": "2026-07-24",
+    "report_no": "1740",
+    "series": "Watch listを作成しよう 第22回",
+    "summary": "AI活用サイバー攻撃の増加と企業のセキュリティ予算優先度上昇を背景に急騰中のグループ。全米197業種グループ中サイバーセキュリティは11位。過去3ヶ月でPANW・CRWD・FTNTがマグニフィセント7を大きく上回る上昇基調。「現時点でマーケットは下落調整段階に入った」と明言も、将来の上昇相場でフォロースルーデイに先立ち先行上昇しやすいグループとしてWatch入り。",
+    "ibd_composite": null,
+    "ibd_rs": null,
+    "status": "watching"
+  },
+  {
+    "ticker": "EW",
+    "name": "Edwards Lifesciences",
+    "date": "2026-07-24",
+    "report_no": "1741",
+    "series": "Watch listを作成しよう 第23回",
+    "summary": "心臓弁膜症への低侵襲手術(TAVR)のパイオニア。Q2決算は予想超過(売上17.4億ドル、EPS78セント)。主力TAVR売上+11%超、TMTT(僧帽弁・三尖弁)は+47%超急増。アナリスト18名平均目標株価100.81ドル(直近終値83.82ドルから+20.27%)。ただしNasdaq売抜け日9でREDFORDは直ちの購入は非推奨と注意喚起。",
+    "ibd_composite": null,
+    "ibd_rs": null,
+    "status": "watching"
   }
 ]
