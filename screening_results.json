@@ -1,13 +1,13 @@
 {
   "market": {
     "status": "bearish",
-    "spyPrice": 741.69,
-    "spyChange": 1.68,
-    "ma60": 742.49,
-    "aboveMa60": false,
+    "spyPrice": 747.03,
+    "spyChange": 0.72,
+    "ma60": 742.91,
+    "aboveMa60": true,
     "distributionDays": 9,
-    "hiLoRatio": 0.987,
-    "hiLoDesc": "新値圏（5日/20日高値比 0.987）",
+    "hiLoRatio": 0.991,
+    "hiLoDesc": "新値圏（5日/20日高値比 0.991）",
     "followThrough": true,
     "followThroughDate": "2026-05-08"
   },
@@ -16,8 +16,8 @@
       "ticker": "TGTX",
       "name": "TG Therapeutics, Inc.",
       "sector": "Healthcare",
-      "price": 53.53,
-      "mktCap": 8194564096.0,
+      "price": 52.03,
+      "mktCap": 7964938752.0,
       "score": 6,
       "smart_score": 4,
       "combined_score": 10,
@@ -38,8 +38,8 @@
       "salesGrowth": 69.6,
       "opMargin": 17.0,
       "roe": 112.6,
-      "rsScore": 93,
-      "fromHigh": 9.7,
+      "rsScore": 92,
+      "fromHigh": 12.3,
       "instPct": 70.3,
       "stage2": true,
       "avg200": 36.59,
@@ -50,7 +50,7 @@
         "除外②市場Correction",
         "除外③売抜け日6回超"
       ],
-      "comment": "EPS +290.9% 売上 +69.6% RS=93 52wH-9.7% OM=17.0% ROE=112.6%",
+      "comment": "EPS +290.9% 売上 +69.6% RS=92 52wH-12.3% OM=17.0% ROE=112.6%",
       "epsAnnual3y": [
         1746.7,
         66.7,
@@ -62,15 +62,15 @@
         "トレンド",
         "高値圏"
       ],
-      "checker_volRatio": 0.94,
+      "checker_volRatio": 1.02,
       "checker_atr": 2.8
     },
     {
       "ticker": "DELL",
       "name": "Dell Technologies Inc.",
       "sector": "Technology",
-      "price": 404.81,
-      "mktCap": 261564907520.0,
+      "price": 405.37,
+      "mktCap": 261926748160.0,
       "score": 6,
       "smart_score": 3,
       "combined_score": 9,
@@ -92,7 +92,7 @@
       "opMargin": 8.9,
       "roe": null,
       "rsScore": 98,
-      "fromHigh": 13.8,
+      "fromHigh": 13.7,
       "instPct": 82.0,
       "stage2": true,
       "avg200": 213.09,
@@ -103,7 +103,7 @@
         "除外②市場Correction",
         "除外③売抜け日6回超"
       ],
-      "comment": "EPS +256.3% 売上 +87.5% RS=98 52wH-13.8% OM=8.9% ROE=None%",
+      "comment": "EPS +256.3% 売上 +87.5% RS=98 52wH-13.7% OM=8.9% ROE=None%",
       "epsAnnual3y": [
         36.1,
         40.3,
@@ -117,14 +117,14 @@
         "高値圏"
       ],
       "checker_volRatio": 0.67,
-      "checker_atr": 6.5
+      "checker_atr": 6.8
     },
     {
       "ticker": "KRYS",
       "name": "Krystal Biotech, Inc.",
       "sector": "Healthcare",
-      "price": 366.85,
-      "mktCap": 10814648320.0,
+      "price": 341.12,
+      "mktCap": 10056134656.0,
       "score": 6,
       "smart_score": 4,
       "combined_score": 10,
@@ -145,8 +145,8 @@
       "salesGrowth": 31.9,
       "opMargin": 46.1,
       "roe": 19.9,
-      "rsScore": 96,
-      "fromHigh": 4.1,
+      "rsScore": 95,
+      "fromHigh": 10.8,
       "instPct": 99.5,
       "stage2": true,
       "avg200": 271.18,
@@ -157,74 +157,27 @@
         "除外②市場Correction",
         "除外③売抜け日6回超"
       ],
-      "comment": "EPS +56.5% 売上 +31.9% RS=96 52wH-4.1% OM=46.1% ROE=19.9%",
+      "comment": "EPS +56.5% 売上 +31.9% RS=95 52wH-10.8% OM=46.1% ROE=19.9%",
       "epsAnnual3y": [
         128.0,
         669.2,
         999
       ],
-      "checker_verdict": "verified",
-      "checker_gates": "6/6",
-      "checker_failed": [],
-      "checker_volRatio": 0.99,
-      "checker_atr": 3.2
-    },
-    {
-      "ticker": "NBIX",
-      "name": "Neurocrine Biosciences, Inc.",
-      "sector": "Healthcare",
-      "price": 185.5,
-      "mktCap": 18652022784.0,
-      "score": 6,
-      "smart_score": 4,
-      "combined_score": 10,
-      "C": true,
-      "A": true,
-      "S": true,
-      "N": true,
-      "L": true,
-      "I": "Accumulation",
-      "Ipass": true,
-      "M": false,
-      "smart_S": true,
-      "smart_M": false,
-      "smart_A": true,
-      "smart_R": true,
-      "smart_T": true,
-      "epsGrowth": 34.3,
-      "salesGrowth": 39.5,
-      "opMargin": 16.0,
-      "roe": 22.1,
-      "rsScore": 87,
-      "fromHigh": 0.3,
-      "instPct": 104.3,
-      "stage2": true,
-      "avg200": 145.76,
-      "avg50": 167.11,
-      "smart_excl": [],
-      "excluded": false,
-      "canslim_excl": [
-        "除外②市場Correction",
-        "除外③売抜け日6回超"
+      "checker_verdict": "caution",
+      "checker_gates": "4/6",
+      "checker_failed": [
+        "トレンド",
+        "高値圏"
       ],
-      "comment": "EPS +34.3% 売上 +39.5% RS=87 52wH-0.3% OM=16.0% ROE=22.1%",
-      "epsAnnual3y": [
-        41.9,
-        33.2,
-        58.3
-      ],
-      "checker_verdict": "verified",
-      "checker_gates": "6/6",
-      "checker_failed": [],
-      "checker_volRatio": 1.14,
-      "checker_atr": 2.0
+      "checker_volRatio": 0.96,
+      "checker_atr": 3.9
     },
     {
       "ticker": "LPG",
       "name": "Dorian LPG Ltd.",
       "sector": "Energy",
-      "price": 46.24,
-      "mktCap": 1978271232.0,
+      "price": 47.42,
+      "mktCap": 2028754560.0,
       "score": 5,
       "smart_score": 4,
       "combined_score": 9,
@@ -245,8 +198,8 @@
       "salesGrowth": 105.2,
       "opMargin": 55.2,
       "roe": 17.7,
-      "rsScore": 89,
-      "fromHigh": 3.9,
+      "rsScore": 90,
+      "fromHigh": 1.5,
       "instPct": 70.5,
       "stage2": true,
       "avg200": 33.52,
@@ -257,26 +210,131 @@
         "除外②市場Correction",
         "除外③売抜け日6回超"
       ],
-      "comment": "EPS +901.2% 売上 +105.2% RS=89 52wH-3.9% OM=55.2% ROE=17.7%",
+      "comment": "EPS +901.2% 売上 +105.2% RS=90 52wH-1.5% OM=55.2% ROE=17.7%",
       "epsAnnual3y": [
         112.1,
         -71.8,
         77.2
+      ],
+      "checker_verdict": "caution",
+      "checker_gates": "4/6",
+      "checker_failed": [
+        "出来高",
+        "適正位置"
+      ],
+      "checker_volRatio": 0.81,
+      "checker_atr": 2.9
+    },
+    {
+      "ticker": "AUB",
+      "name": "Atlantic Union Bankshares Corporation",
+      "sector": "Financial Services",
+      "price": 42.43,
+      "mktCap": 6021841920.0,
+      "score": 5,
+      "smart_score": 4,
+      "combined_score": 9,
+      "C": true,
+      "A": false,
+      "S": true,
+      "N": true,
+      "L": true,
+      "I": "Accumulation",
+      "Ipass": true,
+      "M": false,
+      "smart_S": true,
+      "smart_M": true,
+      "smart_A": true,
+      "smart_R": false,
+      "smart_T": true,
+      "epsGrowth": 713.6,
+      "salesGrowth": 35.8,
+      "opMargin": 56.1,
+      "roe": 9.8,
+      "rsScore": 71,
+      "fromHigh": 2.7,
+      "instPct": 88.3,
+      "stage2": true,
+      "avg200": 37.33,
+      "avg50": 40.31,
+      "smart_excl": [],
+      "excluded": false,
+      "canslim_excl": [
+        "除外②市場Correction",
+        "除外③売抜け日6回超"
+      ],
+      "comment": "EPS +713.6% 売上 +35.8% RS=71 52wH-2.7% OM=56.1% ROE=9.8%",
+      "epsAnnual3y": [
+        -9.4,
+        -11.5,
+        -14.8
       ],
       "checker_verdict": "verified",
       "checker_gates": "5/6",
       "checker_failed": [
         "出来高"
       ],
-      "checker_volRatio": 0.84,
-      "checker_atr": 2.9
+      "checker_volRatio": 0.67,
+      "checker_atr": 1.5
+    },
+    {
+      "ticker": "ADAM",
+      "name": "Adamas Trust, Inc.",
+      "sector": "Real Estate",
+      "price": 9.07,
+      "mktCap": 815209600.0,
+      "score": 5,
+      "smart_score": 4,
+      "combined_score": 9,
+      "C": true,
+      "A": false,
+      "S": true,
+      "N": true,
+      "L": true,
+      "I": "Accumulation",
+      "Ipass": true,
+      "M": false,
+      "smart_S": true,
+      "smart_M": true,
+      "smart_A": true,
+      "smart_R": false,
+      "smart_T": true,
+      "epsGrowth": 545.7,
+      "salesGrowth": 128.6,
+      "opMargin": 51.7,
+      "roe": 16.4,
+      "rsScore": 73,
+      "fromHigh": 5.4,
+      "instPct": 56.4,
+      "stage2": true,
+      "avg200": 8.03,
+      "avg50": 9.05,
+      "smart_excl": [],
+      "excluded": false,
+      "canslim_excl": [
+        "除外②市場Correction",
+        "除外③売抜け日6回超"
+      ],
+      "comment": "EPS +545.7% 売上 +128.6% RS=73 52wH-5.4% OM=51.7% ROE=16.4%",
+      "epsAnnual3y": [
+        999,
+        null,
+        null
+      ],
+      "checker_verdict": "caution",
+      "checker_gates": "5/6",
+      "checker_failed": [
+        "主導力"
+      ],
+      "checker_volRatio": 1.31,
+      "checker_atr": 2.3
     },
     {
       "ticker": "INSW",
       "name": "International Seaways, Inc.",
       "sector": "Energy",
-      "price": 95.21,
-      "mktCap": 4713341952.0,
+      "price": 96.18,
+      "mktCap": 4761361920.0,
       "score": 5,
       "smart_score": 5,
       "combined_score": 10,
@@ -298,7 +356,7 @@
       "opMargin": 61.3,
       "roe": 26.9,
       "rsScore": 95,
-      "fromHigh": 0.5,
+      "fromHigh": 0.9,
       "instPct": 80.6,
       "stage2": true,
       "avg200": 67.92,
@@ -309,26 +367,27 @@
         "除外②市場Correction",
         "除外③売抜け日6回超"
       ],
-      "comment": "EPS +477.3% 売上 +78.5% RS=95 52wH-0.5% OM=61.3% ROE=26.9%",
+      "comment": "EPS +477.3% 売上 +78.5% RS=95 52wH-0.9% OM=61.3% ROE=26.9%",
       "epsAnnual3y": [
         -25.7,
         -25.5,
         44.8
       ],
-      "checker_verdict": "verified",
-      "checker_gates": "5/6",
+      "checker_verdict": "caution",
+      "checker_gates": "4/6",
       "checker_failed": [
-        "出来高"
+        "出来高",
+        "適正位置"
       ],
-      "checker_volRatio": 0.88,
-      "checker_atr": 2.6
+      "checker_volRatio": 0.82,
+      "checker_atr": 2.4
     },
     {
       "ticker": "VLO",
       "name": "Valero Energy Corporation",
       "sector": "Energy",
-      "price": 311.71,
-      "mktCap": 92556910592.0,
+      "price": 312.9,
+      "mktCap": 92910264320.0,
       "score": 5,
       "smart_score": 3,
       "combined_score": 8,
@@ -349,8 +408,8 @@
       "salesGrowth": 57.6,
       "opMargin": 11.7,
       "roe": null,
-      "rsScore": 93,
-      "fromHigh": 2.7,
+      "rsScore": 94,
+      "fromHigh": 2.3,
       "instPct": 87.8,
       "stage2": true,
       "avg200": 217.82,
@@ -361,7 +420,7 @@
         "除外②市場Correction",
         "除外③売抜け日6回超"
       ],
-      "comment": "EPS +421.0% 売上 +57.6% RS=93 52wH-2.7% OM=11.7% ROE=None%",
+      "comment": "EPS +421.0% 売上 +57.6% RS=94 52wH-2.3% OM=11.7% ROE=None%",
       "epsAnnual3y": [
         -11.8,
         -65.6,
@@ -373,67 +432,15 @@
         "出来高",
         "適正位置"
       ],
-      "checker_volRatio": 0.78,
-      "checker_atr": 2.9
-    },
-    {
-      "ticker": "BTSG",
-      "name": "BrightSpring Health Services, Inc.",
-      "sector": "Healthcare",
-      "price": 72.88,
-      "mktCap": 14303312896.0,
-      "score": 5,
-      "smart_score": 3,
-      "combined_score": 8,
-      "C": true,
-      "A": false,
-      "S": true,
-      "N": true,
-      "L": true,
-      "I": "Accumulation",
-      "Ipass": true,
-      "M": false,
-      "smart_S": true,
-      "smart_M": false,
-      "smart_A": true,
-      "smart_R": false,
-      "smart_T": true,
-      "epsGrowth": 403.6,
-      "salesGrowth": 25.6,
-      "opMargin": 3.4,
-      "roe": 9.2,
-      "rsScore": 98,
-      "fromHigh": 1.2,
-      "instPct": 102.6,
-      "stage2": true,
-      "avg200": 46.49,
-      "avg50": 65.94,
-      "smart_excl": [],
-      "excluded": false,
-      "canslim_excl": [
-        "除外②市場Correction",
-        "除外③売抜け日6回超"
-      ],
-      "comment": "EPS +403.6% 売上 +25.6% RS=98 52wH-1.2% OM=3.4% ROE=9.2%",
-      "epsAnnual3y": [
-        999,
-        null,
-        null
-      ],
-      "checker_verdict": "verified",
-      "checker_gates": "5/6",
-      "checker_failed": [
-        "出来高"
-      ],
-      "checker_volRatio": 0.59,
-      "checker_atr": 3.4
+      "checker_volRatio": 0.8,
+      "checker_atr": 2.6
     },
     {
       "ticker": "RELY",
       "name": "Remitly Global, Inc.",
       "sector": "Technology",
-      "price": 23.45,
-      "mktCap": 4937657344.0,
+      "price": 22.77,
+      "mktCap": 4794475520.0,
       "score": 5,
       "smart_score": 3,
       "combined_score": 8,
@@ -454,8 +461,8 @@
       "salesGrowth": 25.2,
       "opMargin": 14.4,
       "roe": 13.0,
-      "rsScore": 76,
-      "fromHigh": 8.9,
+      "rsScore": 72,
+      "fromHigh": 11.6,
       "instPct": 85.3,
       "stage2": true,
       "avg200": 17.36,
@@ -466,7 +473,7 @@
         "除外②市場Correction",
         "除外③売抜け日6回超"
       ],
-      "comment": "EPS +332.1% 売上 +25.2% RS=76 52wH-8.9% OM=14.4% ROE=13.0%",
+      "comment": "EPS +332.1% 売上 +25.2% RS=72 52wH-11.6% OM=14.4% ROE=13.0%",
       "epsAnnual3y": [
         999,
         null,
@@ -480,15 +487,15 @@
         "主導力",
         "高値圏"
       ],
-      "checker_volRatio": 0.58,
-      "checker_atr": 2.5
+      "checker_volRatio": 0.65,
+      "checker_atr": 2.7
     },
     {
       "ticker": "DINO",
       "name": "HF Sinclair Corporation",
       "sector": "Energy",
-      "price": 92.44,
-      "mktCap": 16664662016.0,
+      "price": 91.47,
+      "mktCap": 16489794560.0,
       "score": 5,
       "smart_score": 3,
       "combined_score": 8,
@@ -510,7 +517,7 @@
       "opMargin": 11.2,
       "roe": null,
       "rsScore": 95,
-      "fromHigh": 1.9,
+      "fromHigh": 2.9,
       "instPct": 83.9,
       "stage2": true,
       "avg200": 60.38,
@@ -521,7 +528,7 @@
         "除外②市場Correction",
         "除外③売抜け日6回超"
       ],
-      "comment": "EPS +328.8% 売上 +53.2% RS=95 52wH-1.9% OM=11.2% ROE=None%",
+      "comment": "EPS +328.8% 売上 +53.2% RS=95 52wH-2.9% OM=11.2% ROE=None%",
       "epsAnnual3y": [
         238.5,
         -89.0,
@@ -532,15 +539,122 @@
       "checker_failed": [
         "適正位置"
       ],
-      "checker_volRatio": 1.33,
-      "checker_atr": 3.0
+      "checker_volRatio": 1.41,
+      "checker_atr": 2.9
+    },
+    {
+      "ticker": "GEN",
+      "name": "Gen Digital Inc.",
+      "sector": "Technology",
+      "price": 27.45,
+      "mktCap": 16430941184.0,
+      "score": 5,
+      "smart_score": 5,
+      "combined_score": 10,
+      "C": true,
+      "A": false,
+      "S": true,
+      "N": true,
+      "L": true,
+      "I": "Accumulation",
+      "Ipass": true,
+      "M": false,
+      "smart_S": true,
+      "smart_M": true,
+      "smart_A": true,
+      "smart_R": true,
+      "smart_T": true,
+      "epsGrowth": 260.6,
+      "salesGrowth": 27.0,
+      "opMargin": 63.4,
+      "roe": 39.9,
+      "rsScore": 70,
+      "fromHigh": 14.8,
+      "instPct": 90.8,
+      "stage2": true,
+      "avg200": 24.27,
+      "avg50": 25.54,
+      "smart_excl": [],
+      "excluded": false,
+      "canslim_excl": [
+        "除外②市場Correction",
+        "除外③売抜け日6回超"
+      ],
+      "comment": "EPS +260.6% 売上 +27.0% RS=70 52wH-14.8% OM=63.4% ROE=39.9%",
+      "epsAnnual3y": [
+        7.3,
+        -55.6,
+        53.2
+      ],
+      "checker_verdict": "reject",
+      "checker_gates": "3/6",
+      "checker_failed": [
+        "出来高",
+        "主導力",
+        "高値圏"
+      ],
+      "checker_volRatio": 0.67,
+      "checker_atr": 2.3
+    },
+    {
+      "ticker": "ARW",
+      "name": "Arrow Electronics, Inc.",
+      "sector": "Technology",
+      "price": 216.57,
+      "mktCap": 11074078720.0,
+      "score": 5,
+      "smart_score": 3,
+      "combined_score": 8,
+      "C": true,
+      "A": false,
+      "S": true,
+      "N": true,
+      "L": true,
+      "I": "Accumulation",
+      "Ipass": true,
+      "M": false,
+      "smart_S": true,
+      "smart_M": false,
+      "smart_A": true,
+      "smart_R": false,
+      "smart_T": true,
+      "epsGrowth": 194.9,
+      "salesGrowth": 39.0,
+      "opMargin": 4.2,
+      "roe": 11.3,
+      "rsScore": 86,
+      "fromHigh": 8.7,
+      "instPct": 105.3,
+      "stage2": true,
+      "avg200": 156.96,
+      "avg50": 215.28,
+      "smart_excl": [],
+      "excluded": false,
+      "canslim_excl": [
+        "除外②市場Correction",
+        "除外③売抜け日6回超"
+      ],
+      "comment": "EPS +194.9% 売上 +39.0% RS=86 52wH-8.7% OM=4.2% ROE=11.3%",
+      "epsAnnual3y": [
+        49.9,
+        -54.0,
+        -27.3
+      ],
+      "checker_verdict": "caution",
+      "checker_gates": "4/6",
+      "checker_failed": [
+        "出来高",
+        "高値圏"
+      ],
+      "checker_volRatio": 0.88,
+      "checker_atr": 2.4
     },
     {
       "ticker": "LLY",
       "name": "Eli Lilly and Company",
       "sector": "Healthcare",
-      "price": 1154.97,
-      "mktCap": 1029934481408.0,
+      "price": 1148.84,
+      "mktCap": 1024468123648.0,
       "score": 5,
       "smart_score": 5,
       "combined_score": 10,
@@ -561,8 +675,8 @@
       "salesGrowth": 55.5,
       "opMargin": 49.4,
       "roe": 107.5,
-      "rsScore": 89,
-      "fromHigh": 7.6,
+      "rsScore": 84,
+      "fromHigh": 8.1,
       "instPct": 85.1,
       "stage2": true,
       "avg200": 1023.15,
@@ -573,27 +687,28 @@
         "除外②市場Correction",
         "除外③売抜け日6回超"
       ],
-      "comment": "EPS +168.1% 売上 +55.5% RS=89 52wH-7.6% OM=49.4% ROE=107.5%",
+      "comment": "EPS +168.1% 売上 +55.5% RS=84 52wH-8.1% OM=49.4% ROE=107.5%",
       "epsAnnual3y": [
         96.0,
         101.9,
         -11.7
       ],
-      "checker_verdict": "caution",
-      "checker_gates": "4/6",
+      "checker_verdict": "reject",
+      "checker_gates": "3/6",
       "checker_failed": [
         "出来高",
-        "トレンド"
+        "トレンド",
+        "高値圏"
       ],
-      "checker_volRatio": 0.75,
+      "checker_volRatio": 0.81,
       "checker_atr": 1.9
     },
     {
       "ticker": "AMG",
       "name": "Affiliated Managers Group, Inc.",
       "sector": "Financial Services",
-      "price": 365.46,
-      "mktCap": 9652559872.0,
+      "price": 366.73,
+      "mktCap": 9686104064.0,
       "score": 5,
       "smart_score": 5,
       "combined_score": 10,
@@ -615,7 +730,7 @@
       "opMargin": 30.4,
       "roe": 24.3,
       "rsScore": 89,
-      "fromHigh": 4.5,
+      "fromHigh": 4.2,
       "instPct": 98.6,
       "stage2": true,
       "avg200": 298.98,
@@ -626,7 +741,7 @@
         "除外②市場Correction",
         "除外③売抜け日6回超"
       ],
-      "comment": "EPS +120.5% 売上 +29.9% RS=89 52wH-4.5% OM=30.4% ROE=24.3%",
+      "comment": "EPS +120.5% 売上 +29.9% RS=89 52wH-4.2% OM=30.4% ROE=24.3%",
       "epsAnnual3y": [
         50.3,
         -13.1,
@@ -637,15 +752,15 @@
       "checker_failed": [
         "出来高"
       ],
-      "checker_volRatio": 0.76,
+      "checker_volRatio": 0.74,
       "checker_atr": 3.2
     },
     {
       "ticker": "KTB",
       "name": "Kontoor Brands, Inc.",
       "sector": "Consumer Cyclical",
-      "price": 83.84,
-      "mktCap": 4634034688.0,
+      "price": 83.74,
+      "mktCap": 4628507136.0,
       "score": 5,
       "smart_score": 4,
       "combined_score": 9,
@@ -666,8 +781,8 @@
       "salesGrowth": 45.0,
       "opMargin": 17.2,
       "roe": 53.2,
-      "rsScore": 83,
-      "fromHigh": 5.8,
+      "rsScore": 84,
+      "fromHigh": 5.9,
       "instPct": 101.0,
       "stage2": true,
       "avg200": 72.09,
@@ -678,7 +793,7 @@
         "除外②市場Correction",
         "除外③売抜け日6回超"
       ],
-      "comment": "EPS +115.6% 売上 +45.0% RS=83 52wH-5.8% OM=17.2% ROE=53.2%",
+      "comment": "EPS +115.6% 売上 +45.0% RS=84 52wH-5.9% OM=17.2% ROE=53.2%",
       "epsAnnual3y": [
         -7.1,
         7.4,
@@ -691,15 +806,15 @@
         "トレンド",
         "主導力"
       ],
-      "checker_volRatio": 0.64,
-      "checker_atr": 2.9
+      "checker_volRatio": 0.63,
+      "checker_atr": 2.8
     },
     {
       "ticker": "DDOG",
       "name": "Datadog, Inc.",
       "sector": "Technology",
-      "price": 268.56,
-      "mktCap": 95596666880.0,
+      "price": 267.97,
+      "mktCap": 95386656768.0,
       "score": 5,
       "smart_score": 3,
       "combined_score": 8,
@@ -721,7 +836,7 @@
       "opMargin": 0.8,
       "roe": 3.9,
       "rsScore": 97,
-      "fromHigh": 3.6,
+      "fromHigh": 3.9,
       "instPct": 92.1,
       "stage2": true,
       "avg200": 166.74,
@@ -732,26 +847,24 @@
         "除外②市場Correction",
         "除外③売抜け日6回超"
       ],
-      "comment": "EPS +113.4% 売上 +32.2% RS=97 52wH-3.6% OM=0.8% ROE=3.9%",
+      "comment": "EPS +113.4% 売上 +32.2% RS=97 52wH-3.9% OM=0.8% ROE=3.9%",
       "epsAnnual3y": [
         -40.4,
         271.4,
         999
       ],
       "checker_verdict": "verified",
-      "checker_gates": "5/6",
-      "checker_failed": [
-        "出来高"
-      ],
-      "checker_volRatio": 0.83,
-      "checker_atr": 3.2
+      "checker_gates": "6/6",
+      "checker_failed": [],
+      "checker_volRatio": 0.94,
+      "checker_atr": 3.3
     },
     {
       "ticker": "MBIN",
       "name": "Merchants Bancorp",
       "sector": "Financial Services",
-      "price": 55.51,
-      "mktCap": 2550022400.0,
+      "price": 55.18,
+      "mktCap": 2534863104.0,
       "score": 5,
       "smart_score": 4,
       "combined_score": 9,
@@ -772,8 +885,8 @@
       "salesGrowth": 37.1,
       "opMargin": 61.1,
       "roe": 11.7,
-      "rsScore": 89,
-      "fromHigh": 2.4,
+      "rsScore": 88,
+      "fromHigh": 3.0,
       "instPct": 99.5,
       "stage2": true,
       "avg200": 41.53,
@@ -784,7 +897,7 @@
         "除外②市場Correction",
         "除外③売抜け日6回超"
       ],
-      "comment": "EPS +106.2% 売上 +37.1% RS=89 52wH-2.4% OM=61.1% ROE=11.7%",
+      "comment": "EPS +106.2% 売上 +37.1% RS=88 52wH-3.0% OM=61.1% ROE=11.7%",
       "epsAnnual3y": [
         -40.0,
         11.7,
@@ -793,15 +906,15 @@
       "checker_verdict": "verified",
       "checker_gates": "6/6",
       "checker_failed": [],
-      "checker_volRatio": 1.26,
+      "checker_volRatio": 1.33,
       "checker_atr": 2.9
     },
     {
       "ticker": "VIRT",
       "name": "Virtu Financial, Inc.",
       "sector": "Financial Services",
-      "price": 59.16,
-      "mktCap": 12729935872.0,
+      "price": 58.73,
+      "mktCap": 12637409280.0,
       "score": 5,
       "smart_score": 4,
       "combined_score": 9,
@@ -822,8 +935,8 @@
       "salesGrowth": 29.3,
       "opMargin": 36.2,
       "roe": null,
-      "rsScore": 78,
-      "fromHigh": 13.0,
+      "rsScore": 77,
+      "fromHigh": 13.7,
       "instPct": 93.7,
       "stage2": true,
       "avg200": 44.17,
@@ -834,7 +947,7 @@
         "除外②市場Correction",
         "除外③売抜け日6回超"
       ],
-      "comment": "EPS +88.5% 売上 +29.3% RS=78 52wH-13.0% OM=36.2% ROE=None%",
+      "comment": "EPS +88.5% 売上 +29.3% RS=77 52wH-13.7% OM=36.2% ROE=None%",
       "epsAnnual3y": [
         72.7,
         109.2,
@@ -847,15 +960,15 @@
         "トレンド",
         "高値圏"
       ],
-      "checker_volRatio": 0.74,
-      "checker_atr": 2.9
+      "checker_volRatio": 0.8,
+      "checker_atr": 2.7
     },
     {
       "ticker": "NTRS",
       "name": "Northern Trust Corporation",
       "sector": "Financial Services",
-      "price": 182.51,
-      "mktCap": 22418020352.0,
+      "price": 182.19,
+      "mktCap": 22378715136.0,
       "score": 5,
       "smart_score": 4,
       "combined_score": 9,
@@ -877,7 +990,7 @@
       "opMargin": 42.5,
       "roe": 17.1,
       "rsScore": 71,
-      "fromHigh": 4.7,
+      "fromHigh": 4.9,
       "instPct": 87.2,
       "stage2": true,
       "avg200": 150.85,
@@ -888,24 +1001,27 @@
         "除外②市場Correction",
         "除外③売抜け日6回超"
       ],
-      "comment": "EPS +88.0% 売上 +36.4% RS=71 52wH-4.7% OM=42.5% ROE=17.1%",
+      "comment": "EPS +88.0% 売上 +36.4% RS=71 52wH-4.9% OM=42.5% ROE=17.1%",
       "epsAnnual3y": [
         -10.5,
         92.3,
         -17.3
       ],
-      "checker_verdict": "verified",
-      "checker_gates": "6/6",
-      "checker_failed": [],
-      "checker_volRatio": 0.91,
+      "checker_verdict": "caution",
+      "checker_gates": "4/6",
+      "checker_failed": [
+        "出来高",
+        "トレンド"
+      ],
+      "checker_volRatio": 0.9,
       "checker_atr": 1.9
     },
     {
       "ticker": "TILE",
       "name": "Interface, Inc.",
       "sector": "Consumer Cyclical",
-      "price": 33.8,
-      "mktCap": 1962299264.0,
+      "price": 34.26,
+      "mktCap": 1989005056.0,
       "score": 5,
       "smart_score": 3,
       "combined_score": 8,
@@ -926,8 +1042,8 @@
       "salesGrowth": 11.3,
       "opMargin": 9.5,
       "roe": 22.1,
-      "rsScore": 87,
-      "fromHigh": 7.8,
+      "rsScore": 88,
+      "fromHigh": 6.5,
       "instPct": 103.1,
       "stage2": true,
       "avg200": 29.32,
@@ -938,7 +1054,7 @@
         "除外②市場Correction",
         "除外③売抜け日6回超"
       ],
-      "comment": "EPS +81.6% 売上 +11.3% RS=87 52wH-7.8% OM=9.5% ROE=22.1%",
+      "comment": "EPS +81.6% 売上 +11.3% RS=88 52wH-6.5% OM=9.5% ROE=22.1%",
       "epsAnnual3y": [
         32.4,
         94.7,
@@ -949,15 +1065,15 @@
       "checker_failed": [
         "出来高"
       ],
-      "checker_volRatio": 0.52,
-      "checker_atr": 2.5
+      "checker_volRatio": 0.54,
+      "checker_atr": 2.3
     },
     {
       "ticker": "VCTR",
       "name": "Victory Capital Holdings, Inc.",
       "sector": "Financial Services",
-      "price": 98.48,
-      "mktCap": 6158063104.0,
+      "price": 99.03,
+      "mktCap": 6192455168.0,
       "score": 5,
       "smart_score": 5,
       "combined_score": 10,
@@ -978,8 +1094,8 @@
       "salesGrowth": 76.7,
       "opMargin": 45.8,
       "roe": 21.7,
-      "rsScore": 85,
-      "fromHigh": 3.5,
+      "rsScore": 83,
+      "fromHigh": 3.0,
       "instPct": 82.7,
       "stage2": true,
       "avg200": 73.93,
@@ -990,7 +1106,7 @@
         "除外②市場Correction",
         "除外③売抜け日6回超"
       ],
-      "comment": "EPS +80.9% 売上 +76.7% RS=85 52wH-3.5% OM=45.8% ROE=21.7%",
+      "comment": "EPS +80.9% 売上 +76.7% RS=83 52wH-3.0% OM=45.8% ROE=21.7%",
       "epsAnnual3y": [
         -6.8,
         40.4,
@@ -1001,15 +1117,15 @@
       "checker_failed": [
         "出来高"
       ],
-      "checker_volRatio": 0.68,
+      "checker_volRatio": 0.66,
       "checker_atr": 2.4
     },
     {
       "ticker": "STLD",
       "name": "Steel Dynamics, Inc.",
       "sector": "Basic Materials",
-      "price": 252.5,
-      "mktCap": 36190343168.0,
+      "price": 251.26,
+      "mktCap": 36012617728.0,
       "score": 5,
       "smart_score": 3,
       "combined_score": 8,
@@ -1031,7 +1147,7 @@
       "opMargin": 11.5,
       "roe": 17.6,
       "rsScore": 89,
-      "fromHigh": 12.6,
+      "fromHigh": 13.0,
       "instPct": 87.5,
       "stage2": true,
       "avg200": 197.99,
@@ -1042,7 +1158,7 @@
         "除外②市場Correction",
         "除外③売抜け日6回超"
       ],
-      "comment": "EPS +78.8% 売上 +33.4% RS=89 52wH-12.6% OM=11.5% ROE=17.6%",
+      "comment": "EPS +78.8% 売上 +33.4% RS=89 52wH-13.0% OM=11.5% ROE=17.6%",
       "epsAnnual3y": [
         -18.8,
         -32.8,
@@ -1053,15 +1169,15 @@
       "checker_failed": [
         "高値圏"
       ],
-      "checker_volRatio": 0.95,
-      "checker_atr": 2.6
+      "checker_volRatio": 0.96,
+      "checker_atr": 2.5
     },
     {
       "ticker": "HWM",
       "name": "Howmet Aerospace Inc.",
       "sector": "Industrials",
-      "price": 277.28,
-      "mktCap": 110941806592.0,
+      "price": 282.26,
+      "mktCap": 112934346752.0,
       "score": 5,
       "smart_score": 4,
       "combined_score": 9,
@@ -1083,7 +1199,7 @@
       "opMargin": 28.2,
       "roe": 33.8,
       "rsScore": 77,
-      "fromHigh": 6.1,
+      "fromHigh": 4.4,
       "instPct": 94.8,
       "stage2": true,
       "avg200": 235.83,
@@ -1094,7 +1210,7 @@
         "除外②市場Correction",
         "除外③売抜け日6回超"
       ],
-      "comment": "EPS +68.6% 売上 +19.1% RS=77 52wH-6.1% OM=28.2% ROE=33.8%",
+      "comment": "EPS +68.6% 売上 +19.1% RS=77 52wH-4.4% OM=28.2% ROE=33.8%",
       "epsAnnual3y": [
         32.0,
         53.6,
@@ -1113,8 +1229,8 @@
       "ticker": "APH",
       "name": "Amphenol Corporation",
       "sector": "Technology",
-      "price": 159.82,
-      "mktCap": 196616093696.0,
+      "price": 160.7,
+      "mktCap": 197698682880.0,
       "score": 5,
       "smart_score": 5,
       "combined_score": 10,
@@ -1135,8 +1251,8 @@
       "salesGrowth": 55.0,
       "opMargin": 29.8,
       "roe": 38.1,
-      "rsScore": 75,
-      "fromHigh": 10.5,
+      "rsScore": 77,
+      "fromHigh": 10.0,
       "instPct": 97.9,
       "stage2": true,
       "avg200": 141.95,
@@ -1147,7 +1263,7 @@
         "除外②市場Correction",
         "除外③売抜け日6回超"
       ],
-      "comment": "EPS +62.1% 売上 +55.0% RS=75 52wH-10.5% OM=29.8% ROE=38.1%",
+      "comment": "EPS +62.1% 売上 +55.0% RS=77 52wH-10.0% OM=29.8% ROE=38.1%",
       "epsAnnual3y": [
         74.0,
         23.5,
@@ -1159,15 +1275,15 @@
         "主導力",
         "高値圏"
       ],
-      "checker_volRatio": 0.98,
-      "checker_atr": 3.4
+      "checker_volRatio": 1.03,
+      "checker_atr": 3.5
     },
     {
       "ticker": "CXW",
       "name": "CoreCivic, Inc.",
       "sector": "Industrials",
-      "price": 29.8,
-      "mktCap": 2946876160.0,
+      "price": 29.9,
+      "mktCap": 2956764928.0,
       "score": 5,
       "smart_score": 3,
       "combined_score": 8,
@@ -1189,7 +1305,7 @@
       "opMargin": 11.4,
       "roe": 9.0,
       "rsScore": 90,
-      "fromHigh": 8.8,
+      "fromHigh": 8.5,
       "instPct": 89.4,
       "stage2": true,
       "avg200": 21.13,
@@ -1200,7 +1316,7 @@
         "除外②市場Correction",
         "除外③売抜け日6回超"
       ],
-      "comment": "EPS +51.0% 売上 +25.8% RS=90 52wH-8.8% OM=11.4% ROE=9.0%",
+      "comment": "EPS +51.0% 売上 +25.8% RS=90 52wH-8.5% OM=11.4% ROE=9.0%",
       "epsAnnual3y": [
         74.2,
         5.1,
@@ -1213,15 +1329,15 @@
         "トレンド",
         "高値圏"
       ],
-      "checker_volRatio": 0.64,
-      "checker_atr": 2.5
+      "checker_volRatio": 0.61,
+      "checker_atr": 2.4
     },
     {
       "ticker": "OVV",
       "name": "Ovintiv Inc.",
       "sector": "Energy",
-      "price": 61.62,
-      "mktCap": 17044091904.0,
+      "price": 62.46,
+      "mktCap": 17276436480.0,
       "score": 5,
       "smart_score": 4,
       "combined_score": 9,
@@ -1242,8 +1358,8 @@
       "salesGrowth": 29.7,
       "opMargin": 36.2,
       "roe": 8.4,
-      "rsScore": 72,
-      "fromHigh": 4.6,
+      "rsScore": 75,
+      "fromHigh": 3.3,
       "instPct": 92.8,
       "stage2": true,
       "avg200": 49.28,
@@ -1254,7 +1370,7 @@
         "除外②市場Correction",
         "除外③売抜け日6回超"
       ],
-      "comment": "EPS +48.5% 売上 +29.7% RS=72 52wH-4.6% OM=36.2% ROE=8.4%",
+      "comment": "EPS +48.5% 売上 +29.7% RS=75 52wH-3.3% OM=36.2% ROE=8.4%",
       "epsAnnual3y": [
         13.5,
         -46.7,
@@ -1263,68 +1379,15 @@
       "checker_verdict": "verified",
       "checker_gates": "6/6",
       "checker_failed": [],
-      "checker_volRatio": 1.28,
-      "checker_atr": 2.8
-    },
-    {
-      "ticker": "WELL",
-      "name": "Welltower Inc.",
-      "sector": "Real Estate",
-      "price": 235.63,
-      "mktCap": 169788391424.0,
-      "score": 5,
-      "smart_score": 3,
-      "combined_score": 8,
-      "C": true,
-      "A": false,
-      "S": true,
-      "N": true,
-      "L": true,
-      "I": "Accumulation",
-      "Ipass": true,
-      "M": false,
-      "smart_S": true,
-      "smart_M": false,
-      "smart_A": true,
-      "smart_R": false,
-      "smart_T": true,
-      "epsGrowth": 47.4,
-      "salesGrowth": 39.1,
-      "opMargin": 16.6,
-      "roe": 3.8,
-      "rsScore": 72,
-      "fromHigh": 7.7,
-      "instPct": 100.5,
-      "stage2": true,
-      "avg200": 203.82,
-      "avg50": 223.65,
-      "smart_excl": [],
-      "excluded": false,
-      "canslim_excl": [
-        "除外②市場Correction",
-        "除外③売抜け日6回超"
-      ],
-      "comment": "EPS +47.4% 売上 +39.1% RS=72 52wH-7.7% OM=16.6% ROE=3.8%",
-      "epsAnnual3y": [
-        -11.5,
-        137.9,
-        120.0
-      ],
-      "checker_verdict": "caution",
-      "checker_gates": "4/6",
-      "checker_failed": [
-        "トレンド",
-        "主導力"
-      ],
-      "checker_volRatio": 0.91,
-      "checker_atr": 2.1
+      "checker_volRatio": 0.95,
+      "checker_atr": 2.6
     },
     {
       "ticker": "INCY",
       "name": "Incyte Corporation",
       "sector": "Healthcare",
-      "price": 122.99,
-      "mktCap": 24929796096.0,
+      "price": 119.52,
+      "mktCap": 24226433024.0,
       "score": 5,
       "smart_score": 5,
       "combined_score": 10,
@@ -1346,7 +1409,7 @@
       "opMargin": 41.9,
       "roe": 30.7,
       "rsScore": 85,
-      "fromHigh": 7.2,
+      "fromHigh": 9.9,
       "instPct": 105.1,
       "stage2": true,
       "avg200": 101.08,
@@ -1357,76 +1420,26 @@
         "除外②市場Correction",
         "除外③売抜け日6回超"
       ],
-      "comment": "EPS +44.6% 売上 +37.7% RS=85 52wH-7.2% OM=41.9% ROE=30.7%",
+      "comment": "EPS +44.6% 売上 +37.7% RS=85 52wH-9.9% OM=41.9% ROE=30.7%",
       "epsAnnual3y": [
         4173.3,
         -94.3,
         74.3
       ],
       "checker_verdict": "verified",
-      "checker_gates": "6/6",
-      "checker_failed": [],
-      "checker_volRatio": 1.57,
-      "checker_atr": 2.6
-    },
-    {
-      "ticker": "CPAY",
-      "name": "Corpay, Inc.",
-      "sector": "Technology",
-      "price": 390.12,
-      "mktCap": 25498992640.0,
-      "score": 5,
-      "smart_score": 5,
-      "combined_score": 10,
-      "C": true,
-      "A": false,
-      "S": true,
-      "N": true,
-      "L": true,
-      "I": "Accumulation",
-      "Ipass": true,
-      "M": false,
-      "smart_S": true,
-      "smart_M": true,
-      "smart_A": true,
-      "smart_R": true,
-      "smart_T": true,
-      "epsGrowth": 43.9,
-      "salesGrowth": 25.4,
-      "opMargin": 41.4,
-      "roe": 32.1,
-      "rsScore": 71,
-      "fromHigh": 1.4,
-      "instPct": 102.3,
-      "stage2": true,
-      "avg200": 320.3,
-      "avg50": 355.45,
-      "smart_excl": [],
-      "excluded": false,
-      "canslim_excl": [
-        "除外②市場Correction",
-        "除外③売抜け日6回超"
-      ],
-      "comment": "EPS +43.9% 売上 +25.4% RS=71 52wH-1.4% OM=41.4% ROE=32.1%",
-      "epsAnnual3y": [
-        7.6,
-        5.8,
-        6.3
-      ],
-      "checker_verdict": "caution",
       "checker_gates": "5/6",
       "checker_failed": [
-        "主導力"
+        "高値圏"
       ],
-      "checker_volRatio": 1.02,
-      "checker_atr": 2.3
+      "checker_volRatio": 1.63,
+      "checker_atr": 2.8
     },
     {
       "ticker": "LTH",
       "name": "Life Time Group Holdings, Inc.",
       "sector": "Consumer Cyclical",
-      "price": 44.2,
-      "mktCap": 9877018624.0,
+      "price": 45.1,
+      "mktCap": 10078133248.0,
       "score": 5,
       "smart_score": 2,
       "combined_score": 7,
@@ -1448,7 +1461,7 @@
       "opMargin": 17.3,
       "roe": 13.4,
       "rsScore": 95,
-      "fromHigh": 6.4,
+      "fromHigh": 4.5,
       "instPct": 89.7,
       "stage2": true,
       "avg200": 29.99,
@@ -1459,7 +1472,7 @@
         "除外②市場Correction",
         "除外③売抜け日6回超"
       ],
-      "comment": "EPS +40.6% 売上 +13.7% RS=95 52wH-6.4% OM=17.3% ROE=13.4%",
+      "comment": "EPS +40.6% 売上 +13.7% RS=95 52wH-4.5% OM=17.3% ROE=13.4%",
       "epsAnnual3y": [
         124.3,
         100.0,
@@ -1470,15 +1483,68 @@
       "checker_failed": [
         "適正位置"
       ],
-      "checker_volRatio": 1.13,
-      "checker_atr": 2.8
+      "checker_volRatio": 1.29,
+      "checker_atr": 2.9
+    },
+    {
+      "ticker": "RS",
+      "name": "Reliance, Inc.",
+      "sector": "Basic Materials",
+      "price": 406.1,
+      "mktCap": 20733255680.0,
+      "score": 5,
+      "smart_score": 3,
+      "combined_score": 8,
+      "C": true,
+      "A": false,
+      "S": true,
+      "N": true,
+      "L": true,
+      "I": "Accumulation",
+      "Ipass": true,
+      "M": false,
+      "smart_S": true,
+      "smart_M": false,
+      "smart_A": true,
+      "smart_R": false,
+      "smart_T": true,
+      "epsGrowth": 38.2,
+      "salesGrowth": 26.5,
+      "opMargin": 9.5,
+      "roe": 12.2,
+      "rsScore": 72,
+      "fromHigh": 3.3,
+      "instPct": 85.3,
+      "stage2": true,
+      "avg200": 329.78,
+      "avg50": 389.48,
+      "smart_excl": [],
+      "excluded": false,
+      "canslim_excl": [
+        "除外②市場Correction",
+        "除外③売抜け日6回超"
+      ],
+      "comment": "EPS +38.2% 売上 +26.5% RS=72 52wH-3.3% OM=9.5% ROE=12.2%",
+      "epsAnnual3y": [
+        -10.2,
+        -31.3,
+        -24.3
+      ],
+      "checker_verdict": "caution",
+      "checker_gates": "4/6",
+      "checker_failed": [
+        "出来高",
+        "主導力"
+      ],
+      "checker_volRatio": 0.82,
+      "checker_atr": 2.5
     },
     {
       "ticker": "ENVA",
       "name": "Enova International, Inc.",
       "sector": "Financial Services",
-      "price": 253.35,
-      "mktCap": 6308002816.0,
+      "price": 254.14,
+      "mktCap": 6327672320.0,
       "score": 5,
       "smart_score": 5,
       "combined_score": 10,
@@ -1500,7 +1566,7 @@
       "opMargin": 29.9,
       "roe": 26.1,
       "rsScore": 96,
-      "fromHigh": 1.1,
+      "fromHigh": 2.3,
       "instPct": 97.3,
       "stage2": true,
       "avg200": 160.77,
@@ -1511,7 +1577,7 @@
         "除外②市場Correction",
         "除外③売抜け日6回超"
       ],
-      "comment": "EPS +38.0% 売上 +31.1% RS=96 52wH-1.1% OM=29.9% ROE=26.1%",
+      "comment": "EPS +38.0% 売上 +31.1% RS=96 52wH-2.3% OM=29.9% ROE=26.1%",
       "epsAnnual3y": [
         55.0,
         35.3,
@@ -1522,65 +1588,12 @@
       "checker_failed": [
         "適正位置"
       ],
-      "checker_volRatio": 1.43,
-      "checker_atr": 3.1
-    },
-    {
-      "ticker": "FTNT",
-      "name": "Fortinet, Inc.",
-      "sector": "Technology",
-      "price": 154.25,
-      "mktCap": 113011015680.0,
-      "score": 5,
-      "smart_score": 5,
-      "combined_score": 10,
-      "C": true,
-      "A": false,
-      "S": true,
-      "N": true,
-      "L": true,
-      "I": "Accumulation",
-      "Ipass": true,
-      "M": false,
-      "smart_S": true,
-      "smart_M": true,
-      "smart_A": true,
-      "smart_R": true,
-      "smart_T": true,
-      "epsGrowth": 37.8,
-      "salesGrowth": 25.6,
-      "opMargin": 33.6,
-      "roe": 117.4,
-      "rsScore": 95,
-      "fromHigh": 9.5,
-      "instPct": 71.9,
-      "stage2": true,
-      "avg200": 100.16,
-      "avg50": 148.99,
-      "smart_excl": [],
-      "excluded": false,
-      "canslim_excl": [
-        "除外②市場Correction",
-        "除外③売抜け日6回超"
-      ],
-      "comment": "EPS +37.8% 売上 +25.6% RS=95 52wH-9.5% OM=33.6% ROE=117.4%",
-      "epsAnnual3y": [
-        7.1,
-        54.8,
-        37.7
-      ],
-      "checker_verdict": "caution",
-      "checker_gates": "4/6",
-      "checker_failed": [
-        "トレンド",
-        "高値圏"
-      ],
-      "checker_volRatio": 1.19,
-      "checker_atr": 3.5
+      "checker_volRatio": 1.13,
+      "checker_atr": 3.0
     }
   ],
   "meta": {
-    "updatedAt": "2026-07-31T12:52:32.281307+00:00",
+    "updatedAt": "2026-07-31T22:34:36.885980+00:00",
     "screened": 1510,
     "failed": 9,
     "universe": "S&P500+Nasdaq100",
@@ -1596,11 +1609,11 @@
       "除外③売抜け日6回超"
     ],
     "marketNote": "market=bearish, DD=9（REDFORD確認で更新）",
-    "checkerRun": "2026-07-31T12:53:05.158037+00:00",
+    "checkerRun": "2026-07-31T22:50:26.284440+00:00",
     "checkerStats": {
-      "verified": 17,
-      "caution": 8,
-      "reject": 5
+      "verified": 12,
+      "caution": 11,
+      "reject": 7
     }
   }
 }
