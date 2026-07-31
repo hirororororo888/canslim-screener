@@ -6,6 +6,12 @@
       "runtimeExecutable": "python",
       "runtimeArgs": ["-m", "http.server", "5174", "--directory", "C:\\Users\\user\\canslim-screener"],
       "port": 5174
+    },
+    {
+      "name": "agent-dashboard",
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["C:\\Users\\user\\agent-dashboard\\server.js"],
+      "port": 5180
     }
   ]
 }

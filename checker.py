@@ -118,7 +118,8 @@ def main():
 
     # 全銘柄の価格を一括ダウンロード（1銘柄ずつだと30回通信するため）
     tickers = [s["ticker"] for s in data["stocks"]]
-    all_hist = yf.download(tickers, period="6mo", progress=False,
+    # 200日平均・52週高値を正しく出すには1年超の値動きが要る（6か月だと足りない）
+    all_hist = yf.download(tickers, period="2y", progress=False,
                            auto_adjust=True, group_by="ticker")
 
     def get_hist(tk):

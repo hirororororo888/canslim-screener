@@ -4,9 +4,6 @@ from datetime import datetime, timezone
 # Windowsコンソール(cp932)でも特殊文字で落ちないようUTF-8出力に固定
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
-with open("screening_results.json", encoding="utf-8") as f:
-    data = json.load(f)
-
 THRESH_A = 25.0
 
 def calc_a(tk):
@@ -36,26 +33,33 @@ def calc_a(tk):
     except:
         return False, []
 
-print(f"{'銘柄':<6}  旧A  新A  3年成長率")
-print("-"*55)
-changed = 0
-for s in data["stocks"]:
-    tk = s["ticker"]
-    old_a = bool(s.get("A", False))
-    new_a, growths = calc_a(tk)
-    g_str = " / ".join([
-        f"{g:+.0f}%" if g and g!=999 else ("黒転" if g==999 else "--")
-        for g in growths
-    ]) if growths else "--"
-    mark = "★" if new_a != old_a else " "
-    print(f"{mark}{tk:<6}  {'ok' if old_a else '--'}  {'ok' if new_a else '--'}  [{g_str}]")
-    if new_a != old_a: changed += 1
-    s["A"] = bool(new_a)
-    s["score"] = int(sum([bool(s.get(k)) for k in ["C","A","S","N","L","Ipass","M"]]))
-    s["combined_score"] = s["score"] + s.get("smart_score", 0)
+def main():
+    with open("screening_results.json", encoding="utf-8") as f:
+        data = json.load(f)
 
-print(f"\nA条件変化: {changed}件")
-data["meta"]["updatedAt"] = datetime.now(timezone.utc).isoformat()
-with open("screening_results.json","w",encoding="utf-8") as f:
-    json.dump(data, f, ensure_ascii=False, indent=2)
-print("保存完了")
+    print(f"{'銘柄':<6}  旧A  新A  3年成長率")
+    print("-"*55)
+    changed = 0
+    for s in data["stocks"]:
+        tk = s["ticker"]
+        old_a = bool(s.get("A", False))
+        new_a, growths = calc_a(tk)
+        g_str = " / ".join([
+            f"{g:+.0f}%" if g and g!=999 else ("黒転" if g==999 else "--")
+            for g in growths
+        ]) if growths else "--"
+        mark = "★" if new_a != old_a else " "
+        print(f"{mark}{tk:<6}  {'ok' if old_a else '--'}  {'ok' if new_a else '--'}  [{g_str}]")
+        if new_a != old_a: changed += 1
+        s["A"] = bool(new_a)
+        s["score"] = int(sum([bool(s.get(k)) for k in ["C","A","S","N","L","Ipass","M"]]))
+        s["combined_score"] = s["score"] + s.get("smart_score", 0)
+
+    print(f"\nA条件変化: {changed}件")
+    data["meta"]["updatedAt"] = datetime.now(timezone.utc).isoformat()
+    with open("screening_results.json","w",encoding="utf-8") as f:
+        json.dump(data, f, ensure_ascii=False, indent=2)
+    print("保存完了")
+
+if __name__ == "__main__":
+    main()

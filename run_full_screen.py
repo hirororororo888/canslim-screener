@@ -5,6 +5,7 @@ import sys, json, time, datetime, pathlib, warnings
 import numpy as np
 warnings.filterwarnings("ignore")
 import yfinance as yf
+from fix_a_condition import calc_a   # A条件（年次EPS3年）の実計算を共用
 
 # Windowsコンソール(cp932)でも特殊文字で落ちないようUTF-8出力に固定
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
@@ -57,6 +58,15 @@ mkt = dict(
 # M条件: Confirmed Uptrend(bullish)のときだけ合格。警戒・弱気ではM全て不合格（CANSLIMルール）
 M_PASS = mkt["status"] == "bullish"
 print(f"  SPY ${spy_cur:.2f}  MA60 ${ma60:.2f}  DD={mkt['distributionDays']}  status={mkt['status']}（引き継ぎ）  M={'合格' if M_PASS else '不合格'}")
+
+# 除外②③（市場全体の要因。銘柄ごとではなく全銘柄に共通で付く警告）
+MARKET_EXCL = []
+if mkt["status"] == "bearish":
+    MARKET_EXCL.append("除外②市場Correction")
+if int(mkt["distributionDays"] or 0) >= 6:
+    MARKET_EXCL.append("除外③売抜け日6回超")
+if MARKET_EXCL:
+    print(f"  市場側の除外シグナル: {' / '.join(MARKET_EXCL)}")
 
 # ── IBD RS Rating: 全銘柄の15ヶ月価格を一括DL ─────────────────────
 print(f"\n[RS] {len(TICKERS)} 銘柄の価格データ一括取得...")
@@ -138,7 +148,7 @@ for batch_start in range(0, len(TICKERS), BATCH):
 
             eps_g  = earn_qg
             c_pass = eps_g is not None and eps_g >= THRESH["C"]
-            a_pass = False
+            a_pass = None   # 未判定。上位候補だけ後で決算データから実計算する
             s_pass = rev_g is not None and rev_g >= THRESH["S"]
             from_h = round((yh52 - price) / yh52 * 100, 1) if yh52 > 0 else None
             n_pass = from_h is not None and from_h <= 15
@@ -152,7 +162,7 @@ for batch_start in range(0, len(TICKERS), BATCH):
             else:
                 i_val = "Neutral"
             i_pass = (i_val == "Accumulation")
-            score  = int(sum([c_pass, a_pass, s_pass, n_pass, l_pass, i_pass, M_PASS]))
+            score  = int(sum([c_pass, bool(a_pass), s_pass, n_pass, l_pass, i_pass, M_PASS]))
 
             sm_s   = s_pass
             sm_m   = om is not None and THRESH["smMLo"] <= om <= 65
@@ -166,6 +176,12 @@ for batch_start in range(0, len(TICKERS), BATCH):
             sm_t   = len(excl) == 0
             sm_sc  = int(sum([sm_s, sm_m, sm_a, sm_r, sm_t]))
             comb   = score + sm_sc
+
+            # 除外シグナルをCANSLIM側にも適用する
+            #  除外①（200日平均の2倍以上）は銘柄固有なのでランキングから外す
+            #  除外②③は市場全体の要因なので警告として付けるだけ（全銘柄が消えるため）
+            excluded  = ratio200 >= 2.0
+            cs_excl   = (["除外①2x200MA"] if excluded else []) + MARKET_EXCL
 
             eg = f"{eps_g:+.1f}%" if eps_g is not None else ""
             rg = f"{rev_g:+.1f}%" if rev_g is not None else ""
@@ -184,7 +200,8 @@ for batch_start in range(0, len(TICKERS), BATCH):
                 opMargin=om, roe=roe, rsScore=rs,
                 fromHigh=from_h, instPct=round(inst*100,1),
                 stage2=stage2, avg200=round(avg200,2), avg50=round(avg50,2),
-                smart_excl=excl, comment=comment,
+                smart_excl=excl, excluded=excluded, canslim_excl=cs_excl,
+                comment=comment,
             ))
         except Exception:
             failed.append(tk)
@@ -195,8 +212,29 @@ for batch_start in range(0, len(TICKERS), BATCH):
 
 print(f"\n完了: 有効={len(results)}  失敗={len(failed)}")
 
+# ── A条件（年次EPS 3年連続25%以上）を上位候補にだけ実計算 ────────────
+# 全銘柄の決算データを取りに行くと通信が多すぎて何十分もかかるため、
+# 暫定順位の上位 A_POOL 銘柄だけ実際に計算する（残りは A=未判定のまま）
+A_POOL = 120
+results.sort(key=lambda x: (x["score"], x.get("epsGrowth") or -9999), reverse=True)
+pool = [r for r in results if not r["excluded"]][:A_POOL]
+print(f"\n[A] 上位{len(pool)}銘柄の年次EPS 3年判定...")
+for i, r in enumerate(pool, 1):
+    a_ok, growths = calc_a(r["ticker"])
+    r["A"] = bool(a_ok)
+    r["epsAnnual3y"] = growths
+    r["score"] = int(sum([r["C"], r["A"], r["S"], r["N"], r["L"], r["Ipass"], r["M"]]))
+    r["combined_score"] = r["score"] + r["smart_score"]
+    if i % 20 == 0:
+        print(f"  [{i:>3}/{len(pool)}] 判定中...")
+print(f"  A条件 合格: {sum(1 for r in pool if r['A'])} / {len(pool)} 銘柄")
+
+n_excluded = sum(1 for r in results if r["excluded"])
+print(f"  除外①（200日平均の2倍以上）で除外: {n_excluded} 銘柄")
+
 # ── ランキング & 表示 ─────────────────────────────────────────────────
 results.sort(key=lambda x: (x["score"], x.get("epsGrowth") or -9999), reverse=True)
+ranked = [r for r in results if not r["excluded"]]
 
 print(f"\n{'='*85}")
 print(f"  CANSLIM Top{TOP_N} — S&P500+NQ100 ({len(results)}銘柄対象)")
@@ -204,7 +242,7 @@ print(f"  Market: {mkt['status']} | SPY ${spy_cur:.2f} | DD={mkt['distributionDa
 print(f"{'='*85}")
 print(f"{'銘柄':<6} {'Sc':>4}  C  A  S  N  L  {'I':<6}  M  {'EPS%':>7} {'Rev%':>7}  RS  {'52wH':>6}  セクター")
 print("-"*90)
-for s in results[:TOP_N]:
+for s in ranked[:TOP_N]:
     i_d = "Accum" if s["I"]=="Accumulation" else "Dist" if s["I"]=="Distribution" else "Neut"
     c_ = lambda k: "ok" if s.get(k) else "--"
     eg = f"{s['epsGrowth']:+.0f}%" if s.get("epsGrowth") is not None else "   —"
@@ -215,7 +253,7 @@ for s in results[:TOP_N]:
           f"  {c_('M')}  {eg:>7} {rg:>7}  {s['rsScore']:>3}  {fh:>6}  {s['sector'][:20]}")
 
 # SMART Top20
-results_sm = sorted(results, key=lambda x:(x["smart_score"],x.get("epsGrowth") or -9999), reverse=True)
+results_sm = sorted(ranked, key=lambda x:(x["smart_score"],x.get("epsGrowth") or -9999), reverse=True)
 print(f"\n{'='*75}")
 print(f"  SMART Top20")
 print(f"{'='*75}")
@@ -233,12 +271,13 @@ for s in results_sm[:20]:
 # ── 保存 ──────────────────────────────────────────────────────────────
 payload = dict(
     market=mkt,
-    stocks=results[:TOP_N],
+    stocks=ranked[:TOP_N],
     meta=dict(
         updatedAt=datetime.datetime.now(datetime.timezone.utc).isoformat(),
         screened=len(results), failed=len(failed),
         universe="S&P500+Nasdaq100", totalUniverse=len(TICKERS),
         sources=["YahooFinance","FMP"],
+        aPool=len(pool), excluded=n_excluded, marketExcl=MARKET_EXCL,
         marketNote=f"market={mkt['status']}, DD={mkt['distributionDays']}（REDFORD確認で更新）"
     )
 )
