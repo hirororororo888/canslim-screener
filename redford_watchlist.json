@@ -174,5 +174,53 @@
     "ibd_composite": null,
     "ibd_rs": null,
     "status": "watching"
+  },
+  {
+    "ticker": "GE",
+    "name": "GEエアロスペース",
+    "date": "2026-08-02",
+    "report_no": "1762",
+    "series": "Watch listを作成しよう 第28回",
+    "summary": "新規強気相場への準備。7/30・31の主要指数反発を受け、フォロースルーデイ（試しの第一日目から4〜7日後）出現に備えるウォッチリストの一角。テクニカルサポートから反発しエントリーゾーンに入っている。",
+    "ibd_composite": null,
+    "ibd_rs": null,
+    "entry_point": null,
+    "status": "watching"
+  },
+  {
+    "ticker": "NMM",
+    "name": "Navios Maritime Partners",
+    "date": "2026-08-02",
+    "report_no": "1762",
+    "series": "Watch listを作成しよう 第28回",
+    "summary": "新規強気相場への準備。8週間のカップ型ベースからのブレイクアウトを模索中。エントリーポイント80.97ドル。",
+    "ibd_composite": null,
+    "ibd_rs": null,
+    "entry_point": 80.97,
+    "status": "watching"
+  },
+  {
+    "ticker": "VIK",
+    "name": "Viking Holdings",
+    "date": "2026-08-02",
+    "report_no": "1762",
+    "series": "Watch listを作成しよう 第28回",
+    "summary": "新規強気相場への準備。フラットベースの5週目を終えたばかり。エントリーポイント105.76ドル。",
+    "ibd_composite": null,
+    "ibd_rs": null,
+    "entry_point": 105.76,
+    "status": "watching"
+  },
+  {
+    "ticker": "NTAP",
+    "name": "NetApp",
+    "date": "2026-08-02",
+    "report_no": "1762",
+    "series": "Watch listを作成しよう 第28回",
+    "summary": "新規強気相場への準備。50日移動平均線の堅調なサポートラインに乗った、現在整ったカップ型ベースを形成している数少ないAI関連銘柄。",
+    "ibd_composite": null,
+    "ibd_rs": null,
+    "entry_point": null,
+    "status": "watching"
   }
 ]
