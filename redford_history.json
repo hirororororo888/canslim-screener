@@ -191,5 +191,17 @@
     "equity_low": 0,
     "equity_high": 20,
     "note": "REPORTS-1740で「マーケットは下落調整段階に入った」と明言。REPORTS-1744でIBD推奨の現物株保有比率を0-20%に引き下げ、現金保有率80-100%を推奨。ナスダックは25,000割れ・6/9安値も割れ"
+  },
+  {
+    "report_no": "1770",
+    "date": "2026-08-05",
+    "trend": "pressure",
+    "trend_score": 2,
+    "trend_label": "Uptrend Under Pressure",
+    "dd_sp500": null,
+    "dd_nasdaq": null,
+    "put_call": 0.8,
+    "equity_low": 40,
+    "equity_high": 60
   }
 ]

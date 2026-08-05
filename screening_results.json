@@ -1,11 +1,11 @@
 {
   "market": {
-    "status": "bearish",
+    "status": "caution",
     "spyPrice": 747.03,
     "spyChange": 0.72,
     "ma60": 742.91,
     "aboveMa60": true,
-    "distributionDays": 9,
+    "distributionDays": 0,
     "hiLoRatio": 0.991,
     "hiLoDesc": "新値圏（5日/20日高値比 0.991）",
     "followThrough": false,
