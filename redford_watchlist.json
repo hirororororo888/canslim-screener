@@ -442,5 +442,49 @@
     "ibd_composite": null,
     "ibd_rs": null,
     "status": "watching"
+  },
+  {
+    "ticker": "NUE",
+    "name": "Nucor Corporation",
+    "date": "2026-08-09",
+    "report_no": "1785",
+    "series": "Watch listを作成しよう 第31回",
+    "summary": "鉄鋼大手。年初来67%上昇し、2度目のブレイクアウトに接近中。エントリーポイント付近で取引。",
+    "ibd_composite": null,
+    "ibd_rs": null,
+    "status": "watching"
+  },
+  {
+    "ticker": "FCX",
+    "name": "Freeport-McMoRan",
+    "date": "2026-08-09",
+    "report_no": "1785",
+    "series": "Watch listを作成しよう 第31回",
+    "summary": "銅・鉄鉱石大手。年初は調整局面が続いたが、先週の大幅上昇で強い上昇気流に乗り、新高値の再テスト段階。エントリーポイント付近。",
+    "ibd_composite": null,
+    "ibd_rs": null,
+    "status": "watching"
+  },
+  {
+    "ticker": "AMZN",
+    "name": "Amazon.com",
+    "date": "2026-08-09",
+    "report_no": "1785",
+    "series": "Watch listを作成しよう 第31回",
+    "summary": "一時エントリーポイントを突破したが先週反落。依然として容易にエントリーポイント到達可能な位置。",
+    "ibd_composite": null,
+    "ibd_rs": null,
+    "status": "watching"
+  },
+  {
+    "ticker": "PWR",
+    "name": "Quanta Services",
+    "date": "2026-08-09",
+    "report_no": "1785",
+    "series": "Watch listを作成しよう 第31回",
+    "summary": "インフラ工事大手。年初来59%上昇、早期エントリーポイント付近。直近決算発表済みで決算リスクは解消。",
+    "ibd_composite": null,
+    "ibd_rs": null,
+    "status": "watching"
   }
 ]
