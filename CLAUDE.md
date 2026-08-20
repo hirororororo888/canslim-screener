@@ -16,8 +16,8 @@ NYSE/NASDAQ の米国株を CANSLIM + SMART + Minervini Trend Template で自動
 
 ## データソース
 - **Yahoo Finance (yfinance)**: 価格・ファンダメンタル・機関保有（無制限）
-- **Alpha Vantage**: 四半期EPS精密値（AV_API_KEY: UMKP1E9TFZV1VNM6、25回/日）
-- **FMP MCP**: 一部銘柄の決算データ（FMP_API_KEY: N1HukTVqzFwhSl1tpI13CVJh5cp0I29b）
+- **Alpha Vantage**: 四半期EPS精密値（環境変数 AV_API_KEY で指定、25回/日）
+- **FMP MCP**: 一部銘柄の決算データ（環境変数 FMP_API_KEY で指定）
 
 ## スクリーニング実行方法
 ```bash

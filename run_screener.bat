@@ -3,8 +3,16 @@ echo ============================================================
 echo   CANSLIM Screener  ^|  FMP + Alpha Vantage + Yahoo Finance
 echo ============================================================
 
-set FMP_API_KEY=N1HukTVqzFwhSl1tpI13CVJh5cp0I29b
-set AV_API_KEY=UMKP1E9TFZV1VNM6
+if exist "%~dp0api_keys.local.bat" (
+    call "%~dp0api_keys.local.bat"
+) else (
+    echo ERROR: api_keys.local.bat not found.
+    echo   Create api_keys.local.bat in this folder with these 2 lines:
+    echo     set FMP_API_KEY=your_fmp_key
+    echo     set AV_API_KEY=your_alphavantage_key
+    pause
+    exit /b 1
+)
 
 cd /d "%~dp0"
 

@@ -4,3 +4,5 @@ qr_*.png
 __pycache__/
 *.pyc
 *.bat~
+api_keys.local.bat
+.env

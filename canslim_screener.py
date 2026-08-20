@@ -35,8 +35,11 @@ except ImportError:
 
 # ── API keys ──────────────────────────────────────────────────────────────────
 import os
-FMP_KEY = os.getenv("FMP_API_KEY", "N1HukTVqzFwhSl1tpI13CVJh5cp0I29b")
-AV_KEY  = os.getenv("AV_API_KEY",  "UMKP1E9TFZV1VNM6")
+FMP_KEY = os.getenv("FMP_API_KEY", "")
+AV_KEY  = os.getenv("AV_API_KEY",  "")
+if not FMP_KEY or not AV_KEY:
+    sys.exit("APIキーが未設定です。api_keys.local.bat を作成するか、"
+             "環境変数 FMP_API_KEY / AV_API_KEY を設定してください。")
 AV_BASE = "https://www.alphavantage.co/query"
 FMP_BASE = "https://financialmodelingprep.com/stable"
 
