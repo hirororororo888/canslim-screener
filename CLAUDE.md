@@ -151,7 +151,16 @@ ngrok http 5174 --response-header-add "ngrok-skip-browser-warning:true"
 6. REDFORDのセクター情報とスクリーナーを照合して投資戦略を提示
 
 ## REDFORD レポート保存先
-取得したレポートは redford_reports/REPORTS-XXXX_YYYY-MM-DD.txt に保存（履歴蓄積）
+取得したレポートは redford_reports/REPORTS-XXXX_YYYY-MM-DD.txt に保存（履歴蓄積）。
+
+新シリーズ・教育コンテンツは redford_reports/ 配下のサブフォルダに保存:
+- `series_2026/` — 新シリーズ2026（H〜O系: ベース形成・ステージ分類・売り抜け日・損切り・投資信託・ファンドアワード等）
+- `series_legacy/` — みんなで投資を楽しもう!（旧A〜W系、2024年版）
+- `series_beginner/` — ビギナーシリーズ（A〜D/H/I系）
+- `series_gold/` — 新シリーズS：ゴールド（金）とは何か
+- `qa/` — フォロワーQ&A・単発の返信
+
+これらはObsidian Vault（`C:\Users\user\Documents\Vault\xpost\Clippings\`）から2026-09-14に逆方向同期したもの。Vault側は個別ノート＋frontmatterタグで管理されているが、GitHub側は上記サブフォルダ構成のプレーンテキストで保持する。新規追加時は両方に保存することが望ましい。
 
 ## Put/Call Ratio 判定基準（REDFORD/IBD）
 - 0.7以下: 強気
