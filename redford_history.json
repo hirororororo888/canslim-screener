@@ -376,5 +376,18 @@
     "equity_low": 40,
     "equity_high": 60,
     "note": "9/4のUp trend under pressureからTrend uncertain（判定不能）へ変化。売り抜け日3/4→4/5に悪化。9/11の8月CPI発表（コア指数が予想を上回る）後の相場。エントリー接近銘柄が9→16銘柄に急増するも突破銘柄はゼロ。DELL+11.98%・HPE+12.44%とAIデータセンター関連が急騰"
+  },
+  {
+    "report_no": "1945",
+    "date": "2026-09-15",
+    "trend": "uncertain",
+    "trend_score": 0,
+    "trend_label": "Trend Uncertain",
+    "dd_sp500": 5,
+    "dd_nasdaq": 6,
+    "put_call": 0.86,
+    "equity_low": 40,
+    "equity_high": 60,
+    "note": "Trend uncertain継続、売り抜け日5/6にさらに悪化（9/12時点は4/5）。Put/Call 0.83→0.86に悪化（中立〜弱気ゾーン）。エントリー突破銘柄SUN・CNC・FMAO登場、接近銘柄13銘柄（9/12の16銘柄から減少）。10年債利回りが一時5%超・原油高が株式市場への逆風。REDFORDは9/15〜18離島旅行中だが朝のトレンドレポートは通常配信を継続"
   }
 ]

@@ -1,0 +1,25 @@
+September is historically the market's most difficult month, and this year we entered the period with another significant headwind: rising interest rates and oil prices. Yet the major averages held up relatively well in the face of a surge in both last week.
+
+What we may be witnessing is more of a rotational correction and consolidation beneath the surface. The S&P 500 can appear relatively healthy while a large percentage of its individual components are already experiencing corrections.
+
+The breadth statistics illustrate this divergence. As recently as mid-August, roughly 69% of S&P 500 stocks were above their 50-day moving averages. By September 11, that figure had fallen to roughly one-third of the index. On September 9 alone, 383 of the 500 S&P stocks were declining, while decliners outnumbered advancers by nearly 3-to-1 on the NYSE.
+
+That is considerable internal deterioration without a comparable collapse in the headline index. In fact, from August 18 through September 8, the S&P 500 declined only about 0.2%, even as broader measures of participation deteriorated substantially.
+
+We may already be experiencing a stealth correction, one stock and one group at a time.
+
+With September historically the weakest month of the year, we still need to respect the seasonal risk, particularly with interest rates on the rise and elevated oil prices.
+
+But if the indexes can hold together while individual stocks complete their corrections and begin rebuilding technically, the market could emerge from September in considerably better shape than the major averages alone would suggest, and the historical tendency then shifts to a strong year end rally.
+
+The key is patience; to wait for proper setups and not let the indexes pressure you into sub standard trading decisions.
+
+The real story right now may not be what the S&P 500 is doing. It is what the stocks beneath it have already done and are currently doing.
+
+We are seeing a very sharp rotation beneath the surface today, with the selling concentrated in the areas that have been at the center of the AI infrastructure trade. The Nasdaq opened down roughly 1.2%, but the damage is considerably worse across semiconductors and AI-related hardware. MRVL, MU and INTC were down roughly 6% or more early, LRCX was hit around 8%, and NVDA fell more than 3%. The weakness is global, with ASML and major Asian semiconductor names also under significant pressure.
+
+The immediate catalyst is a weekend push from several prominent AI leaders, including Anthropic's Dario Amodei, Sam Altman and Elon Musk, calling for greater restraint in the pace of frontier AI development. Investors are extrapolating that into the possibility of a slower AI capital-spending cycle, which directly challenges the earnings narrative supporting semiconductors, memory, networking and data-center infrastructure.
+
+What is particularly interesting is that this is not simply broad risk-off selling. Money appears to be rotating within technology itself. While chips and AI infrastructure are getting hit, cybersecurity names are showing relative strength.
+
+Bottom line: this looks like more than an ordinary down day in tech. The market is aggressively questioning one of its most crowded leadership themes while simultaneously searching for new sponsorship elsewhere. The key now is whether AI infrastructure stabilizes quickly, or whether today's action marks the beginning of a more meaningful leadership transition.

@@ -299,12 +299,12 @@ td{padding:9px 12px;vertical-align:middle;white-space:nowrap;}
     <div class="ctrl-row"><input type="range" id="smSTh" min="10" max="60" value="25" step="5" oninput="onRange(this,'smSV')"><span class="rval" id="smSV">25%</span></div>
   </div>
   <div class="ctrl-group ctrl-sm" id="cg-sm-m" style="display:none">
-    <div class="ctrl-label">M — 営業利益率下限</div>
-    <div class="ctrl-row"><input type="range" id="smMLoTh" min="10" max="40" value="25" step="5" oninput="onRange(this,'smMLoV')"><span class="rval" id="smMLoV">25%</span></div>
+    <div class="ctrl-label">M — 営業利益率下限(上限50%固定)</div>
+    <div class="ctrl-row"><input type="range" id="smMLoTh" min="10" max="40" value="30" step="5" oninput="onRange(this,'smMLoV')"><span class="rval" id="smMLoV">30%</span></div>
   </div>
   <div class="ctrl-group ctrl-sm" id="cg-sm-a" style="display:none">
-    <div class="ctrl-label">A — EPS加速下限</div>
-    <div class="ctrl-row"><input type="range" id="smATh" min="15" max="80" value="30" step="5" oninput="onRange(this,'smAV')"><span class="rval" id="smAV">30%</span></div>
+    <div class="ctrl-label">A — EPS加速下限(上限50%固定)</div>
+    <div class="ctrl-row"><input type="range" id="smATh" min="15" max="50" value="30" step="5" oninput="onRange(this,'smAV')"><span class="rval" id="smAV">30%</span></div>
   </div>
   <div class="ctrl-group ctrl-sm" id="cg-sm-r" style="display:none">
     <div class="ctrl-label">R — ROE下限</div>
@@ -503,7 +503,7 @@ function getThresholds() {
     C:      v('cTh',    25), A:     v('aTh',    25),
     S:      v('sTh',    25), L:     v('lTh',    70),
     cMinSc: v('cMinSc',  0),          // CANSLIM 最低スコア
-    smS:    v('smSTh',  25), smMLo: v('smMLoTh',25),
+    smS:    v('smSTh',  25), smMLo: v('smMLoTh',30),
     smA:    v('smATh',  30), smR:   v('smRTh',  20),
     smMinSc:v('smMinSc', 0),          // SMART 最低スコア
     bothC:  v('bothCTh', 3), bothS: v('bothSTh', 3),
@@ -523,8 +523,8 @@ function calcCanslim(s, th) {
 
 function calcSmart(s, th) {
   const smS = s.salesGrowth != null && s.salesGrowth >= th.smS;
-  const smM = s.opMargin    != null && s.opMargin    >= th.smMLo && s.opMargin <= 65;
-  const smA = s.epsGrowth   != null && s.epsGrowth   >= th.smA;
+  const smM = s.opMargin    != null && s.opMargin    >= th.smMLo && s.opMargin <= 50;
+  const smA = s.epsGrowth   != null && s.epsGrowth   >= th.smA   && s.epsGrowth <= 50;
   const smR = s.roe         != null && s.roe         >= th.smR;
   const smT = s.smart_T;
   const sc  = [smS,smM,smA,smR,smT].filter(Boolean).length;
@@ -1128,6 +1128,9 @@ function exportCSV() {
 
 </script>
 <script>
+
+</script>
+<script>
 // ── Auto-updated: 2026-09-13T06:19:28.209353+00:00 ──
 loadData({
   "market": {
@@ -1136,7 +1139,7 @@ loadData({
     "spyChange": 0.85,
     "ma60": 755.41,
     "aboveMa60": true,
-    "distributionDays": 5,
+    "distributionDays": 6,
     "hiLoRatio": 0.992,
     "hiLoDesc": "新値圏（5日/20日高値比 0.992）",
     "followThrough": true,
@@ -3009,6 +3012,19 @@ loadData({
       "equity_low": 40,
       "equity_high": 60,
       "note": "9/4のUp trend under pressureからTrend uncertain（判定不能）へ変化。売り抜け日3/4→4/5に悪化。9/11の8月CPI発表（コア指数が予想を上回る）後の相場。エントリー接近銘柄が9→16銘柄に急増するも突破銘柄はゼロ。DELL+11.98%・HPE+12.44%とAIデータセンター関連が急騰"
+    },
+    {
+      "report_no": "1945",
+      "date": "2026-09-15",
+      "trend": "uncertain",
+      "trend_score": 0,
+      "trend_label": "Trend Uncertain",
+      "dd_sp500": 5,
+      "dd_nasdaq": 6,
+      "put_call": 0.86,
+      "equity_low": 40,
+      "equity_high": 60,
+      "note": "Trend uncertain継続、売り抜け日5/6にさらに悪化（9/12時点は4/5）。Put/Call 0.83→0.86に悪化（中立〜弱気ゾーン）。エントリー突破銘柄SUN・CNC・FMAO登場、接近銘柄13銘柄（9/12の16銘柄から減少）。10年債利回りが一時5%超・原油高が株式市場への逆風。REDFORDは9/15〜18離島旅行中だが朝のトレンドレポートは通常配信を継続"
     }
   ],
   "redfordWatchlist": [

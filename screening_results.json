@@ -5,7 +5,7 @@
     "spyChange": 0.85,
     "ma60": 755.41,
     "aboveMa60": true,
-    "distributionDays": 5,
+    "distributionDays": 6,
     "hiLoRatio": 0.992,
     "hiLoDesc": "新値圏（5日/20日高値比 0.992）",
     "followThrough": true,

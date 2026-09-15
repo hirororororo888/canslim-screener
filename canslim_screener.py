@@ -303,11 +303,11 @@ def score_smart(ticker, yf_d, eps_g, mkt_status, dist_days, spy_perf):
     rev_g  = yf_d.get("revGrowth")
     sm_s   = rev_g is not None and rev_g >= 25.0
 
-    # M — Operating Margin 25-65%
-    sm_m   = om is not None and 25.0 <= om <= 65.0
+    # M — Operating Margin 30-50%
+    sm_m   = om is not None and 30.0 <= om <= 50.0
 
-    # A — EPS acceleration >= 30%
-    sm_a   = eps_g is not None and eps_g >= 30.0
+    # A — EPS acceleration 30-50%
+    sm_a   = eps_g is not None and 30.0 <= eps_g <= 50.0
 
     # R — ROE >= 20%
     sm_r   = roe is not None and roe >= 20.0

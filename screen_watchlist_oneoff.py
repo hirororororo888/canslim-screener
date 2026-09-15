@@ -9,7 +9,7 @@ from fix_a_condition import calc_a
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
-THRESH = dict(C=25, A=25, S=25, L=70, smA=30, smR=20, smMLo=25)
+THRESH = dict(C=25, A=25, S=25, L=70, smA=30, smAHi=50, smR=20, smMLo=30, smMHi=50)
 
 TICKERS = ['VRT','KVYO','QBTS','IONQ','QUBT','LQDA','ASTH','TVTX','DAVE','KNSA',
            'GH','CRWD','SKWD','PANW','FTNT','RBRK','CYBR','EW','GE','NMM','VIK','NTAP']
@@ -118,8 +118,8 @@ for tk in TICKERS:
         score = int(sum([c_pass, bool(a_ok), s_pass, n_pass, l_pass, i_pass, M_PASS]))
 
         sm_s = s_pass
-        sm_m = om is not None and THRESH["smMLo"] <= om <= 65
-        sm_a = eps_g is not None and eps_g >= THRESH["smA"]
+        sm_m = om is not None and THRESH["smMLo"] <= om <= THRESH["smMHi"]
+        sm_a = eps_g is not None and THRESH["smA"] <= eps_g <= THRESH["smAHi"]
         sm_r = roe is not None and roe >= THRESH["smR"]
         stage2 = avg200 > 0 and price > avg200
         ratio200 = price / avg200 if avg200 > 0 else 0
