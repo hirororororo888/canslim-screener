@@ -109,3 +109,12 @@ What is particularly interesting is that this is not simply broad risk-off selli
 
 Bottom line: this looks like more than an ordinary down day in tech. The market is aggressively questioning one of its most crowded leadership themes while simultaneously searching for new sponsorship elsewhere. The key now is whether AI infrastructure stabilizes quickly, or whether today's action marks the beginning of a more meaningful leadership transition.
 
+## 2026-09-16 (FOMC前の警戒メッセージ)
+Today's Fed decision comes with the market already technically vulnerable. A relief rally would not be surprising given how much hawkishness has already been priced in, but I would not confuse an initial reaction with an all-clear.
+
+The more important evidence will be whether the 10-year can get back below 5%, breadth begins to improve, and leadership starts to broaden with a proliferation of quality setups, successful breakouts, and sustained follow-through action.
+
+Friday's Triple Witching adds another potential source of volatility, followed by MU earnings and the September 30 inflation recalculation.
+
+→ [[REDFORD REPORTS-1949（9/18、Trend uncertain継続・売り抜け日S&P500=7に悪化・Put/Call0.98急悪化）]]と方向性が一致。回復の判断材料として「10年債利回り5%割れ」「値幅(breadth)改善」「リーダーシップの広がり」の3条件を提示。今後のボラティリティ要因としてMU決算・9/30インフレ再計算を明記——REDFORD REPORTS-1949でSNDK+6.21%・MU+5.50%と急反発している点と合わせ、MU決算発表時期を要注視。
+
