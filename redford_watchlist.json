@@ -541,5 +541,27 @@
     "ibd_composite": null,
     "ibd_rs": null,
     "status": "watching"
+  },
+  {
+    "ticker": "AMD",
+    "name": "Advanced Micro Devices",
+    "date": "2026-09-19",
+    "report_no": "1951",
+    "series": "単独レポート（エントリーゾーン到達の重要な5銘柄）",
+    "summary": "REDFORDがエントリーゾーン到達銘柄として紹介、今週の『綺麗なチャートを鑑賞する会』入り確実視。カップウィズハンドルはハンドル形成中でピボット$546.23まで+2.9%。CANSLIM 5/7（C・S・N・L・I通過、A・M未達＝直近期年次EPS-36.9%と市場売抜け日超過が理由）、Checker 6/6満点で検証済み（RS=98）。3層一致（REDFORD＋CANSLIM過半数＋Checker満点）の注目銘柄。",
+    "ibd_composite": null,
+    "ibd_rs": 98,
+    "status": "watching"
+  },
+  {
+    "ticker": "PARR",
+    "name": "Par Pacific Holdings",
+    "date": "2026-09-19",
+    "report_no": "1952",
+    "series": "朝のトレンドレポート（エントリー・ポイント突破銘柄）",
+    "summary": "REDFORD REPORTS-1952のエントリー・ポイント突破銘柄（ベースカウント5）。LPGと同じEnergyセクター。CANSLIM 5/7（C・S・N・L・I通過、A・M未達）、SMART 3/5（S・R・T）、Checker 6/6満点で検証済み（失敗ゲートなし）、RS=97。ROE53.5%・営業利益率21.1%。LPG利確後の再投資最有力候補の一つ。",
+    "ibd_composite": null,
+    "ibd_rs": 97,
+    "status": "watching"
   }
 ]
