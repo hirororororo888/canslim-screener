@@ -118,3 +118,8 @@ Friday's Triple Witching adds another potential source of volatility, followed b
 
 → [[REDFORD REPORTS-1949（9/18、Trend uncertain継続・売り抜け日S&P500=7に悪化・Put/Call0.98急悪化）]]と方向性が一致。回復の判断材料として「10年債利回り5%割れ」「値幅(breadth)改善」「リーダーシップの広がり」の3条件を提示。今後のボラティリティ要因としてMU決算・9/30インフレ再計算を明記——REDFORD REPORTS-1949でSNDK+6.21%・MU+5.50%と急反発している点と合わせ、MU決算発表時期を要注視。
 
+## 2026-09-21 (取引の大罪：含み益を損失に変えるな)
+Letting a decent-sized profit turn into a loss is what I call the Trading Cardinal Sin. You're not compounding money—you're compounding mistakes. Letting winners turn into losers is forcing yourself to make that money all over again. You're self-creating a mountain to climb. This is one of the worst mistakes; makes my list of top 5.
+
+→ 含み益のあるポジションをみすみす損失に転落させることを「取引における大罪」と明言。これは複利効果を自ら破壊する行為であり、最悪の間違いトップ5に入るとの厳しい評価。[[LPGの利確ルール（含み益25%到達で全株売却、2026-09-18決定）]]の合理性を裏付ける教訓——ルール通りの機械的な利確が、この「大罪」を避ける具体的な実践方法にあたる。REDFORD REPORTS-1964（9/22、Confirmed up trendへ格上げ）とタイミングが重なり、強気相場入りの局面でこそ利益確定規律の重要性を再確認する内容。
+
