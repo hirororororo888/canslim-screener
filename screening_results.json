@@ -5,7 +5,7 @@
     "spyChange": NaN,
     "ma60": NaN,
     "aboveMa60": false,
-    "distributionDays": 6,
+    "distributionDays": 4,
     "hiLoRatio": NaN,
     "hiLoDesc": "高値圏から後退（5日/20日高値比 nan）",
     "followThrough": true,
@@ -1546,10 +1546,8 @@
     ],
     "aPool": 120,
     "excluded": 3,
-    "marketExcl": [
-      "除外③売抜け日6回超"
-    ],
-    "marketNote": "market=caution, DD=6（REDFORD確認で更新）",
+    "marketExcl": [],
+    "marketNote": "market=bullish, DD=4（REDFORD REPORTS-1974確認で更新、2026-09-25）",
     "checkerRun": "2026-09-22T00:26:00.160470+00:00",
     "checkerStats": {
       "verified": 18,

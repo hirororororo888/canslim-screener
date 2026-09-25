@@ -123,3 +123,14 @@ Letting a decent-sized profit turn into a loss is what I call the Trading Cardin
 
 → 含み益のあるポジションをみすみす損失に転落させることを「取引における大罪」と明言。これは複利効果を自ら破壊する行為であり、最悪の間違いトップ5に入るとの厳しい評価。[[LPGの利確ルール（含み益25%到達で全株売却、2026-09-18決定）]]の合理性を裏付ける教訓——ルール通りの機械的な利確が、この「大罪」を避ける具体的な実践方法にあたる。REDFORD REPORTS-1964（9/22、Confirmed up trendへ格上げ）とタイミングが重なり、強気相場入りの局面でこそ利益確定規律の重要性を再確認する内容。
 
+## 2026-09-24 (市場内部の弱さ継続・IWMショート維持)
+New lows continue to outnumber new highs on both the NYSE and Nasdaq, while the NYSE advance-decline line has fallen to new lows—further evidence that participation beneath the surface remains weak. Small and mid-cap stocks continue to lag the major averages, and leadership is concentrated in a relatively narrow group of large-cap, capitalization-weighted names that appear to be benefiting from a flight to quality and perceived safety.
+
+At the same time, the macro backdrop remains challenging. The 10-year Treasury yield is holding above 5%, crude oil pulled back, but remains near $100 a barrel, and the Federal Reserve's latest projections suggest a continued upward trajectory for rates.
+
+Bottom line: this remains a highly bifurcated and selective market... I would continue to treat the strength in the headline indexes with a degree of skepticism and caution.
+
+We currently maintain a relatively light number of long positions. $TWLO, $DE, and $TEVA have held up well and continue to stand out as our strongest performers. On the defensive side, we remain short $IWM. We reduced the size of what had been an overweight short position, but continue to maintain a hedge given the ongoing weakness in small caps and the broader deterioration beneath the surface.
+
+→ **REDFORD REPORTS-1974（9/25、Confirmed up trend継続・売り抜け日S&P500=5/Nasdaq=4に改善）とはトーンが逆行する重要な警戒シグナル**。指数の見かけの強さ（時価総額加重の大型株集中）とは裏腹に、騰落線・新安値超過など市場の内部指標は悪化継続と指摘。ロングは[[TWLO]]・[[DE]]・[[TEVA]]の少数精鋭のみに絞り、小型株ETF($IWM)のショートヘッジは継続——REDFORDの格上げを額面通り楽観視せず、規律を維持すべき局面。TWLO・DE・TEVAはスクリーナー/Checkerとの照合価値あり。
+
