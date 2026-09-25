@@ -134,3 +134,16 @@ We currently maintain a relatively light number of long positions. $TWLO, $DE, a
 
 → **REDFORD REPORTS-1974（9/25、Confirmed up trend継続・売り抜け日S&P500=5/Nasdaq=4に改善）とはトーンが逆行する重要な警戒シグナル**。指数の見かけの強さ（時価総額加重の大型株集中）とは裏腹に、騰落線・新安値超過など市場の内部指標は悪化継続と指摘。ロングは[[TWLO]]・[[DE]]・[[TEVA]]の少数精鋭のみに絞り、小型株ETF($IWM)のショートヘッジは継続——REDFORDの格上げを額面通り楽観視せず、規律を維持すべき局面。TWLO・DE・TEVAはスクリーナー/Checkerとの照合価値あり。
 
+## 2026-09-24 未明2:21 (「見せかけのConfirmed Uptrend」への強い懐疑)
+We are seeing a market that, on the surface, appears to be moving into a Confirmed Uptrend, with several major indexes breaking out or moving to new highs. However, the underlying evidence is far less convincing.
+
+What is missing is a bona fide follow-through day—a strong advance of 1% or more on increased volume—accompanied by broad participation and a plentiful number of individual stocks breaking out and following through successfully. Without that confirmation, we view the action with a degree of suspicion.
+
+The market remains severely bifurcated. Small caps, represented by the Russell 2000 (IWM), remain near their lows, while the Dow and many economically sensitive cyclical stocks continue to lag. The real strength is concentrated in the mega-cap stocks that dominate the capitalization-weighted S&P 500 and Nasdaq, along with heavily weighted indexes such as the QQQ and FNGS.
+
+This kind of narrow leadership is more characteristic of a difficult, volatile, potentially late-stage environment than a healthy, broadly advancing market. Rising interest rates and elevated oil prices provide additional headwinds, and we are still in September, historically a challenging period for equities.
+
+For now, we remain in a cautious, prove-it-to-me posture—taking selected opportunities where they present themselves, keeping risk tightly controlled, maintaining hedges, and allowing the market and our individual positions to earn our way into greater exposure.
+
+→ **同日22:19の投稿（内部の弱さ・IWMショート継続）の伏線となる、より踏み込んだ警戒表明**。「表面上はConfirmed Uptrendに見えるが、本物のフォロースルーデイ（出来高を伴う1%超の力強い上昇＋広範な参加）が欠けている」と明言——これはREDFORDのシリーズT-5で解説されたフォロースルーデイの定義そのものであり、Minerviniが同じ基準で「まだ本物ではない」と判定している点が重要。**REDFORD REPORTS-1964〜1974で継続するConfirmed up trend判定と真っ向から対立する見解**。個別株レベルでの確証待ちの「prove-it-to-me」姿勢を継続。
+
