@@ -585,5 +585,27 @@
     "ibd_composite": null,
     "ibd_rs": null,
     "status": "watching"
+  },
+  {
+    "ticker": "KEYS",
+    "name": "Keysight Technologies",
+    "date": "2026-09-26",
+    "report_no": "1979",
+    "series": "NYSE最新トレンド情報（エントリー・ポイント突破銘柄）",
+    "summary": "2026-09-26のREDFORD REPORTS-1979でエントリー・ポイント突破銘柄として登場（ベースカウント1）。スクリーナーでも既にCANSLIM6/7・IBD RS92と高評価——REDFORD確認とスクリーナーの2層で確証。",
+    "ibd_composite": null,
+    "ibd_rs": 92,
+    "status": "entry_confirmed"
+  },
+  {
+    "ticker": "SILC",
+    "name": "Silicom Ltd.",
+    "date": "2026-09-26",
+    "report_no": "1979",
+    "series": "NYSE最新トレンド情報（エントリー・ポイント突破銘柄）",
+    "summary": "2026-09-26のREDFORD REPORTS-1979でエントリー・ポイント突破銘柄として新規登場（ベースカウント1）。詳細な個別解説はまだなし——スクリーナー/Checkerでの照合が必要。",
+    "ibd_composite": null,
+    "ibd_rs": null,
+    "status": "entry_confirmed"
   }
 ]

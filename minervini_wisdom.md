@@ -147,3 +147,8 @@ For now, we remain in a cautious, prove-it-to-me posture—taking selected oppor
 
 → **同日22:19の投稿（内部の弱さ・IWMショート継続）の伏線となる、より踏み込んだ警戒表明**。「表面上はConfirmed Uptrendに見えるが、本物のフォロースルーデイ（出来高を伴う1%超の力強い上昇＋広範な参加）が欠けている」と明言——これはREDFORDのシリーズT-5で解説されたフォロースルーデイの定義そのものであり、Minerviniが同じ基準で「まだ本物ではない」と判定している点が重要。**REDFORD REPORTS-1964〜1974で継続するConfirmed up trend判定と真っ向から対立する見解**。個別株レベルでの確証待ちの「prove-it-to-me」姿勢を継続。
 
+## 2026-09-26 (AIトレードへの懐疑・マインドセット系、市場コメントなし)
+If AI could truly figure out how to trade, how would one AI trader beat another? IT COULDN'T. You need inefficiencies to generate alpha. If every AI sees the same data, finds the same patterns, and makes the same "optimal" trades, the edge gets arbitraged away... Let me be clear: I'm a big fan of AI. At Minervini Markets, we are using AI models to find stocks and analyze data. But we are using it as a tool.
+
+→ AIトレードの限界について、ジム・シモンズ（ルネサンス・テクノロジーズ創業者）の発言を引用しつつ「AIは道具であり解決策ではない」と論じたマインドセット系投稿。個別銘柄の売買開示や市場トレンドの新規コメントはなし。9/24の「見せかけのConfirmed Uptrend」への懐疑スタンス（TWLO・DE・TEVAのみ保有、IWMショート継続）に変更なしと見て良い。
+
