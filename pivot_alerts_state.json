@@ -1,6 +1,6 @@
 {
-  "PANW": {"pivot": 387.22, "alerted": true},
-  "NTAP": {"pivot": 204.61, "alerted": false},
+  "PANW": {"stop_loss": 360.70, "take_profit": 490.09, "alerted_stop_loss": false, "alerted_take_profit": false},
+  "NTAP": {"pivot": 204.61, "alerted": true},
   "AMD": {"pivot": 627.15, "alerted": true},
   "AMZN": {"pivot": 276.17, "alerted": false},
   "APH": {"pivot": 84.97, "alerted": false},
