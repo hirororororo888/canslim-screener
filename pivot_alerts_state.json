@@ -3,7 +3,7 @@
   "NTAP": {"pivot": 204.61, "alerted": true},
   "AMD": {"pivot": 627.15, "alerted": true},
   "AMZN": {"pivot": 276.17, "alerted": false},
-  "APH": {"pivot": 84.97, "alerted": false},
+  "APH": {"pivot": 84.97, "alerted": true},
   "CRWD": {"pivot": 255.71, "alerted": true},
   "DELL": {"pivot": 568.80, "alerted": false},
   "GKOS": {"pivot": 186.66, "alerted": false},
