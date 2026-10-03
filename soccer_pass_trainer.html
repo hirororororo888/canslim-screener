@@ -41,7 +41,7 @@
   <h1>⚽ パスコース ミキワメ</h1>
 
   <div id="start" class="panel">
-    <p>あかい 相手が <b>ピカッ</b> と出たら、<br>相手が<b>いない方</b>の 味方に パス！<br>（30回・タイムをはかるよ）</p>
+    <p>あかい 相手が <b>ピカッ</b> と出たら、<br>相手が<b>いない方</b>の 味方に パス！<br>（30回 せいかいするまでの タイムをはかるよ。まちがえたら やりなおし）</p>
     <div>ひかる 時間</div>
     <div class="opts" id="durOpts">
       <button data-v="500">ゆっくり</button>
@@ -82,33 +82,32 @@
 (() => {
   const TOTAL = 30;
   const $ = id => document.getElementById(id);
-  let flashMs = 300, n, correct, startT, flashT, answer, waiting, timer, hideTimer, rts, miss, tick;
+  let flashMs = 300, correct, startT, flashT, answer, waiting, timer, hideTimer, rts, miss, tick;
 
   document.querySelectorAll('#durOpts button').forEach(b => b.onclick = () => {
     document.querySelectorAll('#durOpts button').forEach(x => x.classList.remove('on'));
     b.classList.add('on'); flashMs = +b.dataset.v; showBest();
   });
-  function bestKey() { return 'soccerPassBest_' + flashMs; }
+  function bestKey() { return 'soccerPassBest2_' + flashMs; }
   function getBest() { try { return JSON.parse(localStorage.getItem(bestKey())); } catch (e) { return null; } }
   function showBest() {
     const b = getBest();
-    $('best').textContent = b ? `この むずかしさの ベスト：${b.t.toFixed(1)}びょう（${b.c}/${TOTAL}せいかい）` : '';
+    $('best').textContent = b ? `この むずかしさの ベスト：${b.t.toFixed(1)}びょう（ミス${b.m}かい）` : '';
   }
   showBest();
 
   function start() {
-    n = 0; correct = 0; miss = 0; rts = []; waiting = false;
+    correct = 0; miss = 0; rts = []; waiting = false;
     $('start').classList.add('hidden'); $('result').classList.add('hidden'); $('game').classList.remove('hidden');
     startT = performance.now();
     tick = setInterval(() => $('time').textContent = ((performance.now() - startT) / 1000).toFixed(1) + ' びょう', 100);
-    $('okc').textContent = '⭕ 0';
+    $('okc').textContent = '❌ 0';
     next();
   }
 
   function next() {
-    if (n >= TOTAL) return finish();
-    n++;
-    $('count').textContent = `${n} / ${TOTAL}`;
+    if (correct >= TOTAL) return finish();
+    $('count').textContent = `${correct + 1} / ${TOTAL}`;
     $('msg').textContent = '';
     setBtns(false);
     timer = setTimeout(flash, 600 + Math.random() * 900);
@@ -137,7 +136,7 @@
       miss++;
       $('msg').innerHTML = '<span class="ng">❌ そっちは 相手が いたよ</span>';
     }
-    $('okc').textContent = '⭕ ' + correct;
+    $('okc').textContent = '❌ ' + miss;
     setTimeout(next, 500);
   }
 
@@ -147,12 +146,11 @@
     const avg = rts.length ? rts.reduce((a, b) => a + b, 0) / rts.length / 1000 : 0;
     $('game').classList.add('hidden'); $('result').classList.remove('hidden');
     $('rTotal').textContent = `${total.toFixed(1)} びょう`;
-    $('rDetail').innerHTML = `せいかい ${correct} / ${TOTAL}<br>はんのう へいきん ${avg.toFixed(2)} びょう`;
+    $('rDetail').innerHTML = `${TOTAL}かい せいかい（ミス ${miss}かい）<br>はんのう へいきん ${avg.toFixed(2)} びょう`;
     const b = getBest();
-    // 正解数が多い方を優先し、同数ならタイムが短い方がベスト
-    const better = !b || correct > b.c || (correct === b.c && total < b.t);
-    if (better) { try { localStorage.setItem(bestKey(), JSON.stringify({ t: total, c: correct })); } catch (e) {} }
-    $('rRank').textContent = better ? '🏆 ベストきろく こうしん！' : `ベスト：${b.t.toFixed(1)}びょう（${b.c}/${TOTAL}）`;
+    const better = !b || total < b.t;
+    if (better) { try { localStorage.setItem(bestKey(), JSON.stringify({ t: total, m: miss })); } catch (e) {} }
+    $('rRank').textContent = better ? '🏆 ベストきろく こうしん！' : `ベスト：${b.t.toFixed(1)}びょう`;
     showBest();
   }
 
