@@ -152,3 +152,8 @@ If AI could truly figure out how to trade, how would one AI trader beat another?
 
 → AIトレードの限界について、ジム・シモンズ（ルネサンス・テクノロジーズ創業者）の発言を引用しつつ「AIは道具であり解決策ではない」と論じたマインドセット系投稿。個別銘柄の売買開示や市場トレンドの新規コメントはなし。9/24の「見せかけのConfirmed Uptrend」への懐疑スタンス（TWLO・DE・TEVAのみ保有、IWMショート継続）に変更なしと見て良い。
 
+
+## 2026-09-29 22:15 (史上初の「指数は高値圏・個別株は崩れた」乖離)
+On September 25, the S&P 500 Index closed just 0.7% below its August 13 record high. Yet only 24.5% of the stocks in the Multi-Cap universe we follow were above their 50-day moving averages, and only 43.1% were above their 200-day moving averages. That marked the first time since the dataset began in 1981 that the S&P 500 was within 1% of an all-time high while less than 25% of stocks were above their 50-day and less than 45% were above their 200-day. The question is: Does this mark the end of a stealth correction, or is it an erosion that is more serious longer term? It could be both. If we get more of the same in the form of a year-end rally before a bear market ultimately unfolds, we could look back at this as the writing that was on the wall. Either way, breadth is very poor.
+
+→ **今回の両方確認で最も重要な警戒シグナル**。S&P500が史上最高値の0.7%以内なのに、50日線上の銘柄は24.5%・200日線上は43.1%と、1981年以降のデータで初めての乖離。「ステルス調整の終わりか、より深刻な劣化か。両方もありうる。年末ラリーの後にベアマーケットが来るなら、これが予兆だったと振り返ることになる」と明言。REDFORDのConfirmed up trend継続(S&P500売り抜け日7・Put/Call 0.90)とは逆方向で、REDFORD側の個別シグナル悪化(10/3)とは整合する。9/24の「見せかけのConfirmed Uptrend」警戒の延長線上。

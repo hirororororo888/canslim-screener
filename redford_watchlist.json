@@ -214,14 +214,14 @@
   {
     "ticker": "NTAP",
     "name": "NetApp",
-    "date": "2026-09-25",
-    "report_no": "1978",
+    "date": "2026-10-03",
+    "report_no": "2016",
     "series": "個別銘柄レポート（初回2026-08-02 Watch listを作成しよう 第28回）",
-    "summary": "2026-09-24にエントリーポイントを上抜け（綺麗なチャートを鑑賞する会16位）。IBD総合評価99（最高得点）。9月初旬発表Q1決算: EPS+66%(2.58ドル)・売上高+30%(20.3億ドル)、利益・売上とも4四半期連続加速。AIインフラ向けオールフラッシュ・ストレージでNVDA連携銘柄。Checker検証済み(6/6満点、2026-09-22時点)と符合。",
+    "summary": "2026-09-24にエントリーポイントを上抜け（綺麗なチャートを鑑賞する会16位）。IBD総合評価99（最高得点）。9月初旬発表Q1決算: EPS+66%(2.58ドル)・売上高+30%(20.3億ドル)、利益・売上とも4四半期連続加速。AIインフラ向けオールフラッシュ・ストレージでNVDA連携銘柄。Checker検証済み(6/6満点、2026-09-22時点)と符合。 【10/3更新】REDFORD REPORTS-2016: 正式エントリーポイント$209.06を突破後、出来高が50日平均の+99.45%に拡大して+5.22%急騰、終値$226.27。REDFORD基準の購入上限(エントリー+5%=$219.51)を約3%超過しており、新規で追うのは非推奨。NYSE下落時に逆行高を演じていた強い銘柄。",
     "ibd_composite": 99,
     "ibd_rs": null,
-    "entry_point": null,
-    "status": "entry_confirmed"
+    "entry_point": 209.06,
+    "status": "entry_confirmed_extended"
   },
   {
     "ticker": "QNT",
@@ -604,6 +604,39 @@
     "report_no": "1979",
     "series": "NYSE最新トレンド情報（エントリー・ポイント突破銘柄）",
     "summary": "2026-09-26のREDFORD REPORTS-1979でエントリー・ポイント突破銘柄として新規登場（ベースカウント1）。詳細な個別解説はまだなし——スクリーナー/Checkerでの照合が必要。",
+    "ibd_composite": null,
+    "ibd_rs": null,
+    "status": "entry_confirmed"
+  },
+  {
+    "ticker": "IMOS",
+    "name": "ChipMOS Technologies",
+    "date": "2026-10-03",
+    "report_no": "2013",
+    "series": "NYSE最新トレンド情報（エントリー・ポイント突破銘柄）",
+    "summary": "2026-10-03のREDFORD REPORTS-2013でエントリー・ポイント突破銘柄として登場（ベースカウント4）。詳細な個別解説はまだなし。ベースカウントが多い（後期ベース）ため突破の信頼性は初期ベースより低めとされる点に留意。",
+    "ibd_composite": null,
+    "ibd_rs": null,
+    "status": "entry_confirmed"
+  },
+  {
+    "ticker": "ATEYY",
+    "name": "Advantest",
+    "date": "2026-10-03",
+    "report_no": "2013",
+    "series": "NYSE最新トレンド情報（エントリー・ポイント突破銘柄）",
+    "summary": "2026-10-03のREDFORD REPORTS-2013でエントリー・ポイント突破銘柄として登場（ベースカウント3）。詳細な個別解説はまだなし。ベースカウントが多い（後期ベース）ため突破の信頼性は初期ベースより低めとされる点に留意。",
+    "ibd_composite": null,
+    "ibd_rs": null,
+    "status": "entry_confirmed"
+  },
+  {
+    "ticker": "MTRN",
+    "name": "Materion",
+    "date": "2026-10-03",
+    "report_no": "2013",
+    "series": "NYSE最新トレンド情報（エントリー・ポイント突破銘柄）",
+    "summary": "2026-10-03のREDFORD REPORTS-2013でエントリー・ポイント突破銘柄として登場（ベースカウント4）。詳細な個別解説はまだなし。ベースカウントが多い（後期ベース）ため突破の信頼性は初期ベースより低めとされる点に留意。",
     "ibd_composite": null,
     "ibd_rs": null,
     "status": "entry_confirmed"
