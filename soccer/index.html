@@ -47,7 +47,7 @@
   <h1>⚽ パスコース ミキワメ</h1>
 
   <div id="start" class="panel">
-    <p>あかい 相手が <b>ピカッ</b> と出たら、<br>相手が<b>いない方</b>の 味方に パス！<br>（30回 せいかいするまでの タイムをはかるよ。まちがえたら やりなおし）</p>
+    <p>あかい 相手が <b>ピカッ</b> と出たら、<br>相手が<b>いない方</b>の 味方に パス！<br>（20回 せいかいするまでの タイムをはかるよ。まちがえたら やりなおし）</p>
     <div>ひかる 時間</div>
     <div class="opts" id="durOpts">
       <button data-v="500">ゆっくり</button>
@@ -59,7 +59,7 @@
   </div>
 
   <div id="game" class="hidden">
-    <div class="hud"><span id="count">1 / 30</span><span id="time">0.0 びょう</span><span id="okc">⭕ 0</span></div>
+    <div class="hud"><span id="count">1 / 20</span><span id="time">0.0 びょう</span><span id="okc">⭕ 0</span></div>
     <div class="pitch">
       <div class="p mate" id="mateL">味方</div>
       <div class="p mate" id="mateR">味方</div>
@@ -86,7 +86,7 @@
 
 <script>
 (() => {
-  const TOTAL = 30;
+  const TOTAL = 20;
   const $ = id => document.getElementById(id);
   let flashMs = 300, correct, startT, flashT, answer, waiting, timer, hideTimer, rts, miss, tick;
 
@@ -94,7 +94,7 @@
     document.querySelectorAll('#durOpts button').forEach(x => x.classList.remove('on'));
     b.classList.add('on'); flashMs = +b.dataset.v; showBest();
   });
-  function bestKey() { return 'soccerPassBest2_' + flashMs; }
+  function bestKey() { return 'soccerPassBest20_' + flashMs; }
   function getBest() { try { return JSON.parse(localStorage.getItem(bestKey())); } catch (e) { return null; } }
   function showBest() {
     const b = getBest();
