@@ -20,10 +20,10 @@
   .pitch::before { content:""; position:absolute; left:0; right:0; top:50%; border-top:3px solid rgba(255,255,255,.5); }
   .p { position:absolute; width:18%; aspect-ratio:1; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:clamp(14px,4vw,22px); font-weight:bold; border:3px solid #fff; transform:translate(-50%,-50%); }
   .mate { background:#1e6fe8; top:30%; }
-  #mateL { left:20%; } #mateR { left:80%; }
   .me { background:#f5c518; color:#000; left:50%; top:82%; }
   .opp { background:#e02b2b; top:58%; opacity:0; }
-  #oppL { left:20%; } #oppR { left:80%; }
+  .mate, .opp { width:var(--sz,18%); }
+  .mate.sm { width:15%; } .opp.sm { width:15%; }
   .opp.flash { opacity:1; }
   .ball { position:absolute; left:50%; top:70%; transform:translate(-50%,-50%); font-size:clamp(20px,6vw,32px); }
   .msg { position:absolute; left:0; right:0; top:8%; text-align:center; font-size:clamp(20px,6vw,34px); font-weight:bold; text-shadow:0 2px 6px #000; pointer-events:none; }
@@ -47,7 +47,12 @@
   <h1>⚽ パスコース ミキワメ</h1>
 
   <div id="start" class="panel">
-    <p>あかい 相手が <b>ピカッ</b> と出たら、<br>相手が<b>いない方</b>の 味方に パス！<br>（20回 せいかいするまでの タイムをはかるよ。まちがえたら やりなおし）</p>
+    <p>あかい 相手が <b>ピカッ</b> と出たら、<br>相手が<b>いない</b> 味方に パス！<br>（20回 せいかいするまでの タイムをはかるよ。まちがえたら やりなおし）</p>
+    <div>ゲームを えらんでね</div>
+    <div class="opts" id="modeOpts">
+      <button data-v="2" class="on">2人（相手1人）</button>
+      <button data-v="3">3人（相手2人）</button>
+    </div>
     <div>ひかる 時間</div>
     <div class="opts" id="durOpts">
       <button data-v="500">ゆっくり</button>
@@ -61,17 +66,13 @@
   <div id="game" class="hidden">
     <div class="hud"><span id="count">1 / 20</span><span id="time">0.0 びょう</span><span id="okc">⭕ 0</span></div>
     <div class="pitch">
-      <div class="p mate" id="mateL">味方</div>
-      <div class="p mate" id="mateR">味方</div>
-      <div class="p opp" id="oppL">相手</div>
-      <div class="p opp" id="oppR">相手</div>
+      <div id="field"></div>
       <div class="p me">じぶん</div>
       <div class="ball">⚽</div>
       <div class="msg" id="msg"></div>
     </div>
-    <div class="btns" style="margin-top:10px">
-      <button class="pass" id="btnL" disabled>◀ ひだり</button>
-      <button class="pass" id="btnR" disabled>みぎ ▶</button>
+    <div style="margin-top:10px">
+      <div class="btns" id="btnBox" style="width:100%"></div>
     </div>
   </div>
 
@@ -90,20 +91,33 @@
   const $ = id => document.getElementById(id);
   let flashMs = 300, correct, startT, flashT, answer, waiting, timer, hideTimer, rts, miss, tick;
 
-  document.querySelectorAll('#durOpts button').forEach(b => b.onclick = () => {
-    document.querySelectorAll('#durOpts button').forEach(x => x.classList.remove('on'));
-    b.classList.add('on'); flashMs = +b.dataset.v; showBest();
-  });
-  function bestKey() { return 'soccerPassBest20_' + flashMs; }
+  const LAYOUT = {
+    2: { xs: [20, 80], names: ['◀ ひだり', 'みぎ ▶'], keys: ['ArrowLeft', 'ArrowRight'], covered: 1 },
+    3: { xs: [17, 50, 83], names: ['◀ ひだり', 'まんなか', 'みぎ ▶'], keys: ['ArrowLeft', 'ArrowUp', 'ArrowRight'], covered: 2 }
+  };
+  let mode = 2, btns = [];
+  function setOpt(box, b) { document.querySelectorAll('#' + box + ' button').forEach(x => x.classList.remove('on')); b.classList.add('on'); }
+  document.querySelectorAll('#durOpts button').forEach(b => b.onclick = () => { setOpt('durOpts', b); flashMs = +b.dataset.v; showBest(); });
+  document.querySelectorAll('#modeOpts button').forEach(b => b.onclick = () => { setOpt('modeOpts', b); mode = +b.dataset.v; showBest(); });
+  function bestKey() { return 'soccerPassBest20_m' + mode + '_' + flashMs; }
   function getBest() { try { return JSON.parse(localStorage.getItem(bestKey())); } catch (e) { return null; } }
   function showBest() {
     const b = getBest();
-    $('best').textContent = b ? `この むずかしさの ベスト：${b.t.toFixed(1)}びょう（ミス${b.m}かい）` : '';
+    $('best').textContent = b ? `この ゲームの ベスト：${b.t.toFixed(1)}びょう（ミス${b.m}かい）` : '';
   }
   showBest();
 
+  function build() {
+    const L = LAYOUT[mode], sm = mode === 3 ? ' sm' : '';
+    $('field').innerHTML = L.xs.map((x, i) => `<div class="p mate${sm}" style="left:${x}%">味方</div><div class="p opp${sm}" id="opp${i}" style="left:${x}%">相手</div>`).join('');
+    $('btnBox').innerHTML = L.names.map((t, i) => `<button class="pass" style="${mode === 3 ? 'font-size:clamp(16px,5vw,26px)' : ''}" disabled>${t}</button>`).join('');
+    btns = [...document.querySelectorAll('#btnBox button')];
+    btns.forEach((b, i) => b.addEventListener('pointerdown', e => { e.preventDefault(); choose(i); }));
+  }
+
   function start() {
     correct = 0; miss = 0; rts = []; waiting = false;
+    build();
     $('start').classList.add('hidden'); $('result').classList.add('hidden'); $('game').classList.remove('hidden');
     startT = performance.now();
     tick = setInterval(() => $('time').textContent = ((performance.now() - startT) / 1000).toFixed(1) + ' びょう', 100);
@@ -119,23 +133,25 @@
     timer = setTimeout(flash, 600 + Math.random() * 900);
   }
 
+  let shown = [];
   function flash() {
-    const side = Math.random() < 0.5 ? 'L' : 'R';
-    answer = side === 'L' ? 'R' : 'L'; // 相手がいない方
-    $('opp' + side).classList.add('flash');
+    const n = LAYOUT[mode].xs.length;
+    answer = Math.floor(Math.random() * n); // 相手がいない味方
+    shown = [...Array(n).keys()].filter(i => i !== answer);
+    shown.forEach(i => $('opp' + i).classList.add('flash'));
     flashT = performance.now(); waiting = true; setBtns(true);
-    hideTimer = setTimeout(() => $('opp' + side).classList.remove('flash'), flashMs);
+    hideTimer = setTimeout(hideOpps, flashMs);
   }
+  function hideOpps() { shown.forEach(i => $('opp' + i).classList.remove('flash')); }
 
-  function setBtns(on) { $('btnL').disabled = $('btnR').disabled = !on; }
+  function setBtns(on) { btns.forEach(b => b.disabled = !on); }
 
-  function choose(side) {
+  function choose(i) {
     if (!waiting) return;
     waiting = false; setBtns(false);
     const rt = performance.now() - flashT;
-    clearTimeout(hideTimer);
-    $('oppL').classList.remove('flash'); $('oppR').classList.remove('flash');
-    if (side === answer) {
+    clearTimeout(hideTimer); hideOpps();
+    if (i === answer) {
       correct++; rts.push(rt);
       $('msg').innerHTML = '<span class="ok">⭕ ナイスパス！</span>';
     } else {
@@ -162,11 +178,9 @@
 
   $('startBtn').onclick = start;
   $('againBtn').onclick = () => { $('result').classList.add('hidden'); $('start').classList.remove('hidden'); };
-  $('btnL').addEventListener('pointerdown', e => { e.preventDefault(); choose('L'); });
-  $('btnR').addEventListener('pointerdown', e => { e.preventDefault(); choose('R'); });
   document.addEventListener('keydown', e => {
-    if (e.key === 'ArrowLeft') choose('L');
-    else if (e.key === 'ArrowRight') choose('R');
+    const i = LAYOUT[mode].keys.indexOf(e.key);
+    if (i >= 0 && btns.length) choose(i);
   });
 })();
 </script>
