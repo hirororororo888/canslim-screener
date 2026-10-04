@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 <meta name="theme-color" content="#0b3d1e">
-<title>サポートいち ミキワメ</title>
+<title>うごきかた ミキワメ</title>
 <style>
   * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
   body { margin:0; font-family:"Hiragino Maru Gothic ProN","Yu Gothic",sans-serif; background:#0b3d1e; color:#fff; min-height:100vh; display:flex; justify-content:center; user-select:none; }
@@ -28,16 +28,12 @@
 </head>
 <body>
 <div id="app">
-  <h1>⚽ サポートいち ミキワメ</h1>
+  <h1>⚽ どこへ うごく？</h1>
 
   <div id="start" class="panel">
-    <p>青い 味方が ボールを もっているよ。<br>パスを もらうために <b>じぶんが 立つ ばしょ</b>は？<br>
-    <small>・パスの 道が 赤い 相手に ふさがれていない<br>・もらう 場所に 相手が ちかくにいない<br>この 2つを まもる ばしょを タップ！<br>（20回 せいかいするまでの タイム）</small></p>
-    <div>ばしょの かず</div>
-    <div class="opts" id="modeOpts">
-      <button data-v="3" class="on">3つから（相手2人）</button>
-      <button data-v="4">4つから（相手3人）</button>
-    </div>
+    <p>青い 味方が ボールを もっているよ。<br>いまの <b>じぶん（黄色）</b>の ばしょでは パスを もらえない！<br>
+    どこへ <b>うごけば</b> いいかな？<br>
+    <small>・パスの 道が 赤い 相手に ふさがれていない<br>・うごく 先に 相手が ちかくにいない<br>この 2つを まもる ばしょを タップ！<br>（20回 せいかいするまでの タイム）</small></p>
     <button class="main" id="startBtn">スタート！</button>
     <p id="best" style="font-size:14px;margin:8px 0 0"></p>
     <p style="font-size:14px"><a href="index.html">← パスコース ミキワメへ</a></p>
@@ -62,39 +58,43 @@
 (() => {
   const TOTAL = 20, R = 20, NS = 'http://www.w3.org/2000/svg';
   const $ = id => document.getElementById(id);
-  let mode = 3, correct, miss, startT, tick, q, locked, qT, rts;
+  let correct, miss, startT, tick, q, locked, qT, rts;
 
-  document.querySelectorAll('#modeOpts button').forEach(b => b.onclick = () => {
-    document.querySelectorAll('#modeOpts button').forEach(x => x.classList.remove('on'));
-    b.classList.add('on'); mode = +b.dataset.v; showBest();
-  });
-  const bestKey = () => 'soccerSupportBest20_' + mode;
+  const bestKey = () => 'soccerMoveBest20';
   function getBest() { try { return JSON.parse(localStorage.getItem(bestKey())); } catch (e) { return null; } }
   function showBest() { const b = getBest(); $('best').textContent = b ? `このゲームの ベスト：${b.t.toFixed(1)}びょう（ミス${b.m}かい）` : ''; }
   showBest();
 
   const rnd = (a, b) => a + Math.random() * (b - a);
+  const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
+  const dist = (a, b) => Math.hypot(a.x - b.x, a.y - b.y);
+  function segDist(p, a, b) {
+    const dx = b.x - a.x, dy = b.y - a.y, t = clamp(((p.x - a.x) * dx + (p.y - a.y) * dy) / (dx * dx + dy * dy), 0, 1);
+    return Math.hypot(p.x - (a.x + t * dx), p.y - (a.y + t * dy));
+  }
+  const pt = (B, deg, r) => { const a = deg * Math.PI / 180; return { x: B.x + Math.cos(a) * r, y: B.y + Math.sin(a) * r * 0.9 }; };
 
-  // 問題生成：ボール保持者B、候補n個。n-1人の相手が「パスの道をふさぐ」か「もらう人をマーク」し、ふさがれていない1つが正解
+  // 問題：自分(P)のパスの道を相手D1がふさいでいる。
+  // 候補は ①Pのすぐ近く(D1にふさがれたまま) ②相手D2がマークしている ③ぜんぶ空いている → 正解は③の1つ
   function makeQuestion() {
-    const n = mode, B = { x: rnd(150, 250), y: rnd(120, 180) };
-    const base = rnd(0, 360), cands = [];
-    for (let i = 0; i < n; i++) {
-      const a = (base + i * 360 / n + rnd(-12, 12)) * Math.PI / 180, r = rnd(85, 100);
-      cands.push({ x: B.x + Math.cos(a) * r, y: B.y + Math.sin(a) * r * 0.9 });
+    for (;;) {
+      const B = { x: rnd(140, 260), y: rnd(115, 185) }, th = rnd(0, 360), sgn = Math.random() < 0.5 ? 1 : -1;
+      const P = pt(B, th, rnd(88, 100));
+      const t = rnd(0.5, 0.58), D1 = { x: B.x + (P.x - B.x) * t + rnd(-4, 4), y: B.y + (P.y - B.y) * t + rnd(-4, 4) };
+      const cs = [pt(B, th + sgn * rnd(26, 31), rnd(88, 98)), pt(B, th + sgn * rnd(105, 130), rnd(85, 100)), pt(B, th - sgn * rnd(90, 110), rnd(85, 100))];
+      const ma = rnd(0, Math.PI * 2);
+      const D2 = { x: clamp(cs[1].x + Math.cos(ma) * 46, 22, 378), y: clamp(cs[1].y + Math.sin(ma) * 46, 22, 278) };
+      const defs = [D1, D2];
+      const status = cs.map(c => defs.some(d => segDist(d, B, c) < 34) ? 'lane' : defs.some(d => dist(d, c) < 56) ? 'mark' : 'free');
+      if (status.filter(x => x === 'free').length !== 1) continue;
+      if (cs.some(c => c.x < 30 || c.x > 370 || c.y < 30 || c.y > 270) || P.x < 25 || P.x > 375 || P.y < 25 || P.y > 275) continue;
+      if (cs.some((c, i) => cs.some((d, j) => i < j && dist(c, d) < 55) || dist(c, P) < 44 && c !== cs[0])) continue;
+      // 候補どうしが近すぎる/相手と重なるものは作り直し
+      if (cs.some(c => defs.some(d => dist(c, d) < 42)) || [B, P, D1].some(o => dist(D2, o) < 44)) continue;
+      // 候補を並べ替え（①②③ の位置をバラす）
+      const idx = [0, 1, 2].sort(() => Math.random() - 0.5);
+      return { B, P, defs, cands: idx.map(i => cs[i]), status: idx.map(i => status[i]), answer: idx.findIndex(i => status[i] === 'free'), D1, D2 };
     }
-    const answer = Math.floor(Math.random() * n), defs = [];
-    cands.forEach((c, i) => {
-      if (i === answer) return;
-      if (Math.random() < 0.5) { // 道をふさぐ
-        const t = rnd(0.58, 0.7);
-        defs.push({ x: B.x + (c.x - B.x) * t + rnd(-5, 5), y: B.y + (c.y - B.y) * t + rnd(-5, 5), kind: 'lane', for: i });
-      } else { // もらう人をマーク
-        const a = rnd(0, Math.PI * 2);
-        defs.push({ x: c.x + Math.cos(a) * 24, y: c.y + Math.sin(a) * 24, kind: 'mark', for: i });
-      }
-    });
-    return { B, cands, defs, answer };
   }
 
   function el(tag, attrs, parent) {
@@ -102,21 +102,19 @@
     for (const k in attrs) e.setAttribute(k, attrs[k]);
     parent.appendChild(e); return e;
   }
+  function label(svg, x, y, txt, size, fill) { const t = el('text', { x, y, 'text-anchor': 'middle', 'font-size': size, 'font-weight': 'bold', fill }, svg); t.textContent = txt; }
 
   function draw() {
     const svg = $('field'); svg.innerHTML = '';
     el('line', { x1: 0, y1: 150, x2: 400, y2: 150, stroke: 'rgba(255,255,255,.35)', 'stroke-width': 2 }, svg);
-    q.cands.forEach(c => el('line', { x1: q.B.x, y1: q.B.y, x2: c.x, y2: c.y, stroke: 'rgba(255,255,255,.35)', 'stroke-width': 2, 'stroke-dasharray': '5 6' }, svg));
-    q.defs.forEach(d => {
-      el('circle', { cx: d.x, cy: d.y, r: R, fill: '#e02b2b', stroke: '#fff', 'stroke-width': 3 }, svg);
-      const t = el('text', { x: d.x, y: d.y + 5, 'text-anchor': 'middle', 'font-size': 14, 'font-weight': 'bold', fill: '#fff' }, svg); t.textContent = '相手';
-    });
-    el('circle', { cx: q.B.x, cy: q.B.y, r: R + 2, fill: '#1e6fe8', stroke: '#fff', 'stroke-width': 3 }, svg);
-    const bt = el('text', { x: q.B.x, y: q.B.y + 7, 'text-anchor': 'middle', 'font-size': 20 }, svg); bt.textContent = '⚽';
+    el('line', { x1: q.B.x, y1: q.B.y, x2: q.P.x, y2: q.P.y, stroke: 'rgba(255,255,255,.35)', 'stroke-width': 2, 'stroke-dasharray': '5 6' }, svg);
+    q.defs.forEach(d => { el('circle', { cx: d.x, cy: d.y, r: R, fill: '#e02b2b', stroke: '#fff', 'stroke-width': 3 }, svg); label(svg, d.x, d.y + 5, '相手', 14, '#fff'); });
+    el('circle', { cx: q.P.x, cy: q.P.y, r: R + 2, fill: '#f5c518', stroke: '#fff', 'stroke-width': 3 }, svg); label(svg, q.P.x, q.P.y + 5, 'じぶん', 12, '#000');
+    el('circle', { cx: q.B.x, cy: q.B.y, r: R + 2, fill: '#1e6fe8', stroke: '#fff', 'stroke-width': 3 }, svg); label(svg, q.B.x, q.B.y + 7, '⚽', 20, '#fff');
     q.cands.forEach((c, i) => {
       const g = el('g', { class: 'cand' }, svg);
-      el('circle', { cx: c.x, cy: c.y, r: R + 2, fill: 'rgba(245,197,24,.9)', stroke: '#fff', 'stroke-width': 3, 'stroke-dasharray': '6 4' }, g);
-      const t = el('text', { x: c.x, y: c.y + 8, 'text-anchor': 'middle', 'font-size': 22, 'font-weight': 'bold', fill: '#000' }, g); t.textContent = i + 1;
+      el('circle', { cx: c.x, cy: c.y, r: R, fill: 'rgba(255,255,255,.88)', stroke: '#f5c518', 'stroke-width': 4, 'stroke-dasharray': '6 4' }, g);
+      label(g, c.x, c.y + 8, i + 1, 22, '#000');
       g.addEventListener('pointerdown', e => { e.preventDefault(); choose(i); });
     });
   }
@@ -146,11 +144,11 @@
       setTimeout(next, 450);
     } else {
       miss++;
-      const d = q.defs.find(d => d.for === i);
-      $('msg').innerHTML = `<span class="ng">❌ ${d.kind === 'lane' ? 'パスの 道が ふさがれてるよ' : 'そこは 相手が ちかいよ'}</span>`;
+            $('msg').innerHTML = `<span class="ng">❌ ${q.status[i] === 'lane' ? 'まだ パスの 道が ふさがれてるよ' : 'そこは 相手が ちかいよ'}</span>`;
       $('okc').textContent = '❌ ' + miss;
       const c = q.cands[q.answer];
       el('line', { x1: q.B.x, y1: q.B.y, x2: c.x, y2: c.y, stroke: '#7dff9b', 'stroke-width': 5 }, $('field'));
+      el('line', { x1: q.P.x, y1: q.P.y, x2: c.x, y2: c.y, stroke: '#ffe14d', 'stroke-width': 3, 'stroke-dasharray': '2 6' }, $('field'));
       setTimeout(next, 1300);
     }
   }
