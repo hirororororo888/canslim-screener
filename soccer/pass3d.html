@@ -33,8 +33,8 @@
   <h1>⚽ 3D パスミキワメ</h1>
 
   <div id="start" class="panel">
-    <p>じぶんは ボールを もっているよ。<br>前に いる 青い 味方 3人の うち、<br><b>パスが 通る 味方</b>に パスしよう！<br>
-    <small>・パスの 道に 赤い 相手が いない<br>・味方の すぐ そばに 相手が いない<br>味方（または ①②③の ボタン）を タップ！<br>（20回 せいかいするまでの タイム）</small></p>
+    <p>じぶんは ボールを もっているよ。<br>前に いる 青い 味方 3人は <b>はしって うごいている</b>よ。<br><b>パスが 通る 味方</b>に パスしよう！<br>
+    <small>・パスの 道に 赤い 相手が いない<br>・味方の すぐ そばに 相手が いない<br>タップした しゅんかんの いちで 決まるよ！<br>味方（または ①②③の ボタン）を タップ！<br>（20回 せいかいするまでの タイム）</small></p>
     <button class="main" id="startBtn">スタート！</button>
     <p id="best" style="font-size:14px;margin:8px 0 0"></p>
     <p style="font-size:14px"><a href="index.html">← パスコース ミキワメ</a>　<a href="support.html">どこへ うごく？ →</a></p>
@@ -75,7 +75,7 @@
   const scene = new THREE.Scene();
   scene.background = new THREE.Color(0x7ec8ff);
   scene.fog = new THREE.Fog(0x7ec8ff, 40, 90);
-  const camera = new THREE.PerspectiveCamera(50, 4 / 3, 0.1, 200);
+  const camera = new THREE.PerspectiveCamera(58, 4 / 3, 0.1, 200);
   camera.position.set(0, 8, 9);
   camera.lookAt(0, 0, -8);
   scene.add(new THREE.HemisphereLight(0xffffff, 0x2a7a3a, 0.9));
@@ -153,14 +153,38 @@
     }
   }
 
-  function clearField() { objs.forEach(o => scene.remove(o)); objs = []; }
+  function clearField() { objs.forEach(o => scene.remove(o)); objs = []; mates3 = []; defs3 = []; }
+  let mates3 = [], defs3 = [], qStart = 0;
+  // 各選手は基準位置のまわりを走り回る（開始時はちょうど基準位置）
+  function addMover(p, base, amp) {
+    p.userData.base = base; p.userData.amp = amp;
+    p.userData.w = [rnd(1.0, 1.8), rnd(1.0, 1.8)];
+    p.userData.sg = [Math.random() < 0.5 ? 1 : -1, Math.random() < 0.5 ? 1 : -1];
+    p.position.set(base.x, 0, base.z); scene.add(p); objs.push(p);
+  }
   function build() {
     clearField();
-    q.mates.forEach((m, i) => { const p = makePlayer(0x1e6fe8, i + 1); p.position.set(m.x, 0, m.z); p.userData.idx = i; scene.add(p); objs.push(p); });
-    q.defs.forEach(d => { const p = makePlayer(0xe02b2b); p.position.set(d.x, 0, d.z); scene.add(p); objs.push(p); });
+    q.mates.forEach((m, i) => { const p = makePlayer(0x1e6fe8, i + 1); p.userData.idx = i; addMover(p, m, rnd(1.4, 2.4)); mates3.push(p); });
+    q.defs.forEach(d => { const p = makePlayer(0xe02b2b); addMover(p, d, rnd(1.0, 1.8)); defs3.push(p); });
     ball.position.copy(BALL0);
-    // 味方・相手とも、パサー（自分）の方を向く
-    objs.forEach(o => o.lookAt(0, 0, 4));
+    qStart = performance.now();
+  }
+  function updatePlayers(now) {
+    const t = (now - qStart) / 1000;
+    objs.forEach(p => {
+      const u = p.userData, o = u.amp;
+      const dx = u.sg[0] * o * Math.sin(u.w[0] * t), dz = u.sg[1] * o * 0.7 * Math.sin(u.w[1] * t);
+      const vx = u.sg[0] * o * u.w[0] * Math.cos(u.w[0] * t), vz = u.sg[1] * o * 0.7 * u.w[1] * Math.cos(u.w[1] * t);
+      const nx = u.base.x + dx, nz = Math.min(-2, u.base.z + dz);
+      p.position.x = nx; p.position.z = nz;
+      if (Math.hypot(vx, vz) > 0.05) p.rotation.y = Math.atan2(vx, vz);
+      p.children[0].position.y = 1.0 + Math.abs(Math.sin(t * 9 + u.w[0] * 5)) * 0.12; // はしるとき上下にゆれる
+    });
+  }
+  const live = o => ({ x: o.position.x, z: o.position.z });
+  function liveStatus(i) {
+    const m = live(mates3[i]), ds = defs3.map(live);
+    return ds.some(d => segDist(d, P0, m) < 2.2) ? 'lane' : ds.some(d => dist(d, m) < 4.2) ? 'mark' : 'free';
   }
 
   // ---------- ゲーム進行 ----------
@@ -185,13 +209,14 @@
     q = makeQuestion(); build(); qT = performance.now(); locked = false;
   }
 
-  let anim = null;
+  let anim = null, lockT = 0;
   function choose(i) {
     if (locked) return;
-    locked = true;
-    const m = q.mates[i], ok = i === q.answer, st = q.status[i];
-    const target = ok || st === 'mark' ? m : q.laneDef;
-    anim = { t0: performance.now(), from: BALL0.clone(), to: new THREE.Vector3(target.x, 0.35, target.z), dur: 450 };
+    locked = true; lockT = performance.now();
+    const st = liveStatus(i), ok = st === 'free', m = live(mates3[i]);
+    let followObj = mates3[i];
+    if (st === 'lane') followObj = defs3.reduce((a, b) => segDist(live(a), P0, m) < segDist(live(b), P0, m) ? a : b);
+    anim = { t0: performance.now(), from: BALL0.clone(), obj: followObj, dur: 450 };
     if (ok) {
       correct++; rts.push(performance.now() - qT);
       $('msg').innerHTML = '<span class="ok">⭕ ナイスパス！</span>';
@@ -232,10 +257,12 @@
 
   (function loop() {
     requestAnimationFrame(loop);
+    const now = performance.now();
+    if (objs.length && !(anim && anim.done)) updatePlayers(locked ? lockT : now);
     if (anim) {
-      const t = Math.min(1, (performance.now() - anim.t0) / anim.dur);
-      ball.position.lerpVectors(anim.from, anim.to, t); ball.position.y = 0.35 + Math.sin(t * Math.PI) * 1.2;
-      if (t >= 1) anim = null;
+      const t = Math.min(1, (now - anim.t0) / anim.dur), to = new THREE.Vector3(anim.obj.position.x, 0.35, anim.obj.position.z);
+      ball.position.lerpVectors(anim.from, to, t); ball.position.y = 0.35 + Math.sin(t * Math.PI) * 1.2;
+      if (t >= 1) { anim.done = true; ball.position.copy(to); }
     }
     if (view.clientWidth) renderer.render(scene, camera);
   })();
