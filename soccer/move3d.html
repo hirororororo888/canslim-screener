@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<meta name="theme-color" content="#0b3d1e">
+<title>3Dどこへうごく</title>
+<style>
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html, body { margin:0; height:100%; }
+  body { font-family:"Hiragino Maru Gothic ProN","Yu Gothic",sans-serif; background:#0b3d1e; color:#fff; display:flex; justify-content:center; user-select:none; }
+  #app { width:100%; max-width:640px; padding:12px; display:flex; flex-direction:column; gap:10px; }
+  h1 { font-size:22px; text-align:center; margin:6px 0 0; }
+  .hud { display:flex; justify-content:space-between; font-size:18px; font-weight:bold; }
+  #view { position:relative; width:100%; aspect-ratio:4/3; border:4px solid #fff; border-radius:12px; overflow:hidden; background:#7ec8ff; touch-action:manipulation; }
+  #view canvas { width:100%; height:100%; display:block; }
+  #msg { text-align:center; font-size:22px; font-weight:bold; min-height:32px; }
+  .btns { display:flex; gap:10px; }
+  button { font-family:inherit; font-weight:bold; border:none; border-radius:14px; cursor:pointer; color:#fff; }
+  .pass { flex:1; font-size:clamp(22px,7vw,34px); padding:18px 0; background:#1e6fe8; box-shadow:0 5px 0 #124a9e; }
+  .pass:active { transform:translateY(4px); box-shadow:0 1px 0 #124a9e; }
+  .pass:disabled { opacity:.45; }
+  .main { font-size:26px; padding:16px 28px; background:#f5a623; box-shadow:0 5px 0 #b47410; }
+  .panel { background:rgba(0,0,0,.35); border-radius:12px; padding:14px; text-align:center; line-height:1.7; }
+  .big { font-size:34px; font-weight:bold; color:#ffe14d; }
+  .hidden { display:none !important; }
+  .ok { color:#7dff9b; } .ng { color:#ff8a8a; }
+  a { color:#ffe14d; }
+</style>
+</head>
+<body>
+<div id="app">
+  <h1>⚽ 3D どこへ うごく？</h1>
+
+  <div id="start" class="panel">
+    <p>青い 味方が ボールを もっているよ。<br>いまの <b>じぶん（黄色）</b>の ばしょでは パスを もらえない！<br>どこへ <b>うごけば</b> いいかな？<br>
+    <small>・パスの 道が 赤い 相手に ふさがれていない<br>・うごく 先に 相手が ちかくにいない<br>この 2つを まもる ばしょ（①②③）を タップ！<br>（20回 せいかいするまでの タイム）</small></p>
+    <button class="main" id="startBtn">スタート！</button>
+    <p id="best" style="font-size:14px;margin:8px 0 0"></p>
+    <p style="font-size:14px"><a href="pass3d.html">← 3D パスミキワメ</a>　<a href="index.html">パスコース →</a></p>
+  </div>
+
+  <div id="game" class="hidden">
+    <div class="hud"><span id="count">1 / 20</span><span id="time">0.0 びょう</span><span id="okc">❌ 0</span></div>
+    <div id="view"></div>
+    <div id="msg"></div>
+    <div class="btns">
+      <button class="pass" data-i="0">① </button>
+      <button class="pass" data-i="1">② </button>
+      <button class="pass" data-i="2">③ </button>
+    </div>
+  </div>
+
+  <div id="result" class="panel hidden">
+    <div>おつかれさま！</div>
+    <div class="big" id="rTotal"></div>
+    <div id="rDetail"></div>
+    <div id="rRank" style="font-size:20px"></div>
+    <p><button class="main" id="againBtn">もういちど</button></p>
+  </div>
+</div>
+
+<script src="three.min.js"></script>
+<script>
+(() => {
+  const TOTAL = 20, R = 20;
+  const $ = id => document.getElementById(id);
+  let correct, miss, startT, tick, q, locked, qT, rts, objs = [], W = null;
+
+  // ---------- three.js ----------
+  const view = $('view');
+  const renderer = new THREE.WebGLRenderer({ antialias: true });
+  renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+  view.appendChild(renderer.domElement);
+  const scene = new THREE.Scene();
+  scene.background = new THREE.Color(0x7ec8ff);
+  const camera = new THREE.PerspectiveCamera(50, 4 / 3, 0.1, 300);
+  camera.position.set(0, 20, 20);
+  camera.lookAt(0, 0, 1);
+  scene.add(new THREE.HemisphereLight(0xffffff, 0x2a7a3a, 0.9));
+  const sun = new THREE.DirectionalLight(0xffffff, 0.6); sun.position.set(5, 20, 8); scene.add(sun);
+  for (let i = 0; i < 12; i++) {
+    const m = new THREE.Mesh(new THREE.PlaneGeometry(120, 5), new THREE.MeshLambertMaterial({ color: i % 2 ? 0x2e9e4f : 0x2a9148 }));
+    m.rotation.x = -Math.PI / 2; m.position.set(0, 0, -27.5 + i * 5); scene.add(m);
+  }
+  function numberSprite(n, size) {
+    const c = document.createElement('canvas'); c.width = c.height = 64;
+    const g = c.getContext('2d'); g.fillStyle = '#fff'; g.beginPath(); g.arc(32, 32, 30, 0, 7); g.fill();
+    g.fillStyle = '#000'; g.font = 'bold 40px sans-serif'; g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillText(n, 32, 34);
+    const s = new THREE.Sprite(new THREE.SpriteMaterial({ map: new THREE.CanvasTexture(c) }));
+    s.scale.set(size, size, 1); return s;
+  }
+  function makePlayer(color) {
+    const g = new THREE.Group();
+    const body = new THREE.Mesh(new THREE.CylinderGeometry(0.5, 0.6, 1.7, 16), new THREE.MeshLambertMaterial({ color }));
+    body.position.y = 1.05;
+    const head = new THREE.Mesh(new THREE.SphereGeometry(0.42, 16, 12), new THREE.MeshLambertMaterial({ color: 0xffd9b3 }));
+    head.position.y = 2.3;
+    const legs = new THREE.Mesh(new THREE.CylinderGeometry(0.45, 0.45, 0.4, 12), new THREE.MeshLambertMaterial({ color: 0xffffff }));
+    legs.position.y = 0.2;
+    g.add(body, head, legs); g.scale.setScalar(1.5); return g;
+  }
+  const ball = new THREE.Mesh(new THREE.SphereGeometry(0.4, 16, 12), new THREE.MeshLambertMaterial({ color: 0xffffff }));
+  scene.add(ball);
+  function resize() {
+    const w = view.clientWidth, h = view.clientHeight;
+    if (!w || !h) return;
+    renderer.setSize(w, h, false); camera.aspect = w / h; camera.updateProjectionMatrix();
+  }
+  addEventListener('resize', resize);
+
+  // ---------- 問題生成（2D版と同じロジック。x,y は仮想座標）----------
+  const rnd = (a, b) => a + Math.random() * (b - a);
+  const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
+  const dist = (a, b) => Math.hypot(a.x - b.x, a.y - b.y);
+  function segDist(p, a, b) {
+    const dx = b.x - a.x, dy = b.y - a.y, t = clamp(((p.x - a.x) * dx + (p.y - a.y) * dy) / (dx * dx + dy * dy), 0, 1);
+    return Math.hypot(p.x - (a.x + t * dx), p.y - (a.y + t * dy));
+  }
+  const pt = (B, deg, r) => { const a = deg * Math.PI / 180; return { x: B.x + Math.cos(a) * r, y: B.y + Math.sin(a) * r * 0.9 }; };
+
+  // 問題：自分(P)のパスの道を相手D1がふさいでいる。
+  // 候補は ①Pのすぐ近く(D1にふさがれたまま) ②相手D2がマークしている ③ぜんぶ空いている → 正解は③の1つ
+  function makeQuestion() {
+    for (;;) {
+      const B = { x: rnd(140, 260), y: rnd(115, 185) }, th = rnd(0, 360), sgn = Math.random() < 0.5 ? 1 : -1;
+      const P = pt(B, th, rnd(88, 100));
+      const t = rnd(0.5, 0.58), D1 = { x: B.x + (P.x - B.x) * t + rnd(-4, 4), y: B.y + (P.y - B.y) * t + rnd(-4, 4) };
+      const cs = [pt(B, th + sgn * rnd(26, 31), rnd(88, 98)), pt(B, th + sgn * rnd(105, 130), rnd(85, 100)), pt(B, th - sgn * rnd(90, 110), rnd(85, 100))];
+      const ma = rnd(0, Math.PI * 2);
+      const D2 = { x: clamp(cs[1].x + Math.cos(ma) * 46, 22, 378), y: clamp(cs[1].y + Math.sin(ma) * 46, 22, 278) };
+      const defs = [D1, D2];
+      const status = cs.map(c => defs.some(d => segDist(d, B, c) < 34) ? 'lane' : defs.some(d => dist(d, c) < 56) ? 'mark' : 'free');
+      if (status.filter(x => x === 'free').length !== 1) continue;
+      if (cs.some(c => c.x < 30 || c.x > 370 || c.y < 30 || c.y > 270) || P.x < 25 || P.x > 375 || P.y < 25 || P.y > 275) continue;
+      if (cs.some((c, i) => cs.some((d, j) => i < j && dist(c, d) < 55) || dist(c, P) < 44 && c !== cs[0])) continue;
+      // 候補どうしが近すぎる/相手と重なるものは作り直し
+      if (cs.some(c => defs.some(d => dist(c, d) < 42)) || [B, P, D1].some(o => dist(D2, o) < 44)) continue;
+      // 候補を並べ替え（①②③ の位置をバラす）
+      const idx = [0, 1, 2].sort(() => Math.random() - 0.5);
+      return { B, P, defs, cands: idx.map(i => cs[i]), status: idx.map(i => status[i]), answer: idx.findIndex(i => status[i] === 'free'), D1, D2 };
+    }
+  }
+
+  // 仮想座標(400x300)を3Dの地面(メートル)へ
+  const toW = p => ({ x: (p.x - 200) * 0.1, z: (p.y - 150) * 0.1 });
+
+  function flat(mesh, w) { mesh.rotation.x = -Math.PI / 2; mesh.position.y = 0.03; scene.add(mesh); objs.push(mesh); return mesh; }
+  function lineBetween(a, b, color, width, y) {
+    const len = Math.hypot(b.x - a.x, b.z - a.z);
+    const m = new THREE.Mesh(new THREE.PlaneGeometry(len, width), new THREE.MeshBasicMaterial({ color }));
+    m.rotation.x = -Math.PI / 2; m.rotation.z = Math.atan2(b.z - a.z, b.x - a.x) * -1 + 0;
+    m.position.set((a.x + b.x) / 2, y, (a.z + b.z) / 2); scene.add(m); objs.push(m); return m;
+  }
+  let pl, holder, defsM = [], candM = [], lockInfo = null;
+  function clearField() { objs.forEach(o => scene.remove(o)); objs = []; defsM = []; candM = []; }
+  function build() {
+    clearField();
+    W = { B: toW(q.B), P: toW(q.P), defs: q.defs.map(toW), cands: q.cands.map(toW) };
+    holder = makePlayer(0x1e6fe8); holder.position.set(W.B.x, 0, W.B.z); scene.add(holder); objs.push(holder);
+    pl = makePlayer(0xf5c518); pl.position.set(W.P.x, 0, W.P.z); scene.add(pl); objs.push(pl);
+    W.defs.forEach(d => { const p = makePlayer(0xe02b2b); p.position.set(d.x, 0, d.z); scene.add(p); objs.push(p); defsM.push(p); });
+    holder.lookAt(W.P.x, 0, W.P.z); pl.lookAt(W.B.x, 0, W.B.z);
+    defsM.forEach(p => p.lookAt(W.B.x, 0, W.B.z));
+    lineBetween(W.B, W.P, 0xffffff, 0.2, 0.04);
+    ball.position.set(W.B.x + (W.P.x - W.B.x) * 0.12, 0.4, W.B.z + (W.P.z - W.B.z) * 0.12);
+    W.cands.forEach((c, i) => {
+      const ring = new THREE.Mesh(new THREE.RingGeometry(1.2, 1.8, 32), new THREE.MeshBasicMaterial({ color: 0xffe14d, side: THREE.DoubleSide }));
+      ring.rotation.x = -Math.PI / 2; ring.position.set(c.x, 0.05, c.z);
+      const hit = new THREE.Mesh(new THREE.CircleGeometry(2.2, 24), new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.35, side: THREE.DoubleSide }));
+      hit.rotation.x = -Math.PI / 2; hit.position.set(c.x, 0.04, c.z); hit.userData.idx = i;
+      const sp = numberSprite(i + 1, 2.6); sp.position.set(c.x, 1.8, c.z);
+      scene.add(ring, hit, sp); objs.push(ring, hit, sp); candM.push(hit);
+    });
+  }
+
+  // ---------- ゲーム進行 ----------
+  const bestKey = 'soccerMove3dBest20';
+  function getBest() { try { return JSON.parse(localStorage.getItem(bestKey)); } catch (e) { return null; } }
+  function showBest() { const b = getBest(); $('best').textContent = b ? `ベスト：${b.t.toFixed(1)}びょう（ミス${b.m}かい）` : ''; }
+  showBest();
+
+  function start() {
+    correct = 0; miss = 0; rts = [];
+    $('start').classList.add('hidden'); $('result').classList.add('hidden'); $('game').classList.remove('hidden');
+    resize();
+    startT = performance.now();
+    tick = setInterval(() => $('time').textContent = ((performance.now() - startT) / 1000).toFixed(1) + ' びょう', 100);
+    $('okc').textContent = '❌ 0';
+    next();
+  }
+  function next() {
+    if (correct >= TOTAL) return finish();
+    $('count').textContent = `${correct + 1} / ${TOTAL}`;
+    $('msg').textContent = '';
+    q = makeQuestion(); build(); lockInfo = null; qT = performance.now(); locked = false;
+  }
+
+  function choose(i) {
+    if (locked) return;
+    locked = true;
+    const st = q.status[i], ok = i === q.answer, c = W.cands[i];
+    // ①じぶんが動く ②ボールをパス
+    let target = c, defIdx = -1;
+    if (st === 'lane') {
+      // 道をふさいでいる相手（道に一番近い相手）がボールを奪う
+      const segD = d => { const dx = c.x - W.B.x, dz = c.z - W.B.z, t = Math.max(0, Math.min(1, ((d.x - W.B.x) * dx + (d.z - W.B.z) * dz) / (dx * dx + dz * dz))); return Math.hypot(d.x - (W.B.x + t * dx), d.z - (W.B.z + t * dz)); };
+      defIdx = W.defs.map(segD).reduce((a, v, k, arr) => v < arr[a] ? k : a, 0);
+      target = W.defs[defIdx];
+    } else if (st === 'mark') {
+      defIdx = W.defs.map(d => Math.hypot(d.x - c.x, d.z - c.z)).reduce((a, v, k, arr) => v < arr[a] ? k : a, 0);
+    }
+    lockInfo = { t0: performance.now(), runFrom: { x: pl.position.x, z: pl.position.z }, runTo: c, ballFrom: { x: ball.position.x, z: ball.position.z }, target, defIdx, st };
+    if (ok) {
+      correct++; rts.push(performance.now() - qT);
+      $('msg').innerHTML = '<span class="ok">⭕ ナイス ポジション！</span>';
+      setTimeout(next, 1300);
+    } else {
+      miss++;
+      $('okc').textContent = '❌ ' + miss;
+      $('msg').innerHTML = `<span class="ng">❌ ${st === 'lane' ? 'まだ パスの 道が ふさがれてるよ' : 'そこは 相手が ちかいよ'}</span>`;
+      setTimeout(next, 1800);
+    }
+  }
+
+  function finish() {
+    clearInterval(tick);
+    const total = (performance.now() - startT) / 1000;
+    const avg = rts.reduce((a, b) => a + b, 0) / rts.length / 1000;
+    $('game').classList.add('hidden'); $('result').classList.remove('hidden');
+    $('rTotal').textContent = `${total.toFixed(1)} びょう`;
+    $('rDetail').innerHTML = `${TOTAL}かい せいかい（ミス ${miss}かい）<br>1もんの へいきん ${avg.toFixed(2)} びょう`;
+    const b = getBest(), better = !b || total < b.t;
+    if (better) { try { localStorage.setItem(bestKey, JSON.stringify({ t: total, m: miss })); } catch (e) {} }
+    $('rRank').textContent = better ? '🏆 ベストきろく こうしん！' : `ベスト：${b.t.toFixed(1)}びょう`;
+    showBest();
+  }
+
+  document.querySelectorAll('.pass').forEach(b => b.addEventListener('pointerdown', e => { e.preventDefault(); choose(+b.dataset.i); }));
+  const ray = new THREE.Raycaster();
+  renderer.domElement.addEventListener('pointerdown', e => {
+    if (locked || !q) return;
+    const r = renderer.domElement.getBoundingClientRect();
+    ray.setFromCamera({ x: ((e.clientX - r.left) / r.width) * 2 - 1, y: -((e.clientY - r.top) / r.height) * 2 + 1 }, camera);
+    const hit = ray.intersectObjects(candM)[0];
+    if (hit) choose(hit.object.userData.idx);
+  });
+  $('startBtn').onclick = start;
+  $('againBtn').onclick = () => { $('result').classList.add('hidden'); $('start').classList.remove('hidden'); };
+
+  (function loop() {
+    requestAnimationFrame(loop);
+    const now = performance.now();
+    if (lockInfo) {
+      const L = lockInfo, e = now - L.t0;
+      // 0〜600ms: じぶんが走る / 500〜1000ms: パス
+      const tr = Math.min(1, e / 600);
+      pl.position.x = L.runFrom.x + (L.runTo.x - L.runFrom.x) * tr; pl.position.z = L.runFrom.z + (L.runTo.z - L.runFrom.z) * tr;
+      if (tr < 1) { pl.lookAt(L.runTo.x, 0, L.runTo.z); pl.children[0].position.y = 1.05 + Math.abs(Math.sin(e / 60)) * 0.12; }
+      const tp = Math.max(0, Math.min(1, (e - 500) / 450));
+      if (tp > 0) {
+        const tx = L.st === 'lane' ? L.target.x : pl.position.x, tz = L.st === 'lane' ? L.target.z : pl.position.z;
+        ball.position.x = L.ballFrom.x + (tx - L.ballFrom.x) * tp; ball.position.z = L.ballFrom.z + (tz - L.ballFrom.z) * tp;
+        ball.position.y = 0.4 + Math.sin(tp * Math.PI) * 1.4;
+      }
+      // マークの相手は、もらう人に寄せてくる
+      if (L.st === 'mark' && tp > 0.5 && L.defIdx >= 0) {
+        const d = defsM[L.defIdx], k = Math.min(1, (e - 725) / 300);
+        d.position.x += (pl.position.x - d.position.x) * 0.08 * k; d.position.z += (pl.position.z - d.position.z) * 0.08 * k;
+      }
+    }
+    if (view.clientWidth) renderer.render(scene, camera);
+  })();
+})();
+</script>
+</body>
+</html>
