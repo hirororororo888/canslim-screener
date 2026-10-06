@@ -5,12 +5,12 @@
   "AMZN": {"pivot": 276.17, "alerted": false},
   "APH": {"pivot": 84.97, "alerted": true},
   "CRWD": {"pivot": 255.71, "alerted": true},
-  "DELL": {"pivot": 568.80, "alerted": false},
+  "DELL": {"pivot": 568.80, "alerted": true},
   "GKOS": {"pivot": 186.66, "alerted": false},
   "LTH": {"pivot": 45.12, "alerted": false},
   "NUE": {"pivot": 273.60, "alerted": false},
   "NVDA": {"pivot": 226.28, "alerted": true},
-  "PLTR": {"pivot": 190.68, "alerted": false},
+  "PLTR": {"pivot": 190.68, "alerted": true},
   "TGTX": {"pivot": 57.39, "alerted": true},
   "LPG": {"stop_loss": 44.97, "take_profit": 61.10, "alerted_stop_loss": false, "alerted_take_profit": false}
 }
