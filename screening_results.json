@@ -1496,7 +1496,7 @@
     }
   ],
   "meta": {
-    "updatedAt": "2026-10-10T12:34:12.663726+00:00",
+    "updatedAt": "2026-10-10T12:35:08.842899+00:00",
     "screened": 1488,
     "failed": 31,
     "universe": "S&P500+Nasdaq100",
@@ -1509,7 +1509,7 @@
     "excluded": 3,
     "marketExcl": [],
     "marketNote": "market=bullish, DD=2（REDFORD確認で更新）",
-    "checkerRun": "2026-10-10T12:34:23.627535+00:00",
+    "checkerRun": "2026-10-10T12:35:16.426671+00:00",
     "checkerStats": {
       "verified": 14,
       "caution": 16,
