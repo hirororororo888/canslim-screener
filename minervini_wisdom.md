@@ -157,3 +157,11 @@ If AI could truly figure out how to trade, how would one AI trader beat another?
 On September 25, the S&P 500 Index closed just 0.7% below its August 13 record high. Yet only 24.5% of the stocks in the Multi-Cap universe we follow were above their 50-day moving averages, and only 43.1% were above their 200-day moving averages. That marked the first time since the dataset began in 1981 that the S&P 500 was within 1% of an all-time high while less than 25% of stocks were above their 50-day and less than 45% were above their 200-day. The question is: Does this mark the end of a stealth correction, or is it an erosion that is more serious longer term? It could be both. If we get more of the same in the form of a year-end rally before a bear market ultimately unfolds, we could look back at this as the writing that was on the wall. Either way, breadth is very poor.
 
 → **今回の両方確認で最も重要な警戒シグナル**。S&P500が史上最高値の0.7%以内なのに、50日線上の銘柄は24.5%・200日線上は43.1%と、1981年以降のデータで初めての乖離。「ステルス調整の終わりか、より深刻な劣化か。両方もありうる。年末ラリーの後にベアマーケットが来るなら、これが予兆だったと振り返ることになる」と明言。REDFORDのConfirmed up trend継続(S&P500売り抜け日7・Put/Call 0.90)とは逆方向で、REDFORD側の個別シグナル悪化(10/3)とは整合する。9/24の「見せかけのConfirmed Uptrend」警戒の延長線上。
+
+## 2026-10-08 23:23 (Minervini Markets 360: Q4の分かれ道——ステルス調整の終わりか、金利・インフレ次第か)
+S&P500とNasdaqは史上最高値の1%以内。ただし8〜9月の典型的な調整は指数では避けられた一方、水面下で「ステルス調整（銘柄ごとに静かに進む調整）」が起きていた。主要移動平均を割った個別株が多く、値幅（ブレッド）が悪化し、均等加重指数は弱く、超大型株の強さが時価総額加重指数を支えている。50日線上・200日線上の銘柄比率は「指数が高値圏にある局面で記録上最低水準」。
+- **強気材料**: Q4は季節的に有利（特に中間選挙年）。ブレッドが改善し調整した銘柄が主要移動平均を回復すれば参加者が広がる。広がらなくても年末までの季節性は指数上昇に有利。AI関連の底堅さはテクノロジー系エクスポージャーを支える。
+- **最大の懸念は金利とインフレ**: 10年債利回りは通常GDPデフレーターより2.0〜2.5%上だが、最近は約1.0%差。インフレが落ち着いて現在の利回りを正当化するか、利回りがさらに上がるか。**10年債が5.25%近辺でピークアウト（インフレ鈍化を伴う）なら株式にとって建設的、5.25%を決定的に超えてインフレが高止まりなら大きな逆風**。
+- **信用スプレッド拡大の兆し**: 低格付けのハイイールド債と投資適格債の利回り差が拡大。まだ信用ストレスではないが「水面下の新たな警告」で、株が高値圏のうちにリスク認識が変わり始めるサインになりうる。
+- **結論**: 「トレンドは今のところ良好。ただし選別が重要」。健全なベースから出た、RS強化・出来高良好の高品質株に集中。**失敗した銘柄は損切り、牽引力（トラクション）が出てから初めて積極化。NO FORCED TRADES（無理な取引をしない）、NO BIG LOSSES（大損しない）**。Q4の核心の問い: 改善するブレッドと有利な季節性が上昇トレンドを補強するのか、粘着的なインフレ・利回り上昇・再燃する売り抜けがそれを崩すのか。
+→ REDFORDの10/10 REPORTS-2063（Confirmed up trend・S&P500売り抜け日8・Put/Call 0.89）と整合：指数の強さと内部の脆さが併存。9/29の「史上初の乖離」警告の続編で、S&P500売り抜け日が8まで積み上がっている点（REDFORD「7〜8回で下落へ」）はMinerviniの「renewed distribution」リスクと同じ方向。10/9の10年債は4.9〜5.0%台（要確認）で、Minerviniの「5.25%」ラインまではまだ余地あり。
