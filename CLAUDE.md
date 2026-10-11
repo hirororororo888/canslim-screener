@@ -1,5 +1,8 @@
 # CANSLIM / SMART スクリーナー プロジェクト
 
+## 応答言語
+**Claudeのチャット返信・通知（PushNotification等）は常に日本語で表示すること。** ツール名やコード・ティッカー・エラーメッセージの原文表記はそのままで良いが、説明文・要約・通知本文はすべて日本語にする。
+
 ## 概要
 NYSE/NASDAQ の米国株を CANSLIM + SMART + Minervini Trend Template で自動スクリーニングするWebアプリ。
 
