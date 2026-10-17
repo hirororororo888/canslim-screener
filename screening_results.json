@@ -55,11 +55,15 @@
         111.1,
         999
       ],
-      "checker_verdict": "verified",
-      "checker_gates": "6/6",
-      "checker_failed": [],
-      "checker_volRatio": 0.9,
-      "checker_atr": 2.4
+      "checker_verdict": "reject",
+      "checker_gates": "3/6",
+      "checker_failed": [
+        "出来高",
+        "トレンド",
+        "高値圏"
+      ],
+      "checker_volRatio": 0.88,
+      "checker_atr": 3.1
     },
     {
       "ticker": "LPG",
@@ -112,7 +116,7 @@
         "高値圏"
       ],
       "checker_volRatio": 0.84,
-      "checker_atr": 2.8
+      "checker_atr": 2.7
     },
     {
       "ticker": "MUR",
@@ -160,8 +164,8 @@
       "checker_verdict": "verified",
       "checker_gates": "6/6",
       "checker_failed": [],
-      "checker_volRatio": 1.15,
-      "checker_atr": 2.3
+      "checker_volRatio": 1.26,
+      "checker_atr": 2.4
     },
     {
       "ticker": "LGND",
@@ -213,7 +217,7 @@
         "高値圏"
       ],
       "checker_volRatio": 0.94,
-      "checker_atr": 2.9
+      "checker_atr": 2.7
     },
     {
       "ticker": "PARR",
@@ -259,10 +263,12 @@
         96.4
       ],
       "checker_verdict": "verified",
-      "checker_gates": "6/6",
-      "checker_failed": [],
-      "checker_volRatio": 0.98,
-      "checker_atr": 4.3
+      "checker_gates": "5/6",
+      "checker_failed": [
+        "高値圏"
+      ],
+      "checker_volRatio": 0.92,
+      "checker_atr": 4.5
     },
     {
       "ticker": "OXY",
@@ -308,11 +314,9 @@
         -68.5
       ],
       "checker_verdict": "verified",
-      "checker_gates": "5/6",
-      "checker_failed": [
-        "高値圏"
-      ],
-      "checker_volRatio": 0.94,
+      "checker_gates": "6/6",
+      "checker_failed": [],
+      "checker_volRatio": 1.06,
       "checker_atr": 1.8
     },
     {
@@ -358,13 +362,12 @@
         -2.8,
         -23.4
       ],
-      "checker_verdict": "caution",
-      "checker_gates": "4/6",
+      "checker_verdict": "verified",
+      "checker_gates": "5/6",
       "checker_failed": [
-        "出来高",
-        "高値圏"
+        "出来高"
       ],
-      "checker_volRatio": 0.55,
+      "checker_volRatio": 0.61,
       "checker_atr": 2.6
     },
     {
@@ -416,7 +419,7 @@
         "出来高",
         "適正位置"
       ],
-      "checker_volRatio": 0.81,
+      "checker_volRatio": 0.73,
       "checker_atr": 2.7
     },
     {
@@ -465,7 +468,7 @@
       "checker_verdict": "verified",
       "checker_gates": "6/6",
       "checker_failed": [],
-      "checker_volRatio": 0.91,
+      "checker_volRatio": 0.96,
       "checker_atr": 1.5
     },
     {
@@ -517,8 +520,8 @@
         "トレンド",
         "高値圏"
       ],
-      "checker_volRatio": 1.02,
-      "checker_atr": 3.4
+      "checker_volRatio": 1.09,
+      "checker_atr": 3.7
     },
     {
       "ticker": "PSX",
@@ -568,8 +571,8 @@
       "checker_failed": [
         "出来高"
       ],
-      "checker_volRatio": 0.85,
-      "checker_atr": 2.3
+      "checker_volRatio": 0.83,
+      "checker_atr": 2.2
     },
     {
       "ticker": "DINO",
@@ -614,12 +617,13 @@
         -89.0,
         -41.9
       ],
-      "checker_verdict": "verified",
-      "checker_gates": "5/6",
+      "checker_verdict": "caution",
+      "checker_gates": "4/6",
       "checker_failed": [
+        "出来高",
         "適正位置"
       ],
-      "checker_volRatio": 0.9,
+      "checker_volRatio": 0.81,
       "checker_atr": 2.5
     },
     {
@@ -671,7 +675,7 @@
         "出来高",
         "適正位置"
       ],
-      "checker_volRatio": 0.67,
+      "checker_volRatio": 0.66,
       "checker_atr": 2.6
     },
     {
@@ -720,8 +724,8 @@
       "checker_verdict": "verified",
       "checker_gates": "6/6",
       "checker_failed": [],
-      "checker_volRatio": 0.92,
-      "checker_atr": 2.2
+      "checker_volRatio": 0.96,
+      "checker_atr": 2.3
     },
     {
       "ticker": "CRGY",
@@ -766,14 +770,13 @@
         -186.3,
         -53.6
       ],
-      "checker_verdict": "caution",
-      "checker_gates": "4/6",
+      "checker_verdict": "verified",
+      "checker_gates": "5/6",
       "checker_failed": [
-        "トレンド",
         "高値圏"
       ],
-      "checker_volRatio": 2.81,
-      "checker_atr": 2.6
+      "checker_volRatio": 2.21,
+      "checker_atr": 2.9
     },
     {
       "ticker": "FANG",
@@ -818,13 +821,10 @@
         -10.4,
         -29.5
       ],
-      "checker_verdict": "caution",
-      "checker_gates": "4/6",
-      "checker_failed": [
-        "トレンド",
-        "高値圏"
-      ],
-      "checker_volRatio": 0.92,
+      "checker_verdict": "verified",
+      "checker_gates": "6/6",
+      "checker_failed": [],
+      "checker_volRatio": 1.02,
       "checker_atr": 1.7
     },
     {
@@ -870,13 +870,14 @@
         -49.9,
         24.8
       ],
-      "checker_verdict": "verified",
-      "checker_gates": "5/6",
+      "checker_verdict": "caution",
+      "checker_gates": "4/6",
       "checker_failed": [
+        "トレンド",
         "高値圏"
       ],
-      "checker_volRatio": 1.01,
-      "checker_atr": 1.6
+      "checker_volRatio": 1.17,
+      "checker_atr": 1.8
     },
     {
       "ticker": "AMG",
@@ -924,7 +925,7 @@
       "checker_verdict": "verified",
       "checker_gates": "6/6",
       "checker_failed": [],
-      "checker_volRatio": 1.0,
+      "checker_volRatio": 1.01,
       "checker_atr": 2.3
     },
     {
@@ -975,8 +976,8 @@
       "checker_failed": [
         "出来高"
       ],
-      "checker_volRatio": 0.71,
-      "checker_atr": 1.9
+      "checker_volRatio": 0.76,
+      "checker_atr": 1.8
     },
     {
       "ticker": "XOM",
@@ -1026,8 +1027,8 @@
       "checker_failed": [
         "出来高"
       ],
-      "checker_volRatio": 0.79,
-      "checker_atr": 1.4
+      "checker_volRatio": 0.86,
+      "checker_atr": 1.5
     },
     {
       "ticker": "EOG",
@@ -1073,12 +1074,10 @@
         -1.7
       ],
       "checker_verdict": "verified",
-      "checker_gates": "5/6",
-      "checker_failed": [
-        "出来高"
-      ],
-      "checker_volRatio": 0.86,
-      "checker_atr": 1.6
+      "checker_gates": "6/6",
+      "checker_failed": [],
+      "checker_volRatio": 1.05,
+      "checker_atr": 1.7
     },
     {
       "ticker": "COP",
@@ -1124,11 +1123,9 @@
         -37.8
       ],
       "checker_verdict": "verified",
-      "checker_gates": "5/6",
-      "checker_failed": [
-        "出来高"
-      ],
-      "checker_volRatio": 0.87,
+      "checker_gates": "6/6",
+      "checker_failed": [],
+      "checker_volRatio": 0.99,
       "checker_atr": 1.6
     },
     {
@@ -1179,7 +1176,7 @@
       "checker_failed": [
         "主導力"
       ],
-      "checker_volRatio": 0.92,
+      "checker_volRatio": 0.96,
       "checker_atr": 1.4
     },
     {
@@ -1226,12 +1223,10 @@
         999
       ],
       "checker_verdict": "verified",
-      "checker_gates": "5/6",
-      "checker_failed": [
-        "適正位置"
-      ],
-      "checker_volRatio": 1.02,
-      "checker_atr": 3.0
+      "checker_gates": "6/6",
+      "checker_failed": [],
+      "checker_volRatio": 1.21,
+      "checker_atr": 3.5
     },
     {
       "ticker": "KNTK",
@@ -1279,8 +1274,8 @@
       "checker_verdict": "verified",
       "checker_gates": "6/6",
       "checker_failed": [],
-      "checker_volRatio": 0.95,
-      "checker_atr": 2.3
+      "checker_volRatio": 1.0,
+      "checker_atr": 2.4
     },
     {
       "ticker": "TILE",
@@ -1333,7 +1328,7 @@
         "主導力",
         "高値圏"
       ],
-      "checker_volRatio": 0.81,
+      "checker_volRatio": 0.85,
       "checker_atr": 1.5
     },
     {
@@ -1382,7 +1377,7 @@
       "checker_verdict": "verified",
       "checker_gates": "6/6",
       "checker_failed": [],
-      "checker_volRatio": 1.06,
+      "checker_volRatio": 1.08,
       "checker_atr": 2.1
     },
     {
@@ -1433,7 +1428,7 @@
       "checker_failed": [
         "主導力"
       ],
-      "checker_volRatio": 1.05,
+      "checker_volRatio": 0.99,
       "checker_atr": 1.7
     },
     {
@@ -1482,8 +1477,8 @@
       "checker_verdict": "verified",
       "checker_gates": "6/6",
       "checker_failed": [],
-      "checker_volRatio": 1.22,
-      "checker_atr": 1.4
+      "checker_volRatio": 1.21,
+      "checker_atr": 1.5
     },
     {
       "ticker": "EZPW",
@@ -1534,8 +1529,8 @@
         "出来高",
         "高値圏"
       ],
-      "checker_volRatio": 0.86,
-      "checker_atr": 2.2
+      "checker_volRatio": 0.85,
+      "checker_atr": 2.3
     }
   ],
   "meta": {
@@ -1554,11 +1549,11 @@
       "除外③売抜け日6回超"
     ],
     "marketNote": "market=caution, DD=8(REDFORD REPORTS-2093 10/16: Up trend under pressure)",
-    "checkerRun": "2026-10-17T01:27:21.515401+00:00",
+    "checkerRun": "2026-10-17T02:34:48.269202+00:00",
     "checkerStats": {
       "verified": 18,
-      "caution": 10,
-      "reject": 2
+      "caution": 9,
+      "reject": 3
     }
   }
 }
