@@ -165,3 +165,6 @@ S&P500とNasdaqは史上最高値の1%以内。ただし8〜9月の典型的な�
 - **信用スプレッド拡大の兆し**: 低格付けのハイイールド債と投資適格債の利回り差が拡大。まだ信用ストレスではないが「水面下の新たな警告」で、株が高値圏のうちにリスク認識が変わり始めるサインになりうる。
 - **結論**: 「トレンドは今のところ良好。ただし選別が重要」。健全なベースから出た、RS強化・出来高良好の高品質株に集中。**失敗した銘柄は損切り、牽引力（トラクション）が出てから初めて積極化。NO FORCED TRADES（無理な取引をしない）、NO BIG LOSSES（大損しない）**。Q4の核心の問い: 改善するブレッドと有利な季節性が上昇トレンドを補強するのか、粘着的なインフレ・利回り上昇・再燃する売り抜けがそれを崩すのか。
 → REDFORDの10/10 REPORTS-2063（Confirmed up trend・S&P500売り抜け日8・Put/Call 0.89）と整合：指数の強さと内部の脆さが併存。9/29の「史上初の乖離」警告の続編で、S&P500売り抜け日が8まで積み上がっている点（REDFORD「7〜8回で下落へ」）はMinerviniの「renewed distribution」リスクと同じ方向。10/9の10年債は4.9〜5.0%台（要確認）で、Minerviniの「5.25%」ラインまではまだ余地あり。
+## 2026-10-23
+Professional trading is not about being right or wrong. It's about seeing the caution signs—the red lights, the green lights, and the yellow flags—and adjusting accordingly. The market is constantly giving you information. Your job isn't to prove you're right. Your job is to recognize when conditions change and yield when necessary. Those who adapt the fastest, adjust the best, and know when to yield are the ones who stay in the game long enough to win.
+
