@@ -1,0 +1,8 @@
+REDFORD REPORTS-2168  #NYSE最新トレンド情報
+日本時間2026年10月24日 9:30現在
+トレンド評価：Up trend under pressure
+売り抜け日カウント S&P500=6 Nasdaq=3
+推奨ポジション：現物株20%~40% キャッシュ60%-80%
+Put Call Ratio= 0.87(前日値=0.87)
+エントリー・ポイント突破銘柄: CART(1) FCNCA(1) SDRL(2) TENB(1) VNOM(1) ESTC(1) OXY(2) LNG(2) PAGP(3) TTE(2) AGYS(1) ICE(1) AJV(1)
+エントリー・ポイント接近銘柄: 34銘柄
