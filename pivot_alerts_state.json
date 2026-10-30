@@ -6,7 +6,7 @@
   "APH": {"pivot": 84.97, "alerted": true},
   "CRWD": {"pivot": 255.71, "alerted": true},
   "DELL": {"pivot": 568.80, "alerted": true},
-  "GKOS": {"pivot": 186.66, "alerted": false},
+  "GKOS": {"pivot": 186.66, "alerted": true},
   "LTH": {"pivot": 45.12, "alerted": true},
   "NUE": {"pivot": 273.60, "alerted": true},
   "NVDA": {"pivot": 226.28, "alerted": true},
