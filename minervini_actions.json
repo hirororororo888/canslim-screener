@@ -54,5 +54,19 @@
     "action": "short_hedge",
     "text": "IWM（ラッセル2000ETF）のショートを継続。オーバーウェイトだったショートサイズは縮小したが、小型株の弱さと市場内部の悪化を踏まえヘッジとして維持。10年債利回りは5%超で高止まり、原油も$100近辺、FRBは年内追加利上げの可能性を示唆と指摘。",
     "post_id": "2103112011563389210"
+  },
+  {
+    "date": "2026-10-30",
+    "ticker": "SPY/DIA",
+    "action": "short",
+    "text": "IBDLive(10/29)でSPYとDIAのショート保有を開示。10/30の終値が悪ければショートをオーバーウェイト(増し玉)にする意向。10/31『Shorts working well. Longs holding up.』(ショートが機能、ロングも堅調)。",
+    "post_id": "shorts"
+  },
+  {
+    "date": "2026-10-30",
+    "ticker": "TEVA/IBB",
+    "action": "hold",
+    "text": "個別株のロングはTEVAのみ、ETFのロングはIBB(バイオテックETF)のみ。どちらも継続保有。",
+    "post_id": "shorts"
   }
 ]

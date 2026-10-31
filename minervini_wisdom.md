@@ -168,3 +168,9 @@ S&P500とNasdaqは史上最高値の1%以内。ただし8〜9月の典型的な�
 ## 2026-10-23
 Professional trading is not about being right or wrong. It's about seeing the caution signs—the red lights, the green lights, and the yellow flags—and adjusting accordingly. The market is constantly giving you information. Your job isn't to prove you're right. Your job is to recognize when conditions change and yield when necessary. Those who adapt the fastest, adjust the best, and know when to yield are the ones who stay in the game long enough to win.
 
+## 2026-10-30
+Yesterday on IBDLive I revealed my short positions in $SPY and $DIA. If we have a bad close today, I will likely go to overweight on the shorts. I also mentioned my only individual stock long $TEVA, as well as my only ETF long $IBB. I am still long both.
+
+## 2026-10-31
+Shorts working well. Longs holding up.
+
