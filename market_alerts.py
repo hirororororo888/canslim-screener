@@ -114,7 +114,7 @@ def main():
     for lvl, key in ((10, "nanpin10"), (20, "nanpin20")):
         if dd_hi >= lvl and not ms.get(key, False):
             msgs.append(f"QQQが52週高値から-{lvl}%に到達(${last_c:.2f}、高値${hi:.2f})。"
-                        f"ナンピン補強ルールの対象です（下落相場のナンピン禁止の注意も確認を）。")
+                        f"ナンピン補強ルール(余力の{40 if lvl==10 else 60}%で買い増し)の対象です。")
             ms[key] = True
         if dd_hi < 5:
             ms[key] = False
