@@ -1,16 +1,72 @@
 {
-  "PANW": {"stop_loss": 360.70, "take_profit": 490.09, "alerted_stop_loss": true, "alerted_take_profit": false},
-  "NTAP": {"stop_loss": 193.92, "take_profit": 263.48, "alerted_stop_loss": false, "alerted_take_profit": false},
-  "AMD": {"pivot": 627.15, "alerted": true},
-  "AMZN": {"pivot": 276.17, "alerted": false},
-  "APH": {"pivot": 84.97, "alerted": true},
-  "CRWD": {"pivot": 255.71, "alerted": true},
-  "DELL": {"pivot": 568.80, "alerted": true},
-  "GKOS": {"pivot": 186.66, "alerted": false},
-  "LTH": {"pivot": 45.12, "alerted": true},
-  "NUE": {"pivot": 273.60, "alerted": true},
-  "NVDA": {"pivot": 226.28, "alerted": true},
-  "PLTR": {"pivot": 190.68, "alerted": true},
-  "TGTX": {"pivot": 57.39, "alerted": true},
-  "LPG": {"stop_loss": 44.97, "take_profit": 61.10, "alerted_stop_loss": false, "alerted_take_profit": false}
+  "PANW": {
+    "stop_loss": 360.7,
+    "take_profit": 490.09,
+    "alerted_stop_loss": true,
+    "alerted_take_profit": false
+  },
+  "NTAP": {
+    "stop_loss": 193.92,
+    "take_profit": 263.48,
+    "alerted_stop_loss": false,
+    "alerted_take_profit": false
+  },
+  "AMD": {
+    "pivot": 627.15,
+    "alerted": true
+  },
+  "AMZN": {
+    "pivot": 276.17,
+    "alerted": false
+  },
+  "APH": {
+    "pivot": 84.97,
+    "alerted": true
+  },
+  "CRWD": {
+    "pivot": 255.71,
+    "alerted": true
+  },
+  "DELL": {
+    "pivot": 568.8,
+    "alerted": true
+  },
+  "GKOS": {
+    "pivot": 186.66,
+    "alerted": false
+  },
+  "LTH": {
+    "pivot": 45.12,
+    "alerted": true
+  },
+  "NUE": {
+    "pivot": 273.6,
+    "alerted": true
+  },
+  "NVDA": {
+    "pivot": 226.28,
+    "alerted": true
+  },
+  "PLTR": {
+    "pivot": 190.68,
+    "alerted": true
+  },
+  "TGTX": {
+    "pivot": 57.39,
+    "alerted": true
+  },
+  "LPG": {
+    "stop_loss": 44.97,
+    "take_profit": 61.1,
+    "alerted_stop_loss": false,
+    "alerted_take_profit": false
+  },
+  "_market": {
+    "dd_level": {
+      "S&P500": 7,
+      "ナスダック総合": 4
+    },
+    "qqq_below200": false,
+    "month_alert": "2026-10"
+  }
 }
