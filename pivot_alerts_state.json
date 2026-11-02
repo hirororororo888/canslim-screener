@@ -63,10 +63,11 @@
   },
   "_market": {
     "dd_level": {
-      "S&P500": 7,
+      "S&P500": 6,
       "ナスダック総合": 4
     },
     "qqq_below200": false,
-    "month_alert": "2026-10"
+    "month_alert": "2026-10",
+    "nanpin10": true
   }
 }
