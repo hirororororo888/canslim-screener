@@ -64,7 +64,7 @@
   "_market": {
     "dd_level": {
       "S&P500": 6,
-      "ナスダック総合": 4
+      "ナスダック総合": 5
     },
     "qqq_below200": false,
     "month_alert": "2026-10",
