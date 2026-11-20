@@ -1,0 +1,5 @@
+REDFORD REPORTS-2389  #NYSE最新トレンド情報
+日本時間2026年11月19日 7:10現在
+トレンド評価：Market in correction
+推奨ポジション：現物株0%~20% キャッシュ80%-100%
+Put Call Ratio= 0.98(前日値=0.95)

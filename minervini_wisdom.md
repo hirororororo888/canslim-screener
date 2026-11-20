@@ -174,3 +174,6 @@ Yesterday on IBDLive I revealed my short positions in $SPY and $DIA. If we have 
 ## 2026-10-31
 Shorts working well. Longs holding up.
 
+## 2026-11-20
+I covered all my short positions near the lows, locking in nearly a 7-to-1 return on my money, anticipating potentially favorable comments from the White House following the US-China-Russia summit. For those following since 10/15: we entered at very low risk, added as the trade worked, moved stops to breakeven, and captured nearly the full move. This market is still very dangerous but the easy money has been made. School is out. Good luck.
+
