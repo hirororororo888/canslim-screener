@@ -177,3 +177,9 @@ Shorts working well. Longs holding up.
 ## 2026-11-20
 I covered all my short positions near the lows, locking in nearly a 7-to-1 return on my money, anticipating potentially favorable comments from the White House following the US-China-Russia summit. For those following since 10/15: we entered at very low risk, added as the trade worked, moved stops to breakeven, and captured nearly the full move. This market is still very dangerous but the easy money has been made. School is out. Good luck.
 
+## 2026-11-24
+$TGTXを買いました。今のところ順調です。(11/24 米国朝)
+
+## 2026-11-25
+昨日の相場の急反発は印象的に見えたが、市場にはまだ課題が残る。「これは弱気相場ではない」と言う人は、SNDK/BE/AMD/MU/DELL/NBIS等を持ち続けた人に言ってみてほしい。半導体株は相対的な底をつけた可能性があるが、売られすぎからの反発は急激。私はこうした局面は取引しない。
+
